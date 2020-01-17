@@ -1,4 +1,4 @@
-package fr.ajaate.dora.Dora;
+package fr.ajaate.dora;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
