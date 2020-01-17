@@ -1,5 +1,5 @@
 package fr.ajaate.dora.model;
 
 public enum Level {
-    APHP, HOPITAL, POLE, SERVICE, UNITE_FONCTIONNELLE, UNITE_SOIN;
+    AP_HP, HOSPITAL, POLE, SERVICE, FONCTIONAL_UNIT, CARE_UNIT;
 }
