@@ -13,7 +13,7 @@ public class Struct {
     private int idResponsible;
 
 
-    public Struct(int idStruct, String name, Level level, String country, String city, String postal_code, String street, String buildingNumber, int idStructParent, int idResponsible) {
+    public Struct(int idStruct, String name, Level level, String country, String city, String postal_code, String street, String buildingNumber, Integer idStructParent, int idResponsible) {
         this.idStruct = idStruct;
         this.name = name;
         this.level = level;
