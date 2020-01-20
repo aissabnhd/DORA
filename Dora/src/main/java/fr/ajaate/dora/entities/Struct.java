@@ -37,7 +37,7 @@ public class Struct implements Serializable {
     @JoinColumn(name = "struct_id", referencedColumnName = "id")
     private Struct struct;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "staff_id", referencedColumnName = "id")
     private Staff responsible;
 

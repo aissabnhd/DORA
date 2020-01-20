@@ -7,6 +7,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -46,12 +47,20 @@ public class Staff {
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "struct_belong_id", referencedColumnName = "id")
     private Struct structBelong;
 
     @OneToOne(mappedBy = "responsible")
     private Struct structResponsible;
+
+    @ManyToMany
+    @JoinTable(
+            name = "staff_speciality",
+            joinColumns = @JoinColumn(name = "staff_id"),
+            inverseJoinColumns =@JoinColumn(name = "speciality_id")
+    )
+    private Set<Speciality> specialities;
 
     public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String email, String rib, int postcode, String city, String street, String country, String linkCalendar) {
         this.firsName = firsName;

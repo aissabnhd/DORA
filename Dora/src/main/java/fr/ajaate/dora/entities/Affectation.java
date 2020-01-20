@@ -27,11 +27,16 @@ public class Affectation {
     @JoinColumn(name = "hospitalization_id", nullable = false)
     private Hospitalization hospitalization;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "struct_id", referencedColumnName = "id")
     private Struct struct;
 
     @ManyToMany
+    @JoinTable(
+            name = "affectation_staff",
+            joinColumns = @JoinColumn(name = "affectation_id"),
+            inverseJoinColumns = @JoinColumn(name = "staff_id")
+    )
     private Set<Staff> listOfStaffs;
 
     public Affectation(Instant dateAffectation, Instant dateEndAffectation) {

@@ -30,7 +30,7 @@ public class Hospitalization {
     @JoinColumn(name = "dmp_id", nullable = false)
     private DMP dmp;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "struct_id", referencedColumnName = "id")
     private Struct struct;
 
