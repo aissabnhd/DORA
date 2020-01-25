@@ -15,12 +15,18 @@
 
       <span>Mail oublié</span>
     </div>
+    <div (click)="selection.value = 'medecin'" tabindex="0">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+
+      <span>Medecin</span>
+    </div>
 
   </div>
 
   <div [ngSwitch]="selection.value">
     <pre *ngSwitchCase="'connexion'"><app-connexion></app-connexion></pre>
     <pre *ngSwitchCase="'mail-oublie'"><app-mail-oublie></app-mail-oublie></pre>
+    <pre *ngSwitchCase="'medecin'"><app-medecin></app-medecin></pre>
   </div>
 
 
