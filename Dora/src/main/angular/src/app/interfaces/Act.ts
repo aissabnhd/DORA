@@ -1,7 +1,10 @@
+import { Affectation } from './Affectation';
+import { Staff } from './Staff';
+
 export interface Act{
   id: number;
   type: string;
   date: any;
-  affectation: any;
-  staff: any;
+  affectation: Affectation;
+  staff: Staff;
 }

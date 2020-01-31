@@ -1,7 +1,9 @@
+import { Hospitalization } from './Hospitalization';
+
 export interface DMP {
   id: number;
   socialSecurityNumber: string;
-  firsName: string;
+  firstName: string;
   lastName: string;
   birthday: any;
   nationality: string;
@@ -12,6 +14,6 @@ export interface DMP {
   street: string;
   country: string;
   allergy: string;
-  hospitalizations: Set<any>;
+  hospitalizations: Set<Hospitalization>;
 
 }

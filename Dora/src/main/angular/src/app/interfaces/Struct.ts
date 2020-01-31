@@ -1,3 +1,8 @@
+import { Struct } from './Struct';
+import { Speciality } from './Speciality';
+import { Staff } from './Staff';
+
+
 export interface Struct {
   id: number;
   nameStruct: string;
@@ -6,7 +11,7 @@ export interface Struct {
   city: string;
   street: string;
   country: string;
-  speciality: any;
-  struct: any;
-  responsible: any;
+  speciality: Speciality;
+  struct: Struct;
+  responsible: Staff;
 }

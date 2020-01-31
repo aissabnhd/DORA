@@ -1,6 +1,11 @@
+import { Struct } from './Struct';
+import { Speciality } from './Speciality';
+import { Role } from './Role';
+
+
 export interface Staff {
   id: number;
-  firsName: string;
+  firstName: string;
   lastName: string;
   birthday: any;
   nationality: string;
@@ -12,8 +17,8 @@ export interface Staff {
   street: string;
   country: string;
   linkCalendar: string;
-  role: any;
-  structBelong: any;
-  structResponsible: any;
-  specialities: Set<any>;
+  role: Role;
+  structBelong: Struct;
+  structResponsible: Struct;
+  specialities: Set<Speciality>;
 }

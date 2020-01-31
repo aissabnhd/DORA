@@ -15,6 +15,11 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { AjaateComponent } from './ajaate/ajaate.component';
 import { HelpComponent } from './help/help.component';
+import { DocumentsComponent } from './medecin/documents/documents.component';
+import { DiagnostiqueComponent } from './medecin/diagnostique/diagnostique.component';
+import { CrComponent } from './medecin/cr/cr.component';
+import { OrdonnanceComponent } from './medecin/ordonnance/ordonnance.component';
+import { ExamenComponent } from './medecin/examen/examen.component';
 
 
 @NgModule({
@@ -28,7 +33,12 @@ import { HelpComponent } from './help/help.component';
     InfirmiereComponent,
     AdminComponent,
     AjaateComponent,
-    HelpComponent
+    HelpComponent,
+    DocumentsComponent,
+    DiagnostiqueComponent,
+    CrComponent,
+    OrdonnanceComponent,
+    ExamenComponent
   ],
   imports: [
     BrowserModule,
