@@ -4,7 +4,7 @@
       <div class="iconLateral" style="background-image: url(../assets/img/aphp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
     </a>
     <br>
-    <a *ngIf="isMedecin || isSecretaire" class="iconeLateral" routerLink="/documents">
+    <a *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" class="iconeLateral" routerLink="/documents">
       <div class="iconLateral" style="background-image: url(../assets/img/consulter_dmp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
@@ -13,7 +13,7 @@
       <div class="iconLateral" style="background-image: url(../assets/img/diagnostic.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
    <br>
     </a>
-    <a *ngIf="isMedecin" class="iconeLateral" routerLink="/cr">
+    <a *ngIf="isMedecin || isLaborantin" class="iconeLateral" routerLink="/cr">
       <div class="iconLateral" style="background-image: url(../assets/img/compte_rendu.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
@@ -48,6 +48,48 @@
       <br>
     </a>
 
+    <a *ngIf="isAdmin" class="iconeLateral" routerLink="/ajout_membre">
+      <div class="iconLateral" style="background-image: url(../assets/img/ajout_membre.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a *ngIf="isAdmin" class="iconeLateral" routerLink="/gestion_aphp">
+      <div class="iconLateral" style="background-image: url(../assets/img/gerer_aphp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a *ngIf="isAdmin" class="iconeLateral" routerLink="/affectation_personnel">
+      <div class="iconLateral" style="background-image: url(../assets/img/affecter_personnel.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a *ngIf="isAdmin" class="iconeLateral" routerLink="/modification_specialite">
+      <div class="iconLateral" style="background-image: url(../assets/img/modifier_specialite.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a *ngIf="isLaborantin" class="iconeLateral" routerLink="/voir_anciens_examens">
+      <div class="iconLateral" style="background-image: url(../assets/img/voir_anciens_examens.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a *ngIf="isLaborantin" class="iconeLateral" routerLink="/voir_demande_examen">
+      <div class="iconLateral" style="background-image: url(../assets/img/voir_demande_examen.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a *ngIf="isInfirmier" class="iconeLateral" routerLink="/posologie">
+      <div class="iconLateral" style="background-image: url(../assets/img/posologie.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a *ngIf="isInfirmier" class="iconeLateral" routerLink="/constantes">
+      <div class="iconLateral" style="background-image: url(../assets/img/constantes.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a *ngIf="isInfirmier" class="iconeLateral" routerLink="/remarques">
+      <div class="iconLateral" style="background-image: url(../assets/img/remarques.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a *ngIf="isInfirmier" class="iconeLateral" routerLink="/prescription">
+      <div class="iconLateral" style="background-image: url(../assets/img/prescription.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+
+
 
   </mat-sidenav>
   <mat-sidenav-content>
@@ -61,17 +103,19 @@
 
         <span *ngIf="isMedecin" ><input type="text" id="name" name="name" required
                      minlength="4" maxlength="8" size="10" readonly="true" value="Dr. {{staff.lastName}}"></span>
-        <span *ngIf="isSecretaire" ><input type="text" id="name" name="name" required
+        <span *ngIf="isLaborantin" ><input type="text" id="name" name="name" required
+                                        minlength="4" maxlength="8" size="10" readonly="true" value="Pr. {{staff.lastName}}"></span>
+        <span *ngIf="isSecretaire || isAdmin || isInfirmier" ><input type="text" id="name" name="name" required
                                         minlength="4" maxlength="8" size="10" readonly="true" value="{{staff.lastName}}"></span>
-        <span>  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/deconnexion.png" /> </a> </span>
-        <span>  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/agenda.png" /> </a> </span>
-        <span *ngIf="isMedecin || isSecretaire" ><input type="text" id="name2" name="name" required
+        <span>  <a class="icone" > <img class="iconUser" src="../../assets/img/deconnexion.png" /> </a> </span>
+        <span>  <a class="icone" routerLink="/agenda"> <img class="iconUser" src="../../assets/img/agenda.png" /> </a> </span>
+        <span *ngIf="isMedecin || isSecretaire || isLaborantin" ><input type="text" id="name2" name="name" required
                      minlength="4" maxlength="8" size="10" readonly="true" value="{{dmp.firstName}} {{dmp.lastName}}"></span>
-        <span *ngIf="isMedecin || isSecretaire" >  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/switch_dmp.png" /> </a> </span>
-        <span *ngIf="isMedecin || isSecretaire" ><input type="text" id="name3" name="name" required
+        <span *ngIf="isMedecin || isSecretaire || isLaborantin" >  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/switch_dmp.png" /> </a> </span>
+        <span *ngIf="isMedecin || isSecretaire || isLaborantin" ><input type="text" id="name3" name="name" required
                      minlength="4" maxlength="8" size="10" readonly="true" value="Chambre 213"></span>
-        <span>  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/help.png" /> </a> </span>
-        <span>  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/ajaate.png" /> </a> </span>
+        <span>  <a class="icone" routerLink="/help"> <img class="iconUser" src="../../assets/img/help.png" /> </a> </span>
+        <span>  <a class="icone" routerLink="/ajaate"> <img class="iconUser" src="../../assets/img/ajaate.png" /> </a> </span>
 
       </mat-toolbar-row>
 

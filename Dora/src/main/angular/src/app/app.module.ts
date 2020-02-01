@@ -26,6 +26,17 @@ import { CreerDmpComponent } from './staff/creer-dmp/creer-dmp.component';
 import { AffecterPatientComponent } from './staff/affecter-patient/affecter-patient.component';
 import { GestionAgendaMedecinComponent } from './staff/gestion-agenda-medecin/gestion-agenda-medecin.component';
 import { GestionMaterielComponent } from './staff/gestion-materiel/gestion-materiel.component';
+import { AjoutMembreComponent } from './staff/ajout-membre/ajout-membre.component';
+import { GestionAphpComponent } from './staff/gestion-aphp/gestion-aphp.component';
+import { AffectationPersonnelComponent } from './staff/affectation-personnel/affectation-personnel.component';
+import { ModificationSpecialiteComponent } from './staff/modification-specialite/modification-specialite.component';
+import { VoirDemandeExamenComponent } from './staff/voir-demande-examen/voir-demande-examen.component';
+import { VoirAnciensExamensComponent } from './staff/voir-anciens-examens/voir-anciens-examens.component';
+import { PosologieComponent } from './staff/posologie/posologie.component';
+import { ConstantesComponent } from './staff/constantes/constantes.component';
+import { RemarquesComponent } from './staff/remarques/remarques.component';
+import { PrescriptionsComponent } from './staff/prescriptions/prescriptions.component';
+import { AgendaComponent } from './agenda/agenda.component';
 
 
 @NgModule({
@@ -50,7 +61,18 @@ import { GestionMaterielComponent } from './staff/gestion-materiel/gestion-mater
     CreerDmpComponent,
     AffecterPatientComponent,
     GestionAgendaMedecinComponent,
-    GestionMaterielComponent
+    GestionMaterielComponent,
+    AjoutMembreComponent,
+    GestionAphpComponent,
+    AffectationPersonnelComponent,
+    ModificationSpecialiteComponent,
+    VoirDemandeExamenComponent,
+    VoirAnciensExamensComponent,
+    PosologieComponent,
+    ConstantesComponent,
+    RemarquesComponent,
+    PrescriptionsComponent,
+    AgendaComponent
   ],
   imports: [
     BrowserModule,
