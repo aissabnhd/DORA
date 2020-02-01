@@ -1,3 +1,6 @@
+import {Staff} from "./Staff";
+import {Act} from "./Act";
+
 export interface Document {
   id: number;
   type: string;
@@ -6,4 +9,6 @@ export interface Document {
   validation: boolean;
   dateValidation: any;
   path: string;
+  act: Act;
+  staff: Staff;
 }
