@@ -24,7 +24,7 @@ public class Act {
     private Instant date;
 
     @ManyToOne
-    @JoinColumn(name="affectation_id", nullable = false)
+    @JoinColumn(name="affectation_id")
     private Affectation affectation;
 
     @ManyToOne

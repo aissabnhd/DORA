@@ -1,8 +1,11 @@
 package fr.ajaate.dora.entities;
 
+import fr.ajaate.dora.enumeration.DocumentType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -30,15 +33,31 @@ public class Document {
     @Column(name = "path")
     private String path;
 
+    public Document(String type, String extension, Instant dateCreation, Boolean validation, Instant dateValidation, String path, Act act, Staff staff) {
+
+        this.type = type;
+        this.extension = extension;
+        this.dateCreation = dateCreation;
+        this.validation = validation;
+        this.dateValidation = dateValidation;
+        this.path = path;
+        this.act = act;
+        this.staff = staff;
+    }
+
     @ManyToOne
+    @NotFound(
+            action = NotFoundAction.IGNORE)
     @JoinColumn(name = "act_id", nullable = false)
     private Act act;
 
     @ManyToOne
+    @NotFound(
+            action = NotFoundAction.IGNORE)
     @JoinColumn(name = "staff_id", nullable = false)
     private Staff staff;
 
-    public Document(Long id, String type, String extension, Instant dateCreation, Boolean validation, Instant dateValidation, String path) {
+   /* public Document(Long id, DocumentType type, String extension, Instant dateCreation, Boolean validation, Instant dateValidation, String path) {
         this.id = id;
         this.type = type;
         this.extension = extension;
@@ -46,7 +65,7 @@ public class Document {
         this.validation = validation;
         this.dateValidation = dateValidation;
         this.path = path;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {

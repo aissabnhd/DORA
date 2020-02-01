@@ -54,7 +54,7 @@ public class Staff {
     @OneToOne(mappedBy = "responsible")
     private Struct structResponsible;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER )
     @JoinTable(
             name = "staff_speciality",
             joinColumns = @JoinColumn(name = "staff_id"),
