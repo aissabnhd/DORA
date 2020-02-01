@@ -23,6 +23,7 @@ import {PosologieComponent} from "./staff/posologie/posologie.component";
 import {AgendaComponent} from "./agenda/agenda.component";
 import {AjaateComponent} from "./ajaate/ajaate.component";
 import {HelpComponent} from "./help/help.component";
+import {ChangeDmpComponent} from "./staff/change-dmp/change-dmp.component";
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'cr', component: CreerCrComponent },
   { path: 'documents', component: AfficheDmpComponent },
   { path: 'examen', component: DemandeExamenComponent},
+  { path: 'change_dmp', component: ChangeDmpComponent},
   // secretaire links
   { path: 'creer_dmp', component: CreerDmpComponent },
   { path: 'gestion_materiel', component: GestionMaterielComponent},

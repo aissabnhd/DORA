@@ -37,6 +37,7 @@ import { ConstantesComponent } from './staff/constantes/constantes.component';
 import { RemarquesComponent } from './staff/remarques/remarques.component';
 import { PrescriptionsComponent } from './staff/prescriptions/prescriptions.component';
 import { AgendaComponent } from './agenda/agenda.component';
+import { ChangeDmpComponent } from './staff/change-dmp/change-dmp.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { AgendaComponent } from './agenda/agenda.component';
     ConstantesComponent,
     RemarquesComponent,
     PrescriptionsComponent,
-    AgendaComponent
+    AgendaComponent,
+    ChangeDmpComponent
   ],
   imports: [
     BrowserModule,

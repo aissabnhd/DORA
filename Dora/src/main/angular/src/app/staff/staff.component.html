@@ -109,10 +109,10 @@
                                         minlength="4" maxlength="8" size="10" readonly="true" value="{{staff.lastName}}"></span>
         <span>  <a class="icone" > <img class="iconUser" src="../../assets/img/deconnexion.png" /> </a> </span>
         <span>  <a class="icone" routerLink="/agenda"> <img class="iconUser" src="../../assets/img/agenda.png" /> </a> </span>
-        <span *ngIf="isMedecin || isSecretaire || isLaborantin" ><input type="text" id="name2" name="name" required
+        <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" ><input type="text" id="name2" name="name" required
                      minlength="4" maxlength="8" size="10" readonly="true" value="{{dmp.firstName}} {{dmp.lastName}}"></span>
-        <span *ngIf="isMedecin || isSecretaire || isLaborantin" >  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/switch_dmp.png" /> </a> </span>
-        <span *ngIf="isMedecin || isSecretaire || isLaborantin" ><input type="text" id="name3" name="name" required
+        <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" >  <a class="icone" routerLink="/change_dmp"> <img class="iconUser" src="../../assets/img/switch_dmp.png" /> </a> </span>
+        <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" ><input type="text" id="name3" name="name" required
                      minlength="4" maxlength="8" size="10" readonly="true" value="Chambre 213"></span>
         <span>  <a class="icone" routerLink="/help"> <img class="iconUser" src="../../assets/img/help.png" /> </a> </span>
         <span>  <a class="icone" routerLink="/ajaate"> <img class="iconUser" src="../../assets/img/ajaate.png" /> </a> </span>
