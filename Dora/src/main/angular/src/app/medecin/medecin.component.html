@@ -4,7 +4,7 @@
     <div class="iconLateral" style="background-image: url(../assets/img/aphp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
     </a>
     <br>
-    <a class="iconeLateral" routerLink="/documents">
+    <a *ngIf="isMedecin" class="iconeLateral" routerLink="/documents">
       <div class="iconLateral" style="background-image: url(../assets/img/consulter_dmp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
     </a>
     <br>

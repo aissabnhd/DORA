@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cr',
-  templateUrl: './cr.component.html',
-  styleUrls: ['./cr.component.css']
+  selector: 'app-creer-cr',
+  templateUrl: './creer-cr.component.html',
+  styleUrls: ['./creer-cr.component.css']
 })
-export class CrComponent implements OnInit {
-
+export class CreerCrComponent implements OnInit {
   text: string = "";
   constructor() { }
 
@@ -22,7 +21,4 @@ export class CrComponent implements OnInit {
     console.log("sauvegarde auto");
   }
 
-  onCancel() {
-
-  }
 }

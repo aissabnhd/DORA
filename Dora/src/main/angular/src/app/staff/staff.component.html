@@ -1,0 +1,81 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="menu" mode="side" opened>
+    <a class="iconeLateral" href="https://www.aphp.fr/">
+      <div class="iconLateral" style="background-image: url(../assets/img/aphp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+    </a>
+    <br>
+    <a *ngIf="isMedecin || isSecretaire" class="iconeLateral" routerLink="/documents">
+      <div class="iconLateral" style="background-image: url(../assets/img/consulter_dmp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+
+      <br>
+    </a>
+    <a *ngIf="isMedecin" class="iconeLateral" routerLink="/diagnostique">
+      <div class="iconLateral" style="background-image: url(../assets/img/diagnostic.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+   <br>
+    </a>
+    <a *ngIf="isMedecin" class="iconeLateral" routerLink="/cr">
+      <div class="iconLateral" style="background-image: url(../assets/img/compte_rendu.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+
+      <br>
+    </a>
+    <a *ngIf="isMedecin" class="iconeLateral"routerLink="/ordonnance">
+      <div class="iconLateral" style="background-image: url(../assets/img/ordonnance.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+
+      <br>
+    </a>
+    <a *ngIf="isMedecin" class="iconeLateral" routerLink="/examen">
+      <div class="iconLateral" style="background-image: url(../assets/img/demande_examen.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+
+      <br>
+    </a>
+    <a *ngIf="isSecretaire" class="iconeLateral" routerLink="/creer_dmp">
+      <div class="iconLateral" style="background-image: url(../assets/img/creer_dmp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+
+      <br>
+    </a>
+    <a *ngIf="isSecretaire" class="iconeLateral" routerLink="/gestion_materiel">
+      <div class="iconLateral" style="background-image: url(../assets/img/gestion_materiel.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+
+      <br>
+    </a>
+    <a *ngIf="isSecretaire" class="iconeLateral" routerLink="/gestion_agenda_medecin">
+      <div class="iconLateral" style="background-image: url(../assets/img/gestion_agenda_medecin.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+
+      <br>
+    </a>
+    <a *ngIf="isSecretaire" class="iconeLateral" routerLink="/affectation_patient_service">
+      <div class="iconLateral" style="background-image: url(../assets/img/affectation_patient_service.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span *ngIf="isMedecin" > <img class="iconUser" src="../../assets/logo/medecin.png" /> </span>
+        <span *ngIf="isSecretaire" > <img class="iconUser" src="../../assets/logo/secretaire.png" /> </span>
+        <span *ngIf="isAdmin" >  <img class="iconUser" src="../../assets/logo/admin.png" />  </span>
+        <span *ngIf="isLaborantin" >  <img class="iconUser" src="../../assets/logo/laborantin.png" /> </span>
+        <span *ngIf="isInfirmier" >  <img class="iconUser" src="../../assets/logo/infirmier.png" /> </span>
+
+        <span *ngIf="isMedecin" ><input type="text" id="name" name="name" required
+                     minlength="4" maxlength="8" size="10" readonly="true" value="Dr. {{staff.lastName}}"></span>
+        <span *ngIf="isSecretaire" ><input type="text" id="name" name="name" required
+                                        minlength="4" maxlength="8" size="10" readonly="true" value="{{staff.lastName}}"></span>
+        <span>  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/deconnexion.png" /> </a> </span>
+        <span>  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/agenda.png" /> </a> </span>
+        <span *ngIf="isMedecin || isSecretaire" ><input type="text" id="name2" name="name" required
+                     minlength="4" maxlength="8" size="10" readonly="true" value="{{dmp.firstName}} {{dmp.lastName}}"></span>
+        <span *ngIf="isMedecin || isSecretaire" >  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/switch_dmp.png" /> </a> </span>
+        <span *ngIf="isMedecin || isSecretaire" ><input type="text" id="name3" name="name" required
+                     minlength="4" maxlength="8" size="10" readonly="true" value="Chambre 213"></span>
+        <span>  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/help.png" /> </a> </span>
+        <span>  <a class="icone" href="https://www.aphp.fr/"> <img class="iconUser" src="../../assets/img/ajaate.png" /> </a> </span>
+
+      </mat-toolbar-row>
+
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

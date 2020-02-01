@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ordonnance.component.css']
 })
 export class OrdonnanceComponent implements OnInit {
+  text: string = "";
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onCancel() {
+    
+  }
+
+  onSubmit() {
+    
+  }
 }

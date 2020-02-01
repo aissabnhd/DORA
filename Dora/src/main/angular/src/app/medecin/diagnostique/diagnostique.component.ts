@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./diagnostique.component.css']
 })
 export class DiagnostiqueComponent implements OnInit {
+  text: string = "";
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onCancel() {
+    
+  }
+
+  onSubmit() {
+    
+  }
 }
