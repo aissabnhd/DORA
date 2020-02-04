@@ -32,4 +32,13 @@
 
 
 -->
-<app-staff></app-staff>
+<div *ngIf="isConnected">
+
+  <app-staff></app-staff>
+
+</div>
+<div *ngIf="!isConnected">
+
+  <app-connexion (test)="connected()"></app-connexion>
+
+</div>
