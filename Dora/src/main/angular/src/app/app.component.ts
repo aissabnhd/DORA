@@ -8,9 +8,22 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angular';
   isConnected = false;
+  nom = "";
+
 
   connected($event){
+  if($event == 1)
      this.isConnected = true;
+  else
+    this.isConnected = false;
+  }
+
+  change_name($event){
+    this.nom = $event;
+  }
+
+  getNom(){
+  return this.nom;
   }
 }
 

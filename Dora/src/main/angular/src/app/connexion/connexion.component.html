@@ -14,7 +14,7 @@
     <br>
     Login :
     <br>
-    <input type="text" formControlName="login">
+    <input type="text" formControlName="login" [value]="loginValue" (input)="onLoginChange($event.target.value)">
     <br><br>
   </label>
 

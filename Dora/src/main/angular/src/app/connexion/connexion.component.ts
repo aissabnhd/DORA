@@ -12,6 +12,11 @@ export class ConnexionComponent implements OnInit {
   @Output()
   test = new EventEmitter<number>();
 
+  @Output()
+  name_event = new EventEmitter<String>();
+
+  loginValue= "";
+
   constructor(private router:Router) { }
 
   ngOnInit() {
@@ -20,6 +25,11 @@ export class ConnexionComponent implements OnInit {
 
   connect(){
     this.test.emit(1);
+    this.name_event.emit(this.loginValue);
+  }
+
+  onLoginChange($event){
+    this.loginValue = $event;
   }
 
 

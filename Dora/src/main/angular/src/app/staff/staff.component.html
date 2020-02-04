@@ -107,7 +107,7 @@
                                         minlength="4" maxlength="8" size="10" readonly="true" value="Pr. {{staff.lastName}}"></span>
         <span *ngIf="isSecretaire || isAdmin || isInfirmier" ><input type="text" id="name" name="name" required
                                         minlength="4" maxlength="8" size="10" readonly="true" value="{{staff.lastName}}"></span>
-        <span>  <a class="icone" > <img class="iconUser" src="../../assets/img/deconnexion.png" /> </a> </span>
+        <span>  <a class="icone" (click)="disconnect()" > <img class="iconUser" src="../../assets/img/deconnexion.png" /> </a> </span>
         <span>  <a class="icone" routerLink="/agenda"> <img class="iconUser" src="../../assets/img/agenda.png" /> </a> </span>
         <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" ><input type="text" id="name2" name="name" required
                      minlength="4" maxlength="8" size="10" readonly="true" value="{{dmp.firstName}} {{dmp.lastName}}"></span>
@@ -120,6 +120,10 @@
       </mat-toolbar-row>
 
     </mat-toolbar>
+
+
     <router-outlet></router-outlet>
+
+
   </mat-sidenav-content>
 </mat-sidenav-container>

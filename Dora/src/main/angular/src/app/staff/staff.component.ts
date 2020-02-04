@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output  } from '@angular/core';
 import {Staff} from "../interfaces/Staff";
 import {DMP} from "../interfaces/DMP";
 import {RoleName} from "../interfaces/Role";
@@ -10,12 +10,16 @@ import {RoleName} from "../interfaces/Role";
 })
 export class StaffComponent implements OnInit {
   staff : Staff;
+  @Input()
+  name = "Jaja";
   dmp : DMP ;
   isMedecin: boolean = false;
   isLaborantin : boolean = false;
   isAdmin : boolean = false;
   isSecretaire: boolean = false;
   isInfirmier: boolean = false;
+  @Output()
+  test = new EventEmitter<number>();
 
   constructor() { }
 
@@ -27,7 +31,11 @@ export class StaffComponent implements OnInit {
     this.dmp = {"id": 1, "firstName" : "Alain", "lastName" : "BECILE", "birthday": null, "nationality": "francais(?)",
       "phoneNumber": "06","email": "jaja@gmail.com",  "postcode":75000, "city": "Pavillons-sous-bois",
       "street": "garsdelastreet", "country":"France", "socialSecurityNumber":"1", "allergy": "non", "hospitalizations": null };
+    this.staff.lastName = this.name;
+  }
 
+  disconnect(){
+    this.test.emit(2);
   }
 
 }
