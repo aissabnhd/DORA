@@ -42,9 +42,6 @@ public class DMP {
     @Column(name = "allergy")
     private String allergy;
 
-    @OneToMany(mappedBy = "dmp")
-    private Set<Hospitalization> hospitalizations;
-
     public DMP() {
     }
 
@@ -163,13 +160,6 @@ public class DMP {
         this.allergy = allergy;
     }
 
-    public Set<Hospitalization> getHospitalizations() {
-        return hospitalizations;
-    }
-
-    public void setHospitalizations(Set<Hospitalization> hospitalizations) {
-        this.hospitalizations = hospitalizations;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -212,7 +202,6 @@ public class DMP {
                 ", street='" + street + '\'' +
                 ", country='" + country + '\'' +
                 ", allergy='" + allergy + '\'' +
-                ", hospitalizations=" + hospitalizations +
                 '}';
     }
 }

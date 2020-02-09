@@ -21,8 +21,6 @@ public class DMPImplementation implements DMPServices {
 
     @Override
     public DMP save(DMP dmp) {
-        if(dmpRepository.existsById(dmp.getId()))
-            throw new IllegalArgumentException("Le DMP avec l'id suivant : "+ dmp.getId() +" existe déjà !");
         if(dmpRepository.existsDMPBySocialSecurityNumber(dmp.getSocialSecurityNumber()))
             throw new IllegalArgumentException("Le DMP avec le numéro de sécurité social suivant : "+ dmp.getSocialSecurityNumber() +" existe déjà !");
         return dmpRepository.save(dmp);
