@@ -6,13 +6,11 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 
-@Data
-@NoArgsConstructor
-@ToString
 @Entity
 @Table(name = "hospitalizations")
 public class Hospitalization {
@@ -31,17 +29,62 @@ public class Hospitalization {
     private DMP dmp;
 
     @ManyToOne
-    @JoinColumn(name = "struct_id", referencedColumnName = "id")
+    @JoinColumn(name = "struct_id", referencedColumnName = "id", nullable = true)
     private Struct struct;
 
-    @OneToMany(mappedBy = "hospitalization")
-    private Set<Affectation> affectations;
+    public Hospitalization() {
+    }
 
-
-    public Hospitalization(Instant dateHospitalization, Instant dateEndHospitalization, int roomNumber) {
+    public Hospitalization(Instant dateHospitalization, Instant dateEndHospitalization, int roomNumber, DMP dmp, Struct struct) {
         this.dateHospitalization = dateHospitalization;
         this.dateEndHospitalization = dateEndHospitalization;
         this.roomNumber = roomNumber;
+        this.dmp = dmp;
+        this.struct = struct;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Instant getDateHospitalization() {
+        return dateHospitalization;
+    }
+
+    public void setDateHospitalization(Instant dateHospitalization) {
+        this.dateHospitalization = dateHospitalization;
+    }
+
+    public Instant getDateEndHospitalization() {
+        return dateEndHospitalization;
+    }
+
+    public void setDateEndHospitalization(Instant dateEndHospitalization) {
+        this.dateEndHospitalization = dateEndHospitalization;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public DMP getDmp() {
+        return dmp;
+    }
+
+    public void setDmp(DMP dmp) {
+        this.dmp = dmp;
+    }
+
+    public Struct getStruct() {
+        return struct;
+    }
+
+    public void setStruct(Struct struct) {
+        this.struct = struct;
     }
 
     @Override
@@ -56,5 +99,17 @@ public class Hospitalization {
     @Override
     public int hashCode() {
         return Objects.hash(id, roomNumber);
+    }
+
+    @Override
+    public String toString() {
+        return "Hospitalization{" +
+                "id=" + id +
+                ", dateHospitalization=" + dateHospitalization +
+                ", dateEndHospitalization=" + dateEndHospitalization +
+                ", roomNumber=" + roomNumber +
+                ", dmp=" + dmp +
+                ", struct=" + struct +
+                '}';
     }
 }
