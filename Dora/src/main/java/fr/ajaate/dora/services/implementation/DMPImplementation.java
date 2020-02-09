@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
 
 
@@ -76,5 +77,10 @@ public class DMPImplementation implements DMPServices {
     @Override
     public Optional<DMP> findBySocialSecurityNumber(String socialSecurityNumber) {
         return dmpRepository.findBySocialSecurityNumber(socialSecurityNumber);
+    }
+
+    @Override
+    public Set<DMP> findAllByStructId(Long structId) {
+        return dmpRepository.findAllByStructId(structId);
     }
 }

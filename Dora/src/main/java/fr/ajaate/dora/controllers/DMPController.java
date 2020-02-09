@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/DMP")
@@ -49,6 +50,11 @@ public class DMPController {
     @GetMapping("/ssn/{ssn}")
     public ResponseEntity<Optional<DMP>> findBySocialSecurityNumber(@PathVariable("ssn") String ssn){
         return new ResponseEntity<Optional<DMP>>(dmpServices.findBySocialSecurityNumber(ssn), HttpStatus.OK);
+    }
+
+    @GetMapping("/struct/{id}")
+    public ResponseEntity<Set<DMP>> findAllByStructId(@PathVariable("id") Long id){
+        return new ResponseEntity<Set<DMP>>(dmpServices.findAllByStructId(id), HttpStatus.OK);
     }
 
 

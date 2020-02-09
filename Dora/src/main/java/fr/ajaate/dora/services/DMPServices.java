@@ -1,6 +1,7 @@
 package fr.ajaate.dora.services;
 
 import fr.ajaate.dora.entities.DMP;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,8 @@ public interface DMPServices {
     public List<DMP> findByFirstName(String firstName);
 
     public Optional<DMP> findBySocialSecurityNumber(String socialSecurityNumber);
+
+    Set<DMP> findAllByStructId(Long structId);
 
 
 }
