@@ -42,8 +42,16 @@ public class Staff {
     private String country;
     @Column(name = "link_calendar")
     private String linkCalendar;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "password")
+    private String password;
 
-    @OneToOne
+    @Transient
+    private String passwordConfirm;
+
+
+    @OneToOne(cascade = CascadeType.MERGE  ,fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
@@ -54,15 +62,15 @@ public class Staff {
     @OneToOne(mappedBy = "responsible")
     private Struct structResponsible;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE  ,fetch = FetchType.EAGER)
     @JoinTable(
             name = "staff_speciality",
             joinColumns = @JoinColumn(name = "staff_id"),
             inverseJoinColumns =@JoinColumn(name = "speciality_id")
     )
-    private Set<Speciality> specialities;
+    private Set<Speciality> specialities=null;
 
-    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String email, String rib, int postcode, String city, String street, String country, String linkCalendar) {
+    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String rib, int postcode,Role role,  String city, String street, String country, String linkCalendar,String username, String email, String password) {
         this.firsName = firsName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -75,6 +83,9 @@ public class Staff {
         this.street = street;
         this.country = country;
         this.linkCalendar = linkCalendar;
+        this.password=password;
+        this.role=role;
+        this.username=username;
     }
 
     @Override
@@ -92,12 +103,201 @@ public class Staff {
                 Objects.equals(email, staff.email) &&
                 Objects.equals(rib, staff.rib) &&
                 Objects.equals(city, staff.city) &&
+                Objects.equals(password,staff.password)&&
                 Objects.equals(street, staff.street) &&
+                Objects.equals(role, staff.role) &&
                 Objects.equals(country, staff.country);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
+        return Objects.hash(id, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, role , city, street, country,password);
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirsName() {
+        return firsName;
+    }
+
+    public void setFirsName(String firsName) {
+        this.firsName = firsName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Instant getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Instant birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRib() {
+        return rib;
+    }
+
+    public void setRib(String rib) {
+        this.rib = rib;
+    }
+
+    public int getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getLinkCalendar() {
+        return linkCalendar;
+    }
+
+    public void setLinkCalendar(String linkCalendar) {
+        this.linkCalendar = linkCalendar;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Struct getStructBelong() {
+        return structBelong;
+    }
+
+    public void setStructBelong(Struct structBelong) {
+        this.structBelong = structBelong;
+    }
+
+    public Struct getStructResponsible() {
+        return structResponsible;
+    }
+
+    public void setStructResponsible(Struct structResponsible) {
+        this.structResponsible = structResponsible;
+    }
+
+    public Set<Speciality> getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(Set<Speciality> specialities) {
+        this.specialities = specialities;
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "id=" + id +
+                ", firsName='" + firsName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthday=" + birthday +
+                ", nationality='" + nationality + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", rib='" + rib + '\'' +
+                ", postcode=" + postcode +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", country='" + country + '\'' +
+                ", linkCalendar='" + linkCalendar + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", passwordConfirm='" + passwordConfirm + '\'' +
+                ", role=" + role +
+                ", structBelong=" + structBelong +
+                ", structResponsible=" + structResponsible +
+                ", specialities=" + specialities +
+                '}';
     }
 }

@@ -1,11 +1,9 @@
 package fr.ajaate.dora.dao;
 
-import fr.ajaate.dora.entities.DMP;
+import fr.ajaate.dora.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DMPRepository extends JpaRepository<DMP, Long> {
-
-
+public interface RoleRepository extends JpaRepository<Role, Long> {
 }
