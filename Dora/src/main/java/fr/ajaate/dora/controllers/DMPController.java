@@ -51,7 +51,6 @@ public class DMPController {
         return new ResponseEntity<Optional<DMP>>(dmpServices.findBySocialSecurityNumber(ssn), HttpStatus.OK);
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){
         dmpServices.deleteById(id);

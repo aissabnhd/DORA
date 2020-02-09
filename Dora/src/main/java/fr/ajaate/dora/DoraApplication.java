@@ -16,9 +16,6 @@ public class DoraApplication implements CommandLineRunner {
     @Autowired
     private DMPRepository dmpRepository;
 
-    @Autowired
-	private StructRepository structRepository;
-
 	@Autowired
 	private HospitalizationServices hospitalizationServices;
 

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -19,9 +18,6 @@ import java.util.Set;
 public class HospitalizationController {
     @Autowired
     private HospitalizationServices hospitalizationServices;
-
-    @Autowired
-    private DMPServices dmpServices;
 
     @PostMapping
     public ResponseEntity<Hospitalization> save(@RequestBody Hospitalization hospitalization) {
