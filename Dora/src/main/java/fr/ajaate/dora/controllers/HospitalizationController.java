@@ -21,15 +21,12 @@ public class HospitalizationController {
 
     @PostMapping
     public ResponseEntity<Hospitalization> save(@RequestBody Hospitalization hospitalization) {
-        Hospitalization savedHospitalization = hospitalizationServices.save(hospitalization);
-        return new ResponseEntity<>(savedHospitalization, HttpStatus.CREATED);
+        return new ResponseEntity<>(hospitalizationServices.save(hospitalization), HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<Hospitalization>> findAll(@RequestParam(name = "page", defaultValue = "0") int page,
                                              @RequestParam(name = "size", defaultValue = "10") int size) {
-        List<Hospitalization> hospitalizations = hospitalizationServices.findAll();
-        System.out.println(hospitalizations.size());
         return new ResponseEntity<List<Hospitalization>>(hospitalizationServices.findAll(), HttpStatus.OK);
     }
 
@@ -39,7 +36,7 @@ public class HospitalizationController {
     }
 
     @GetMapping("/date/{dateHospitalization}")
-    public ResponseEntity<Set<Hospitalization>> findById(@PathVariable("dateHospitalization") Instant dateHospitalization){
+    public ResponseEntity<Set<Hospitalization>> findAllByDateHospitalization(@PathVariable("dateHospitalization") Instant dateHospitalization){
         return new ResponseEntity<Set<Hospitalization>>(hospitalizationServices.findAllByDateHospitalization(dateHospitalization), HttpStatus.OK);
     }
 
