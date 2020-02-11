@@ -39,6 +39,54 @@ public class Affectation {
     )
     private Set<Staff> listOfStaffs;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Instant getDateAffectation() {
+        return dateAffectation;
+    }
+
+    public Instant getDateEndAffectation() {
+        return dateEndAffectation;
+    }
+
+    public Hospitalization getHospitalization() {
+        return hospitalization;
+    }
+
+    public Struct getStruct() {
+        return struct;
+    }
+
+    public Set<Staff> getListOfStaffs() {
+        return listOfStaffs;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setDateAffectation(Instant dateAffectation) {
+        this.dateAffectation = dateAffectation;
+    }
+
+    public void setDateEndAffectation(Instant dateEndAffectation) {
+        this.dateEndAffectation = dateEndAffectation;
+    }
+
+    public void setHospitalization(Hospitalization hospitalization) {
+        this.hospitalization = hospitalization;
+    }
+
+    public void setStruct(Struct struct) {
+        this.struct = struct;
+    }
+
+    public void setListOfStaffs(Set<Staff> listOfStaffs) {
+        this.listOfStaffs = listOfStaffs;
+    }
+
     public Affectation(Instant dateAffectation, Instant dateEndAffectation) {
         this.dateAffectation = dateAffectation;
         this.dateEndAffectation = dateEndAffectation;
