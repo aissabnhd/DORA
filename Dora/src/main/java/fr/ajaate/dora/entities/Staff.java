@@ -100,4 +100,140 @@ public class Staff {
     public int hashCode() {
         return Objects.hash(id, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirsName() {
+        return firsName;
+    }
+
+    public void setFirsName(String firsName) {
+        this.firsName = firsName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Instant getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Instant birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRib() {
+        return rib;
+    }
+
+    public void setRib(String rib) {
+        this.rib = rib;
+    }
+
+    public int getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getLinkCalendar() {
+        return linkCalendar;
+    }
+
+    public void setLinkCalendar(String linkCalendar) {
+        this.linkCalendar = linkCalendar;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Struct getStructBelong() {
+        return structBelong;
+    }
+
+    public void setStructBelong(Struct structBelong) {
+        this.structBelong = structBelong;
+    }
+
+    public Struct getStructResponsible() {
+        return structResponsible;
+    }
+
+    public void setStructResponsible(Struct structResponsible) {
+        this.structResponsible = structResponsible;
+    }
+
+    public Set<Speciality> getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(Set<Speciality> specialities) {
+        this.specialities = specialities;
+    }
 }
