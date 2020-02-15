@@ -1,3 +1,18 @@
 <div class="data">
-  <p>change-dmp works!</p>
+  <ul>
+    <li *ngFor="let dmp of allDMP">
+
+      <div class="nom"> Nom : {{dmp.lastName}} </div>
+      <br>
+      <div class="esperance"> Prénom : {{dmp.firstName}} </div>
+      <br>
+      <div class="regime"> Numéro sécurité sociale : {{dmp.socialSecurityNumber}} </div>
+
+      <div class="links">
+        <a title="update" mat-fab (click)="onSubmit(dmp.id)"> <mat-icon >ballot</mat-icon></a>
+      </div>
+    </li>
+
+  </ul>
+
 </div>

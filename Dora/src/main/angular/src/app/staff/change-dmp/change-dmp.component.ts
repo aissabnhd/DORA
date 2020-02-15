@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {DMP} from "../../interfaces/DMP";
+import {DMPService} from "../../services/DMP.service";
 
 @Component({
   selector: 'app-change-dmp',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangeDmpComponent implements OnInit {
 
-  constructor() { }
+  dmp : DMP;
+
+  allDMP : Array<DMP>;
+
+  @Output()
+  changeDMP = new EventEmitter<DMP>();
+
+  constructor(private dmpService : DMPService) { }
 
   ngOnInit() {
+    this.dmpService.findAllDMP().subscribe(
+      data => this.allDMP = data
+
+    )
+
+  }
+
+  onSubmit(id : number){
+
+    console.log(this.dmpService.findByIdDMP(id));
+
   }
 
 }
