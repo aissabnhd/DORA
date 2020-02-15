@@ -11,13 +11,13 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-@ToString
+
 @Entity
 @Table(name = "staff")
 public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ID;
     @Column(name = "firstName")
     private String firsName;
     @Column(name = "lastName")
@@ -43,7 +43,13 @@ public class Staff {
     @Column(name = "link_calendar")
     private String linkCalendar;
 
-    @OneToOne
+
+    @Column(name = "username")
+    private String username;
+    @Column(name = "password")
+    private String password;
+
+    @OneToOne(cascade = CascadeType.MERGE  ,fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
@@ -54,7 +60,7 @@ public class Staff {
     @OneToOne(mappedBy = "responsible")
     private Struct structResponsible;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE  ,fetch = FetchType.EAGER)
     @JoinTable(
             name = "staff_speciality",
             joinColumns = @JoinColumn(name = "staff_id"),
@@ -62,7 +68,7 @@ public class Staff {
     )
     private Set<Speciality> specialities;
 
-    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String email, String rib, int postcode, String city, String street, String country, String linkCalendar) {
+    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String rib, int postcode,Role role,  String city, String street, String country, String linkCalendar,String username, String email, String password) {
         this.firsName = firsName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -75,6 +81,9 @@ public class Staff {
         this.street = street;
         this.country = country;
         this.linkCalendar = linkCalendar;
+        this.password=password;
+        this.role=role;
+        this.username=username;
     }
 
     @Override
@@ -83,7 +92,7 @@ public class Staff {
         if (o == null || getClass() != o.getClass()) return false;
         Staff staff = (Staff) o;
         return postcode == staff.postcode &&
-                Objects.equals(id, staff.id) &&
+                Objects.equals(ID, staff.ID) &&
                 Objects.equals(firsName, staff.firsName) &&
                 Objects.equals(lastName, staff.lastName) &&
                 Objects.equals(birthday, staff.birthday) &&
@@ -98,15 +107,15 @@ public class Staff {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
+        return Objects.hash(ID, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
     }
 
     public Long getId() {
-        return id;
+        return ID;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.ID = id;
     }
 
     public String getFirsName() {

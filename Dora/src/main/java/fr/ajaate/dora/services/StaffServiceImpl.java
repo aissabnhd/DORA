@@ -3,7 +3,7 @@ package fr.ajaate.dora.services;
 import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.entities.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -15,15 +15,20 @@ public class StaffServiceImpl implements StaffService {
 
 
 
+    @Override
+    public void save(Staff staff) {
+        //staff.setPassword(bCryptPasswordEncoder.encode(staff.getPassword()));
 
+        staffRepository.save(staff);
+    }
     @Override
     public Staff findByUsername(String username) {
-        return staffRepository.findByUsername(username);
+        return staffRepository.findByusername(username);
     }
 
     @Override
     public Staff findByEmail(String email) {
-        return staffRepository.findByEmail(email);
+        return staffRepository.findByemail(email);
     }
 
     @Override
@@ -32,16 +37,11 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Staff updateVehicle(Long id, Staff newStaff) {
+    public Staff updateStaff(Long id, Staff newStaff) {
 
         if (staffRepository.findById(id).isPresent()){
             Staff existingStaff = staffRepository.findById(id).get();
 
-
-
-            // String name, String firstname, Date birth, String
-            //phone_number, String phone_number_secondary, String country, String city, String
-            //postal_code, String street
             existingStaff.setFirsName(newStaff.getFirsName());
             existingStaff.setLastName(newStaff.getLastName());
             existingStaff.setBirthday(newStaff.getBirthday());
