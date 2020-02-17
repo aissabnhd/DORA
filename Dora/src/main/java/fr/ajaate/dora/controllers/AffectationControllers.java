@@ -57,7 +57,7 @@ public class AffectationControllers {
 
 
     @GetMapping("/{hospitalization_id}/affectations")
-    public ResponseEntity<Set<Affectation>> findAllByHospitalizationId(@PathVariable("hospitalization_id") Hospitalization hospitalization_id){
+    public ResponseEntity<Set<Affectation>> findAllByHospitalizationId(@PathVariable("hospitalization_id") Long hospitalization_id){
         return new ResponseEntity<Set<Affectation>>(affectationServices.findAllByHospitalization(hospitalization_id), HttpStatus.OK);
     }
 
