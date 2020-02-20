@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output  } from '@angular/core';
 import { Router } from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -17,9 +18,15 @@ export class ConnexionComponent implements OnInit {
 
   loginValue= "";
 
-  constructor(private router:Router) { }
+  connexionForm : FormGroup;
+
+  constructor(private router:Router, private formBuilder : FormBuilder) { }
 
   ngOnInit() {
+    this.connexionForm = this.formBuilder.group({
+      login: [null, Validators.required],
+      password: [null, Validators.required],
+    });
 
   }
 

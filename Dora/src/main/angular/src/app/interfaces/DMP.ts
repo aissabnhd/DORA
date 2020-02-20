@@ -3,7 +3,7 @@ import { Hospitalization } from './Hospitalization';
 export interface DMP {
   id: number;
   socialSecurityNumber: string;
-  firstName: string;
+  firsName: string;
   lastName: string;
   birthday: any;
   nationality: string;

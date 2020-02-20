@@ -24,11 +24,13 @@ import {AgendaComponent} from "./agenda/agenda.component";
 import {AjaateComponent} from "./ajaate/ajaate.component";
 import {HelpComponent} from "./help/help.component";
 import {ChangeDmpComponent} from "./staff/change-dmp/change-dmp.component";
+import {AppComponent} from "./app.component";
 
 
 
 const routes: Routes = [
  //{ path: '', redirectTo: 'medecin',pathMatch: 'full' },
+  {path : 'changeDMP/:id', component: StaffComponent},
   { path: 'staff', component: StaffComponent},
   { path: 'agenda', component: AgendaComponent},
   { path: 'ajaate', component: AjaateComponent},

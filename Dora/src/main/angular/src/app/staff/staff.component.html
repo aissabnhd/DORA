@@ -4,31 +4,31 @@
       <div class="iconLateral" style="background-image: url(../assets/img/aphp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
     </a>
     <br>
-    <a *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" class="iconeLateral" routerLink="/documents">
+    <a *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp != null" class="iconeLateral" routerLink="/documents">
       <div class="iconLateral" style="background-image: url(../assets/img/consulter_dmp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
     </a>
-    <a *ngIf="isMedecin" class="iconeLateral" routerLink="/diagnostique">
+    <a *ngIf="(isMedecin) && dmp != null" class="iconeLateral" routerLink="/diagnostique">
       <div class="iconLateral" style="background-image: url(../assets/img/diagnostic.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
    <br>
     </a>
-    <a *ngIf="isMedecin || isLaborantin" class="iconeLateral" routerLink="/cr">
+    <a *ngIf="(isMedecin || isLaborantin) && dmp != null" class="iconeLateral" routerLink="/cr">
       <div class="iconLateral" style="background-image: url(../assets/img/compte_rendu.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
     </a>
-    <a *ngIf="isMedecin" class="iconeLateral"routerLink="/ordonnance">
+    <a *ngIf="(isMedecin) && dmp != null" class="iconeLateral"routerLink="/ordonnance">
       <div class="iconLateral" style="background-image: url(../assets/img/ordonnance.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
     </a>
-    <a *ngIf="isMedecin" class="iconeLateral" routerLink="/examen">
+    <a *ngIf="(isMedecin) && dmp != null" class="iconeLateral" routerLink="/examen">
       <div class="iconLateral" style="background-image: url(../assets/img/demande_examen.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
     </a>
-    <a *ngIf="isSecretaire" class="iconeLateral" routerLink="/creer_dmp">
+    <a *ngIf="(isSecretaire) && dmp != null" class="iconeLateral" routerLink="/creer_dmp">
       <div class="iconLateral" style="background-image: url(../assets/img/creer_dmp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
@@ -43,7 +43,7 @@
 
       <br>
     </a>
-    <a *ngIf="isSecretaire" class="iconeLateral" routerLink="/affectation_patient_service">
+    <a *ngIf="(isSecretaire) && dmp != null" class="iconeLateral" routerLink="/affectation_patient_service">
       <div class="iconLateral" style="background-image: url(../assets/img/affectation_patient_service.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
@@ -64,27 +64,27 @@
       <div class="iconLateral" style="background-image: url(../assets/img/modifier_specialite.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
-    <a *ngIf="isLaborantin" class="iconeLateral" routerLink="/voir_anciens_examens">
+    <a *ngIf="(isLaborantin) && dmp != null" class="iconeLateral" routerLink="/voir_anciens_examens">
       <div class="iconLateral" style="background-image: url(../assets/img/voir_anciens_examens.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
-    <a *ngIf="isLaborantin" class="iconeLateral" routerLink="/voir_demande_examen">
+    <a *ngIf="(isLaborantin) && dmp != null" class="iconeLateral" routerLink="/voir_demande_examen">
       <div class="iconLateral" style="background-image: url(../assets/img/voir_demande_examen.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
-    <a *ngIf="isInfirmier" class="iconeLateral" routerLink="/posologie">
+    <a *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/posologie">
       <div class="iconLateral" style="background-image: url(../assets/img/posologie.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
-    <a *ngIf="isInfirmier" class="iconeLateral" routerLink="/constantes">
+    <a *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/constantes">
       <div class="iconLateral" style="background-image: url(../assets/img/constantes.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
-    <a *ngIf="isInfirmier" class="iconeLateral" routerLink="/remarques">
+    <a *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/remarques">
       <div class="iconLateral" style="background-image: url(../assets/img/remarques.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
-    <a *ngIf="isInfirmier" class="iconeLateral" routerLink="/prescription">
+    <a *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/prescription">
       <div class="iconLateral" style="background-image: url(../assets/img/prescription.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
@@ -109,9 +109,21 @@
                                         minlength="4" maxlength="8" size="10" readonly="true" value="{{staff.lastName}}"></span>
         <span>  <a class="icone" (click)="disconnect()" > <img class="iconUser" src="../../assets/img/deconnexion.png" /> </a> </span>
         <span>  <a class="icone" routerLink="/agenda"> <img class="iconUser" src="../../assets/img/agenda.png" /> </a> </span>
-        <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" ><input type="text" id="name2" name="name" required
-                     minlength="4" maxlength="8" size="10" readonly="true" value="{{dmp.firstName}} {{dmp.lastName}}"></span>
-        <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" >  <a class="icone" routerLink="/change_dmp"> <img class="iconUser" src="../../assets/img/switch_dmp.png" /> </a> </span>
+        <span *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp != null" ><input type="text" id="name2" name="name" required
+                     minlength="4" maxlength="8" size="10" readonly="true" value="{{dmp.firsName}} {{dmp.lastName}}"></span>
+        <span *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp == null" ><input type="text" id="name3" name="name" required
+                     minlength="4" maxlength="8" size="10" readonly="true" value="Aucun DMP"></span>
+
+
+        <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" >
+
+          <a class="icone" routerLink="/change_dmp">
+          <img class="iconUser" src="../../assets/img/switch_dmp.png" />
+          </a>
+        </span>
+
+
+
         <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" ><input type="text" id="name3" name="name" required
                      minlength="4" maxlength="8" size="10" readonly="true" value="Chambre 213"></span>
         <span>  <a class="icone" routerLink="/help"> <img class="iconUser" src="../../assets/img/help.png" /> </a> </span>

@@ -40,7 +40,7 @@ public class DoraApplication implements CommandLineRunner {
 				"e.zola@gmail.com", 75001, "Paris", "Boulevard saint-denis",
 				"France", "allergy");
 
-		DMP dmp3 = new DMP("9912345746584263", "sara", "sara",
+		DMP dmp3 = new DMP("10", "sara", "sara",
 				Instant.parse("1993-01-01T10:12:35Z"), "France", "+33784563452",
 				"s.sara@gmail.com", 75001, "Paris", "Boulevard saint-denis",
 				"France", "allergy");
@@ -59,7 +59,7 @@ public class DoraApplication implements CommandLineRunner {
 		hospitalizationServices.save(hospitalization);
 		hospitalizationServices.save(hospitalization1);
 		hospitalizationServices.save(hospitalization3);
-		Set<DMP> dmpSet = dmpServices.findAllByStructId(struct.getId());
-		System.out.println(dmpSet);
+		//Set<DMP> dmpSet = dmpServices.findAllByStructId(struct.getId());
+		//System.out.println(dmpSet);
 	}
 }

@@ -15,8 +15,9 @@ font-style: italic;
 }
 
 button.connexion{
+  text-align: center;
   background-image:linear-gradient(#fcfba9, #f9d531);
- border-radius: 10px;
+  border-radius: 20px;
  }
 
  div.logo_2{

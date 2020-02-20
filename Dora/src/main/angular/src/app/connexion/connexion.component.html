@@ -8,20 +8,21 @@
  <img src="../../assets/img/aphp.png" />
 </div>
 
-<form >
+
+<form [formGroup]="connexionForm">
 
   <label>
     <br>
     Login :
     <br>
-    <input type="text" formControlName="login" [value]="loginValue" (input)="onLoginChange($event.target.value)">
+    <input type="text" formControlName="login">
     <br><br>
   </label>
 
   <label>
     Mot de passe :
     <br>
-    <input type="password" formControlName="mot_de_passe">
+    <input type="password" formControlName="password">
     <br>
     <a class="oubli" href="mot_de_passe_oublie.html">Mot de passe oublié</a>
     <br><br>
@@ -30,9 +31,11 @@
 
 
   <br>
+  <button class="connexion" (click)="connect()">Connexion</button>
+
 </form>
 
-<button class="connexion" (click)="connect()">Connexion</button>
+
 <div class="logo_2">
   <img class="logo_ajaate" src="../../assets/img/logo_ajaate.png" />
 </div>

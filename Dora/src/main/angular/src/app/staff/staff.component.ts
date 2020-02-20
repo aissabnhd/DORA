@@ -2,6 +2,8 @@ import { Component, OnInit, EventEmitter, Input, Output  } from '@angular/core';
 import {Staff} from "../interfaces/Staff";
 import {DMP} from "../interfaces/DMP";
 import {RoleName} from "../interfaces/Role";
+import {ActivatedRoute} from "@angular/router";
+import {DMPService} from "../services/DMP.service";
 
 @Component({
   selector: 'app-staff',
@@ -10,8 +12,9 @@ import {RoleName} from "../interfaces/Role";
 })
 export class StaffComponent implements OnInit {
   staff : Staff;
-  @Input()
+  id : number;
   name = "Jaja";
+  @Input()
   dmp : DMP ;
   isMedecin: boolean = false;
   isLaborantin : boolean = false;
@@ -21,16 +24,40 @@ export class StaffComponent implements OnInit {
   @Output()
   test = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private route : ActivatedRoute, private dmpService : DMPService) { }
 
   ngOnInit() {
-   this.staff = {"id": 1, "firstName" : "Jaja", "lastName" : "Benni", "birthday": null, "nationality": "francais(?)",
-      "phoneNumber": "06","email": "jaja@gmail.com", "rib": "0", "postcode":75000, "city": "Pavillons-sous-bois",
-      "street": "garsdelastreet", "country":"France", "linkCalendar": "???", "role": null, "structBelong": null, "structResponsible": null, "specialities" :null};
-    this.isMedecin= true;
-    this.dmp = {"id": 1, "firstName" : "Alain", "lastName" : "BECILE", "birthday": null, "nationality": "francais(?)",
-      "phoneNumber": "06","email": "jaja@gmail.com",  "postcode":75000, "city": "Pavillons-sous-bois",
-      "street": "garsdelastreet", "country":"France", "socialSecurityNumber":"1", "allergy": "non", "hospitalizations": null };
+    let id = this.route.snapshot.params['id']
+    if(id != undefined) {
+      this.dmpService.findByIdDMP(this.id).subscribe(
+        data => this.dmp = data
+      )
+    }
+    this.staff = {
+      "id": 1,
+      "firstName": "Jaja",
+      "lastName": "Benni",
+      "birthday": null,
+      "nationality": "francais(?)",
+      "phoneNumber": "06",
+      "email": "jaja@gmail.com",
+      "rib": "0",
+      "postcode": 75000,
+      "city": "Pavillons-sous-bois",
+      "street": "garsdelastreet",
+      "country": "France",
+      "linkCalendar": "???",
+      "role": null,
+      "structBelong": null,
+      "structResponsible": null,
+      "specialities": null
+    };
+    this.isMedecin = true;
+
+    this.dmpService.event.subscribe(
+      data => this.dmp = data
+    )
+
     this.staff.lastName = this.name;
   }
 

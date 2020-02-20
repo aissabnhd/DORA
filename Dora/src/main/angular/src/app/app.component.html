@@ -34,7 +34,7 @@
 -->
 <div *ngIf="isConnected">
 
-  <app-staff [name]="getNom()" (test)="connected($event)"></app-staff>
+  <app-staff (test)="connected($event)"></app-staff>
 
 </div>
 <div *ngIf="!isConnected">
