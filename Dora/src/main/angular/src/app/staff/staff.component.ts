@@ -52,7 +52,7 @@ export class StaffComponent implements OnInit {
       "structResponsible": null,
       "specialities": null
     };
-    this.isMedecin = true;
+    this.isSecretaire = true;
 
     this.dmpService.event.subscribe(
       data => this.dmp = data

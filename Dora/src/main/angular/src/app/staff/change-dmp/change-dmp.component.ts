@@ -20,11 +20,13 @@ export class ChangeDmpComponent implements OnInit {
   changeDMP = new EventEmitter<DMP>();
 
   DMPForm : FormGroup;
-  private sub: Subscription;
 
   constructor(private dmpService : DMPService, private formBuilder : FormBuilder) { }
 
   ngOnInit() {
+    this.dmpService.findAllDMP().subscribe(
+      data => console.log(data)
+    )
     this.DMPForm = this.formBuilder.group({
       nom: [null, Validators.required],
       prenom: [null, Validators.required],
@@ -36,6 +38,7 @@ export class ChangeDmpComponent implements OnInit {
 
   onSubmit(){
     this.allDMP = [];
+
     if(this.DMPForm.get('nom').value != "" && this.DMPForm.get('nom').value != null){
       this.dmpService.findByLastNameDMP(this.DMPForm.get('nom').value).subscribe(
         data => {

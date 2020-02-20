@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DMP} from "../../interfaces/DMP";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {DMPService} from "../../services/DMP.service";
 
 @Component({
   selector: 'app-creer-dmp',
@@ -11,17 +12,33 @@ export class CreerDmpComponent implements OnInit {
   dmp: DMP;
 
   DMPForm : FormGroup
-  constructor(private formBuilder : FormBuilder) { }
+  constructor(private formBuilder : FormBuilder, private dmpService : DMPService) { }
 
   ngOnInit() {
     this.DMPForm = this.formBuilder.group({
-      nom: [null, Validators.required],
-      prenom: [null, Validators.required],
-      socialSecurityNumber:  [null, Validators.required]
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      socialSecurityNumber:  [null, Validators.required],
+      birthday: [null, Validators.required],
+      nationality: [null, Validators.required],
+      postcode:  [null, Validators.required],
+      phoneNumber:  [null, Validators.required],
+      email:  [null, Validators.required],
+      city: [null, Validators.required],
+      street: [null, Validators.required],
+      country:  [null, Validators.required],
+      allergy:  [null, Validators.required]
     });
   }
 
   creationDMP() {
+     this.dmp = this.DMPForm.value
+    this.dmpService.saveDMP(this.dmp).subscribe(
+      data => console.log(this.dmp)
+    );
+
+
+
 
   }
 }

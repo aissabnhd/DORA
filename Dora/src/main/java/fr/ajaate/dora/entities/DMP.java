@@ -1,14 +1,8 @@
 package fr.ajaate.dora.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import javax.persistence.*;
-import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
-import java.util.Set;
-
 
 
 @Entity
@@ -20,11 +14,11 @@ public class DMP {
     @Column(name = "social_security_number")
     private String socialSecurityNumber;
     @Column(name = "first_Name")
-    private String firsName;
+    private String firstName;
     @Column(name = "last_Name")
     private String lastName;
     @Column(name = "birthday")
-    private Instant birthday;
+    private Date birthday;
     @Column(name = "nationality")
     private String nationality;
     @Column(name = "phone_number")
@@ -45,9 +39,9 @@ public class DMP {
     public DMP() {
     }
 
-    public DMP(String socialSecurityNumber, String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String email, int postcode, String city, String street, String country, String allergy) {
+    public DMP(String socialSecurityNumber, String firstName, String lastName, Date birthday, String nationality, String phoneNumber, String email, int postcode, String city, String street, String country, String allergy) {
         this.socialSecurityNumber = socialSecurityNumber;
-        this.firsName = firsName;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.nationality = nationality;
@@ -72,12 +66,12 @@ public class DMP {
         this.socialSecurityNumber = socialSecurityNumber;
     }
 
-    public String getFirsName() {
-        return firsName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirsName(String firsName) {
-        this.firsName = firsName;
+    public void setFirstName(String firsName) {
+        this.firstName = firsName;
     }
 
     public String getLastName() {
@@ -88,11 +82,11 @@ public class DMP {
         this.lastName = lastName;
     }
 
-    public Instant getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Instant birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -169,7 +163,7 @@ public class DMP {
         return postcode == dmp.postcode &&
                 Objects.equals(id, dmp.id) &&
                 Objects.equals(socialSecurityNumber, dmp.socialSecurityNumber) &&
-                Objects.equals(firsName, dmp.firsName) &&
+                Objects.equals(firstName, dmp.firstName) &&
                 Objects.equals(lastName, dmp.lastName) &&
                 Objects.equals(birthday, dmp.birthday) &&
                 Objects.equals(nationality, dmp.nationality) &&
@@ -183,7 +177,7 @@ public class DMP {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, socialSecurityNumber, firsName, lastName, birthday, nationality, phoneNumber, email, postcode, city, street, country, allergy);
+        return Objects.hash(id, socialSecurityNumber, firstName, lastName, birthday, nationality, phoneNumber, email, postcode, city, street, country, allergy);
     }
 
     @Override
@@ -191,7 +185,7 @@ public class DMP {
         return "DMP{" +
                 "id=" + id +
                 ", socialSecurityNumber='" + socialSecurityNumber + '\'' +
-                ", firsName='" + firsName + '\'' +
+                ", firsName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthday=" + birthday +
                 ", nationality='" + nationality + '\'' +

@@ -28,7 +28,7 @@
 
       <br>
     </a>
-    <a *ngIf="(isSecretaire) && dmp != null" class="iconeLateral" routerLink="/creer_dmp">
+    <a *ngIf="isSecretaire" class="iconeLateral" routerLink="/creer_dmp">
       <div class="iconLateral" style="background-image: url(../assets/img/creer_dmp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
@@ -110,7 +110,7 @@
         <span>  <a class="icone" (click)="disconnect()" > <img class="iconUser" src="../../assets/img/deconnexion.png" /> </a> </span>
         <span>  <a class="icone" routerLink="/agenda"> <img class="iconUser" src="../../assets/img/agenda.png" /> </a> </span>
         <span *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp != null" ><input type="text" id="name2" name="name" required
-                     minlength="4" maxlength="8" size="10" readonly="true" value="{{dmp.firsName}} {{dmp.lastName}}"></span>
+                     minlength="4" maxlength="8" size="10" readonly="true" value="{{dmp.firstName}} {{dmp.lastName}}"></span>
         <span *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp == null" ><input type="text" id="name3" name="name" required
                      minlength="4" maxlength="8" size="10" readonly="true" value="Aucun DMP"></span>
 

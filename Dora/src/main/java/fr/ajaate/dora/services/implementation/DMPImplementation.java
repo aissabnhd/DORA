@@ -69,7 +69,7 @@ public class DMPImplementation implements DMPServices {
 
     @Override
     public List<DMP> findByFirstName(String firstName) {
-        return dmpRepository.findAllByFirsName(firstName);
+        return dmpRepository.findAllByFirstName(firstName);
     }
 
     @Override

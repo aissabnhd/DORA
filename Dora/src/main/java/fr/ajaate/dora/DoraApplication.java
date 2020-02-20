@@ -13,6 +13,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.Set;
 
 @SpringBootApplication
@@ -32,16 +33,16 @@ public class DoraApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		DMP dmp = new DMP("9912345746534253", "Karl", "Marks",
-				Instant.parse("1993-01-01T10:12:35Z"), "France", "+33784563452",
+				null, "France", "+33784563452",
 				"k.marks@gmail.com", 75001, "Paris", "Boulevard saint-denis",
 				"France", "allergy");
 		DMP dmp2 = new DMP("9912345746584243", "Emile", "Zola",
-				Instant.parse("1993-01-01T10:12:35Z"), "France", "+33784563452",
+				null, "France", "+33784563452",
 				"e.zola@gmail.com", 75001, "Paris", "Boulevard saint-denis",
 				"France", "allergy");
 
 		DMP dmp3 = new DMP("10", "sara", "sara",
-				Instant.parse("1993-01-01T10:12:35Z"), "France", "+33784563452",
+				null, "France", "+33784563452",
 				"s.sara@gmail.com", 75001, "Paris", "Boulevard saint-denis",
 				"France", "allergy");
 

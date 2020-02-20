@@ -15,7 +15,7 @@ public interface DMPRepository extends JpaRepository<DMP, Long> {
 
     List<DMP> findAllByLastName(String lastName);
 
-    List<DMP> findAllByFirsName(String firstName);
+    List<DMP> findAllByFirstName(String firstName);
 
     Optional<DMP> findBySocialSecurityNumber(String socialSecurityNumber);
 

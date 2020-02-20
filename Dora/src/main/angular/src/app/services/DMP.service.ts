@@ -15,11 +15,11 @@ export class DMPService {
   constructor(private httpClient: HttpClient) { }
 
   findAllDMP() : Observable<Array<DMP>> {
-    return this.httpClient.get<Array<DMP>>('/api/DMP/')
+    return this.httpClient.get<Array<DMP>>('/api/DMP')
   }
 
   saveDMP(dmp : DMP) : Observable<DMP>{
-    return this.httpClient.post<DMP>('/api/DMP/', dmp);
+    return this.httpClient.post<DMP>('/api/DMP', dmp);
   }
 
 
