@@ -1,37 +1,29 @@
 package fr.ajaate.dora.service;
 
 
-import fr.ajaate.dora.dao.DocumentRepository;
-
 import fr.ajaate.dora.entities.Document;
-import fr.ajaate.dora.enumeration.DocumentType;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.data.repository.query.Param;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
-@Service
-public class DocumentService {
+public interface DocumentService {
 
-    @Autowired
-    DocumentRepository  documentRepository;
+    public Document save(Document document);
 
-    public Document createDocument(Document d){
-        return documentRepository.save(d);
-    }
+    public Document update(Document document);
 
-    public Optional<Document> getOne(Long id) {
-        return documentRepository.findById(id);
-    }
+    public List<Document> getAll();
 
-    public Iterable<Document> getAll() {
-        return documentRepository.findAll();
-    }
+    Optional<Document> findById(Long id);
 
+    void deleteById(Long id);
 
+     public  boolean validateDocument(long idDocument, long idValidator, Instant dateValidation);
 
+    public  boolean generatePDF(long idDocument);
 
 
 

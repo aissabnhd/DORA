@@ -33,16 +33,15 @@ public class Document {
     @Column(name = "path")
     private String path;
 
-    public Document(String type, String extension, Instant dateCreation, Boolean validation, Instant dateValidation, String path, Act act, Staff staff) {
+    public Document(String type, String extension, Instant dateCreation, String path, Act act, Staff staffCreator) {
 
         this.type = type;
         this.extension = extension;
         this.dateCreation = dateCreation;
-        this.validation = validation;
-        this.dateValidation = dateValidation;
+
         this.path = path;
         this.act = act;
-        this.staff = staff;
+        this.staffCreator = staffCreator;
     }
 
     @ManyToOne
@@ -51,11 +50,18 @@ public class Document {
     @JoinColumn(name = "act_id", nullable = false)
     private Act act;
 
+
     @ManyToOne
     @NotFound(
             action = NotFoundAction.IGNORE)
     @JoinColumn(name = "staff_id", nullable = false)
-    private Staff staff;
+    private Staff staffValidator;
+
+    @ManyToOne
+    @NotFound(
+            action = NotFoundAction.IGNORE)
+    @JoinColumn(name = "staff_id", nullable = false)
+    private Staff staffCreator;
 
    /* public Document(Long id, DocumentType type, String extension, Instant dateCreation, Boolean validation, Instant dateValidation, String path) {
         this.id = id;
@@ -84,5 +90,85 @@ public class Document {
     @Override
     public int hashCode() {
         return Objects.hash(id, type, extension, dateCreation, validation, dateValidation, path);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
+
+    public Instant getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Instant dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Boolean getValidation() {
+        return validation;
+    }
+
+    public void setValidation(Boolean validation) {
+        this.validation = validation;
+    }
+
+    public Instant getDateValidation() {
+        return dateValidation;
+    }
+
+    public void setDateValidation(Instant dateValidation) {
+        this.dateValidation = dateValidation;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public Act getAct() {
+        return act;
+    }
+
+    public void setAct(Act act) {
+        this.act = act;
+    }
+
+    public Staff getStaffValidator() {
+        return staffValidator;
+    }
+
+    public void setStaffValidator(Staff staffValidator) {
+        this.staffValidator = staffValidator;
+    }
+
+    public Staff getStaffCreator() {
+        return staffCreator;
+    }
+
+    public void setStaffCreator(Staff staffCreator) {
+        this.staffCreator = staffCreator;
     }
 }
