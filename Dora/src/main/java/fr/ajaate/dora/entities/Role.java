@@ -39,6 +39,22 @@ public class Role {
                 roleName == role.roleName;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public RoleName getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(RoleName roleName) {
+        this.roleName = roleName;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id, roleName);
