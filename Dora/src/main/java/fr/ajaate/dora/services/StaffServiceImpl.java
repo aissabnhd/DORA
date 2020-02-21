@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 public class StaffServiceImpl implements StaffService {
@@ -28,8 +29,8 @@ public class StaffServiceImpl implements StaffService {
         staffRepository.save(staff);
     }
     @Override
-    public Staff findByUsername(String username) {
-        return staffRepository.findByusername(username);
+    public Optional<Staff> findByUsername(String username) {
+        return staffRepository.findByUsername(username);
     }
 
     @Override

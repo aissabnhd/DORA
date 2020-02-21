@@ -34,7 +34,7 @@ public class SecurityServiceImpl implements SecurityService{
         {
             info.add(staff.getFirsName());
             info.add(staff.getLastName());
-            info.add(staff.getRole().getRoleName().name());
+            //info.add(staff.getRole().getRoleName().name());
         }
 
         else {  info.add( "coudn't authentificate ");}

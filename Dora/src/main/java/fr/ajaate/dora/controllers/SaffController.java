@@ -29,8 +29,8 @@ public class SaffController {
     }
 
     @GetMapping("/ByUsername/{username}")
-    public ResponseEntity<Staff> findByUsername(@PathVariable("username") String username){
-        return new ResponseEntity<Staff>(staffService.findByUsername(username), HttpStatus.OK);
+    public ResponseEntity<Optional<Staff>> findByUsername(@PathVariable("username") String username){
+        return new ResponseEntity<Optional<Staff>>(staffService.findByUsername(username), HttpStatus.OK);
     }
 
     @GetMapping("/ByEmail/{email}")

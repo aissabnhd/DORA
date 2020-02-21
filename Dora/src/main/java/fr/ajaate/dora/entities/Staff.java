@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,7 +14,10 @@ import java.util.Set;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "staff")
+@Table(name = "staff",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username"),
+        @UniqueConstraint(columnNames = "email")
+})
 public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,9 +53,12 @@ public class Staff {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(cascade = CascadeType.MERGE  ,fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
+
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "struct_belong_id", referencedColumnName = "id")
@@ -68,7 +75,7 @@ public class Staff {
     )
     private Set<Speciality> specialities;
 
-    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String rib, int postcode,Role role,  String city, String street, String country, String linkCalendar,String username, String email, String password) {
+    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String rib, int postcode,Set<Role> roles,  String city, String street, String country, String linkCalendar,String username, String email, String password) {
         this.firsName = firsName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -82,7 +89,7 @@ public class Staff {
         this.country = country;
         this.linkCalendar = linkCalendar;
         this.password=password;
-        this.role=role;
+        this.roles=roles;
         this.username=username;
     }
 
@@ -214,13 +221,6 @@ public class Staff {
         this.linkCalendar = linkCalendar;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 
     public Struct getStructBelong() {
         return structBelong;
@@ -246,7 +246,13 @@ public class Staff {
         this.specialities = specialities;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public String getUsername() {
         return username;
