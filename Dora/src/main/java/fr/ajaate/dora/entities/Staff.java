@@ -16,7 +16,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "staff",uniqueConstraints = {
-        @UniqueConstraint(columnNames = "username"),
+
         @UniqueConstraint(columnNames = "email")
 })
 public class Staff {
@@ -49,8 +49,7 @@ public class Staff {
     private String linkCalendar;
 
 
-    @Column(name = "username")
-    private String username;
+
     @Column(name = "password")
     private String password;
 
@@ -77,7 +76,7 @@ public class Staff {
     )
     private Set<Speciality> specialities;
 
-    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String rib, int postcode,Set<Role> roles,  String city, String street, String country, String linkCalendar,String username, String email, String password) {
+    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String rib, int postcode,Set<Role> roles,  String city, String street, String country, String linkCalendar, String email, String password) {
         this.firsName = firsName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -92,7 +91,7 @@ public class Staff {
         this.linkCalendar = linkCalendar;
         this.password=password;
         this.roles=roles;
-        this.username=username;
+
     }
 
     @Override
@@ -255,15 +254,6 @@ public class Staff {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }

@@ -1,4 +1,4 @@
-package fr.ajaate.dora.payload.request;
+package fr.ajaate.dora.Exchange;
 
 import javax.validation.constraints.NotBlank;
 

@@ -2,7 +2,7 @@ package fr.ajaate.dora.controllers;
 
 
 import fr.ajaate.dora.entities.Staff;
-import fr.ajaate.dora.services.SecurityService;
+
 import fr.ajaate.dora.services.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,14 +23,11 @@ public class SaffController {
 
 
 
-    @GetMapping("/ByUsername/{username}")
-    public ResponseEntity<Optional<Staff>> findByUsername(@PathVariable("username") String username){
-        return new ResponseEntity<Optional<Staff>>(staffService.findByUsername(username), HttpStatus.OK);
-    }
+
 
     @GetMapping("/ByEmail/{email}")
-    public ResponseEntity<Staff> findByEmail(@PathVariable("email") String email){
-        return new ResponseEntity<Staff>(staffService.findByEmail(email), HttpStatus.OK);
+    public ResponseEntity<Optional<Staff>> findByEmail(@PathVariable("email") String email){
+        return new ResponseEntity<Optional<Staff>>(staffService.findByEmail(email), HttpStatus.OK);
     }
 
 

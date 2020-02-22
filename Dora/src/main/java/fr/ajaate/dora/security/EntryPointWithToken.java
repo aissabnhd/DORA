@@ -1,4 +1,4 @@
-package fr.ajaate.dora.security.jwt;
+package fr.ajaate.dora.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class AuthEntryPointJwt implements AuthenticationEntryPoint {
+public class EntryPointWithToken implements AuthenticationEntryPoint {
 
-	private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
+	private static final Logger logger = LoggerFactory.getLogger(EntryPointWithToken.class);
 
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,

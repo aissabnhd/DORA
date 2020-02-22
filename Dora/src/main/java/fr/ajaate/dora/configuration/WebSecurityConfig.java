@@ -1,9 +1,9 @@
-package fr.ajaate.dora.security;
+package fr.ajaate.dora.configuration;
 
 
 
-import fr.ajaate.dora.security.jwt.AuthEntryPointJwt;
-import fr.ajaate.dora.security.jwt.AuthTokenFilter;
+import fr.ajaate.dora.security.EntryPointWithToken;
+import fr.ajaate.dora.security.TokenFilter;
 import fr.ajaate.dora.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -46,11 +45,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Autowired
-	private AuthEntryPointJwt unauthorizedHandler;
+	private EntryPointWithToken unauthorizedHandler;
 
 	@Bean
-	public AuthTokenFilter authenticationJwtTokenFilter() {
-		return new AuthTokenFilter();
+	public TokenFilter authenticationJwtTokenFilter() {
+		return new TokenFilter();
 	}
 
 	@Override
@@ -80,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/api/test/**").permitAll().antMatchers("/api/staff/**").permitAll()
 			.anyRequest().authenticated().and()
 				.logout()
-				.logoutUrl("/logout")
+				.logoutUrl("logout")
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")
 		;

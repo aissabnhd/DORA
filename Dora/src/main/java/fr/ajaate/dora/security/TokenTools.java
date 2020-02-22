@@ -1,11 +1,10 @@
-package fr.ajaate.dora.security.jwt;
+package fr.ajaate.dora.security;
 
 
 import fr.ajaate.dora.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -15,12 +14,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class JwtUtils {
+public class TokenTools {
 
 
 
 
-	private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(TokenTools.class);
 	@Value("${bezkoder.app.jwtSecret}")
 	private String jwtSecret;
 

@@ -1,6 +1,6 @@
-package fr.ajaate.dora.entities;
+package fr.ajaate.dora.entities.enumeration;
 
-public enum ERole {
+public enum RoleName {
     DOCTOR,
     NURSE,
     SECRETARY,

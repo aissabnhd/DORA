@@ -1,4 +1,4 @@
-package fr.ajaate.dora.security.jwt;
+package fr.ajaate.dora.security;
 
 
 
@@ -19,22 +19,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AuthTokenFilter extends OncePerRequestFilter {
+public class TokenFilter extends OncePerRequestFilter {
 	@Autowired
-	private JwtUtils jwtUtils;
+	private TokenTools tokenTools;
 
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
-	private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
+	private static final Logger logger = LoggerFactory.getLogger(TokenFilter.class);
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		try {
 			String jwt = parseJwt(request);
-			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
-				String username = jwtUtils.getUserNameFromJwtToken(jwt);
+			if (jwt != null && tokenTools.validateJwtToken(jwt)) {
+				String username = tokenTools.getUserNameFromJwtToken(jwt);
 
 				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
@@ -59,4 +59,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
 		return null;
 	}
+
+	/*reference :https://grokonez.com/spring-framework/spring-security/spring-security-jwt-authentication-restapis-springboot-spring-mvc-spring-security-spring-jpa-mysql */
 }

@@ -5,11 +5,10 @@ package fr.ajaate.dora.controllers;
 import fr.ajaate.dora.dao.RoleRepository;
 import fr.ajaate.dora.dao.StaffRepository;
 
-import fr.ajaate.dora.payload.request.LoginRequest;
-import fr.ajaate.dora.payload.request.LogoutRequest;
-import fr.ajaate.dora.payload.response.JwtResponse;
-import fr.ajaate.dora.security.jwt.AuthTokenFilter;
-import fr.ajaate.dora.security.jwt.JwtUtils;
+import fr.ajaate.dora.Exchange.LoginRequest;
+import fr.ajaate.dora.Exchange.TokenResponse;
+import fr.ajaate.dora.security.TokenFilter;
+import fr.ajaate.dora.security.TokenTools;
 import fr.ajaate.dora.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,19 +40,19 @@ public class AuthController {
 	PasswordEncoder encoder;
 
 	@Autowired
-	JwtUtils jwtUtils;
+	TokenTools tokenTools;
 
 	@Autowired
-	AuthTokenFilter authTokenFilter;
+	TokenFilter tokenFilter;
 
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt = jwtUtils.generateJwtToken(authentication);
+		String jwt = tokenTools.generateJwtToken(authentication);
 		System.out.println("*************************** token ************"+jwt);
 		
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
@@ -61,19 +60,17 @@ public class AuthController {
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
-		return ResponseEntity.ok(new JwtResponse(jwt,
+		return ResponseEntity.ok(new TokenResponse(jwt,
 												 userDetails.getId(), 
-												 userDetails.getUsername(), 
-												 userDetails.getEmail(), 
+												 userDetails.getUsername(),
 												 roles,userDetails.getFirstname(),userDetails.getLastname()));
 	}
 
 
-	@GetMapping("/logout{id}")
+	@GetMapping("/logout/{id}")
 	public String logoutUser(@PathVariable("id") Long id) {
 
-
-		jwtUtils.invalidateToken(id);
+ tokenTools.invalidateToken(id);
 		return "logged out  ";
 	}
 

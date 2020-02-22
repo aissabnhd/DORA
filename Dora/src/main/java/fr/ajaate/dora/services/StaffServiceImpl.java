@@ -28,13 +28,9 @@ public class StaffServiceImpl implements StaffService {
 
         staffRepository.save(staff);
     }
-    @Override
-    public Optional<Staff> findByUsername(String username) {
-        return staffRepository.findByUsername(username);
-    }
 
     @Override
-    public Staff findByEmail(String email) {
+    public Optional<Staff> findByEmail(String email) {
         return staffRepository.findByemail(email);
     }
 

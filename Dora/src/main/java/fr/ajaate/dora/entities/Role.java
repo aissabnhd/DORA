@@ -1,5 +1,7 @@
 package fr.ajaate.dora.entities;
 
+import fr.ajaate.dora.entities.enumeration.RoleName;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,13 +13,13 @@ public class Role {
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
-	private ERole name;
+	private RoleName name;
 
 	public Role() {
 
 	}
 
-	public Role(ERole name) {
+	public Role(RoleName name) {
 		this.name = name;
 	}
 
@@ -29,11 +31,11 @@ public class Role {
 		this.id = id;
 	}
 
-	public ERole getName() {
+	public RoleName getName() {
 		return name;
 	}
 
-	public void setName(ERole name) {
+	public void setName(RoleName name) {
 		this.name = name;
 	}
 }
