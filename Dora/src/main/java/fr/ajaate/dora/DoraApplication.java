@@ -6,7 +6,6 @@ import fr.ajaate.dora.entities.DMP;
 import fr.ajaate.dora.entities.ERole;
 import fr.ajaate.dora.entities.Role;
 import fr.ajaate.dora.entities.Staff;
-import fr.ajaate.dora.entities.enumeration.RoleName;
 import fr.ajaate.dora.services.SecurityService;
 import fr.ajaate.dora.services.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +43,17 @@ public class DoraApplication implements CommandLineRunner {
 				Instant.parse("1993-01-01T10:12:35Z"), "France", "+33784563452",
 				"k.marks@gmail.com", 75001, "Paris", "Boulevard saint-denis",
 				"France", "allergy"));
+
+
+
+		Role role2=new Role(ERole.ADMINISTRATOR);
+		Set<Role> roles2=new HashSet<>();
+		roles2.add(role2);
+		Staff staff2=new Staff("hamid","macron",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
+				"IBAN-BIC",93,roles2,"saint-denis","je sais pas ",
+				"FR","hisAgenda","admin","admin@gmail.com","admin");
+		roleRepository.save(role2);
+		staffService.save(staff2);
 
 
 

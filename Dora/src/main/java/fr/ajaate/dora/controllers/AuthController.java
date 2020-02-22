@@ -6,9 +6,11 @@ import fr.ajaate.dora.dao.RoleRepository;
 import fr.ajaate.dora.dao.StaffRepository;
 
 import fr.ajaate.dora.payload.request.LoginRequest;
+import fr.ajaate.dora.payload.request.LogoutRequest;
 import fr.ajaate.dora.payload.response.JwtResponse;
+import fr.ajaate.dora.security.jwt.AuthTokenFilter;
 import fr.ajaate.dora.security.jwt.JwtUtils;
-import fr.ajaate.dora.security.services.UserDetailsImpl;
+import fr.ajaate.dora.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,7 +43,10 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 
-	@PostMapping("/signin")
+	@Autowired
+	AuthTokenFilter authTokenFilter;
+
+	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
@@ -49,6 +54,7 @@ public class AuthController {
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
+		System.out.println("*************************** token ************"+jwt);
 		
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream()
@@ -59,57 +65,17 @@ public class AuthController {
 												 userDetails.getId(), 
 												 userDetails.getUsername(), 
 												 userDetails.getEmail(), 
-												 roles));
+												 roles,userDetails.getFirstname(),userDetails.getLastname()));
 	}
 
-	/*@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Error: Username is already taken!"));
-		}
 
-		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Error: Email is already in use!"));
-		}
-
-		// Create new user's account
-		Staff user = new Staff(signUpRequest.getUsername(),
-							 signUpRequest.getEmail(),
-							 encoder.encode(signUpRequest.getPassword()));
-
-		Set<String> strRoles = signUpRequest.getRole();
-		Set<Role> roles = new HashSet<>();
+	@GetMapping("/logout{id}")
+	public String logoutUser(@PathVariable("id") Long id) {
 
 
-			strRoles.forEach(role -> {
-				switch (role) {
-				case "admin":
-					Role adminRole = roleRepository.findByName(ERole.ADMINISTRATOR)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
-
-					break;
-				case "docteur":
-					Role modRole = roleRepository.findByName(ERole.DOCTOR)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(modRole);
-
-					break;
-				default:
-					Role userRole = roleRepository.findByName(ERole.NURSE)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(userRole);
-				}
-			});
+		jwtUtils.invalidateToken(id);
+		return "logged out  ";
+	}
 
 
-		user.setRoles(roles);
-		userRepository.save(user);
-
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-	}*/
 }

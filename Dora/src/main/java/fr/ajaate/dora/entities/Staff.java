@@ -1,5 +1,6 @@
 package fr.ajaate.dora.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -53,13 +54,14 @@ public class Staff {
     @Column(name = "password")
     private String password;
 
-
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne
     @JoinColumn(name = "struct_belong_id", referencedColumnName = "id")
     private Struct structBelong;

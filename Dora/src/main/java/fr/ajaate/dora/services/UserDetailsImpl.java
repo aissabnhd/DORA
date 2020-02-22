@@ -1,4 +1,4 @@
-package fr.ajaate.dora.security.services;
+package fr.ajaate.dora.services;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,6 +19,8 @@ public class UserDetailsImpl implements UserDetails {
 	private Long id;
 
 	private String username;
+	private String firstname;
+	private String lastname;
 
 	private String email;
 
@@ -28,10 +30,12 @@ public class UserDetailsImpl implements UserDetails {
 	private Collection<? extends GrantedAuthority> authorities;
 
 	public UserDetailsImpl(Long id, String username, String email, String password,
-			Collection<? extends GrantedAuthority> authorities) {
+			Collection<? extends GrantedAuthority> authorities, String firstname, String lastname) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
+		this.firstname=firstname;
+		this.lastname=lastname;
 		this.password = password;
 		this.authorities = authorities;
 	}
@@ -46,7 +50,7 @@ public class UserDetailsImpl implements UserDetails {
 				user.getUsername(), 
 				user.getEmail(),
 				user.getPassword(), 
-				authorities);
+				authorities, user.getFirsName(),user.getLastName());
 	}
 
 	@Override
@@ -90,6 +94,23 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	@Override

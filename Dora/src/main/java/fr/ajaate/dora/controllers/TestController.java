@@ -1,35 +1,64 @@
 package fr.ajaate.dora.controllers;
 
+import fr.ajaate.dora.entities.Staff;
+import fr.ajaate.dora.services.StaffService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/test")
+@RequestMapping("/api/profil")
 public class TestController {
+	@Autowired
+	private StaffService staffService;
+
 	@GetMapping("/all")
 	public String allAccess() {
 		return "Public Content.";
 	}
 	
-	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-	public String userAccess() {
-		return "User Content.";
+	@GetMapping("/doctor")
+	@PreAuthorize("hasAuthority('DOCTOR')")
+	public String DoctorAccess() {
+		return "DOCTOR Content.";
 	}
 
-	@GetMapping("/mod")
-	@PreAuthorize("hasRole('MODERATOR')")
-	public String moderatorAccess() {
-		return "Moderator Board.";
+	@GetMapping("/nurse")
+	@PreAuthorize("hasAuthority('NURSE')")
+	public String NurseAccess() {
+		return "NURSE Board.";
 	}
 
 	@GetMapping("/admin")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')")
 	public String adminAccess() {
-		return "Admin Board.";
+		return "ADMINISTRATOR Board.";
+	}
+
+	@GetMapping("/laboratory")
+	@PreAuthorize("hasAuthority('LABORATORY')")
+	public String LaboraintainAccess() {
+		return "LABORATORY Board.";
+	}
+
+	@GetMapping("/secretary")
+	@PreAuthorize("hasAuthority('SECRETARY')")
+	public String SeacretaryAccess() {
+		return "SECRETARY Board.";
+	}
+
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Staff> findById(@PathVariable("id") Long id){
+		return new ResponseEntity<Staff>(staffService.findByID(id), HttpStatus.OK);
+	}
+
+	@PostMapping ("/update/{id}")
+	public ResponseEntity<Staff> updateStaff(@PathVariable("id") Long id, @RequestBody Staff staff){
+		return new ResponseEntity<Staff>(staffService.updateStaff(id,staff), HttpStatus.OK);
 	}
 }
+

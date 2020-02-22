@@ -7,6 +7,7 @@ import fr.ajaate.dora.services.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +23,6 @@ public class SaffController {
 
 
 
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Staff> findById(@PathVariable("id") Long id){
-        return new ResponseEntity<Staff>(staffService.findByID(id), HttpStatus.OK);
-    }
-
     @GetMapping("/ByUsername/{username}")
     public ResponseEntity<Optional<Staff>> findByUsername(@PathVariable("username") String username){
         return new ResponseEntity<Optional<Staff>>(staffService.findByUsername(username), HttpStatus.OK);
@@ -39,10 +34,7 @@ public class SaffController {
     }
 
 
-    @PostMapping ("/update/{id}")
-    public ResponseEntity<Staff> updateStaff(@PathVariable("id") Long id, @RequestBody Staff staff){
-        return new ResponseEntity<Staff>(staffService.updateStaff(id,staff), HttpStatus.OK);
-    }
+
 
 
 
