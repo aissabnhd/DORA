@@ -50,7 +50,7 @@ export class StaffComponent implements OnInit {
       "street": "garsdelastreet",
       "country": "France",
       "linkCalendar": "???",
-      "role": null,
+      "roles": null,
       "structBelong": null,
       "structResponsible": null,
       "specialities": null

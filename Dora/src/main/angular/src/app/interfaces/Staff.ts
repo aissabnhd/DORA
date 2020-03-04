@@ -17,7 +17,7 @@ export interface Staff {
   street: string;
   country: string;
   linkCalendar: string;
-  role: Role;
+  roles: Set<Role>;
   structBelong: Struct;
   structResponsible: Struct;
   specialities: Set<Speciality>;

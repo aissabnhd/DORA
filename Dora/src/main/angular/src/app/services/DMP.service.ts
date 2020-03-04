@@ -12,7 +12,8 @@ export class DMPService {
   event = new EventEmitter();
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   findAllDMP() : Observable<Array<DMP>> {
     return this.httpClient.get<Array<DMP>>('/api/DMP')

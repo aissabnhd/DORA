@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginRequest} from "../interfaces/LoginRequest";
 import {AuthService} from "../services/Auth.service";
 import {Staff} from "../interfaces/Staff";
+import {Token} from "../interfaces/Token";
 
 
 @Component({
@@ -17,10 +18,8 @@ export class ConnexionComponent implements OnInit {
   test = new EventEmitter<number>();
 
   @Output()
-  connection_event = new EventEmitter<Staff>();
+  token = new EventEmitter<Token>();
 
-  @Output()
-  infos = new EventEmitter<[String, String]>();
 
 
 
@@ -40,7 +39,7 @@ export class ConnexionComponent implements OnInit {
     let connexion : LoginRequest = this.connexionForm.value;
     this.loginRequestService.authenticateUser(connexion).subscribe(
       data => {
-        this.infos.emit([data.name, data.roles[0]])
+        this.token.emit(data)
 
       },
       error => console.log(error)

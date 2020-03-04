@@ -38,8 +38,9 @@ import { RemarquesComponent } from './staff/remarques/remarques.component';
 import { PrescriptionsComponent } from './staff/prescriptions/prescriptions.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { ChangeDmpComponent } from './staff/change-dmp/change-dmp.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import {TokenInterceptor} from "./services/Interceptor";
 
 
 @NgModule({
@@ -89,7 +90,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
