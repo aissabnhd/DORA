@@ -24,7 +24,7 @@ public class Affectation {
     private Instant dateEndAffectation;
 
     @ManyToOne
-    @JoinColumn(name = "hospitalization_id", nullable = false)
+    @JoinColumn(name = "hospitalization_id", nullable = true)
     private Hospitalization hospitalization;
 
     @ManyToOne
@@ -37,7 +37,13 @@ public class Affectation {
             joinColumns = @JoinColumn(name = "affectation_id"),
             inverseJoinColumns = @JoinColumn(name = "staff_id")
     )
+
     private Set<Staff> listOfStaffs;
+
+    public Affectation(Instant dateAffectation, Instant dateEndAffectation) {
+        this.dateAffectation = dateAffectation;
+        this.dateEndAffectation = dateEndAffectation;
+    }
 
     public Long getId() {
         return id;
@@ -87,10 +93,7 @@ public class Affectation {
         this.listOfStaffs = listOfStaffs;
     }
 
-    public Affectation(Instant dateAffectation, Instant dateEndAffectation) {
-        this.dateAffectation = dateAffectation;
-        this.dateEndAffectation = dateEndAffectation;
-    }
+
 
     @Override
     public boolean equals(Object o) {

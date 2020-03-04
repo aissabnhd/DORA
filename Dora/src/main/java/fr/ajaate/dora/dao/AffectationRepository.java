@@ -15,7 +15,6 @@ public interface AffectationRepository extends JpaRepository<Affectation, Long> 
     Set<Affectation> findAllByDateAffectation(Instant dateAffectation);
 
     Set<Affectation> findAllByHospitalizationId(Long hospitalizationId);
-    //Set<Affectation> findById(Integer dmpId);
 
 
 }

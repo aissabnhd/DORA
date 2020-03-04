@@ -23,6 +23,11 @@ public class AffectationControllers {
     @Autowired
     private AffectationServices affectationServices;
 
+    @GetMapping
+    public ResponseEntity<List<Affectation>> findAll() {
+        return new ResponseEntity<List<Affectation>>(affectationServices.findAll(), HttpStatus.CREATED);
+    }
+
 
     @PostMapping
     public ResponseEntity<Affectation> save(@RequestBody Affectation affectation) {
@@ -49,12 +54,6 @@ public class AffectationControllers {
     */
 
 
-    @GetMapping("/affectations")
-    public ResponseEntity<List<Affectation>> listeAffectation() {
-        List<Affectation> affectations = affectationServices.findAll();
-        return new ResponseEntity<List<Affectation>>(affectations, HttpStatus.OK);
-    }
-
 
     @GetMapping("/{hospitalization_id}/affectations")
     public ResponseEntity<Set<Affectation>> findAllByHospitalizationId(@PathVariable("hospitalization_id") Long hospitalization_id){
@@ -69,7 +68,6 @@ public class AffectationControllers {
     récupérer toutes les affectations d'une hospitalisation FAIT
     récupérer les staffs d'une affectations
     récupérer les acts d'une affectation
-    récupérer toutes les affectations FAIT
 */
 
 }

@@ -28,8 +28,8 @@ public class AffectationServicesImplementation implements AffectationServices {
     @Override
     public Affectation update(Affectation affectation) {
         if(!affectationRepository.existsById(affectation.getId())){
-            logger.info("Nouvelle affectation id : " + affectation.getId() + " vient d'étre crier");
-            return affectationRepository.save(affectation);
+            logger.info("L'affectation id : " + affectation.getId() + "  n'existe pas");
+            throw new IllegalStateException("L'affectation avec l'id " + affectation.getId() + " n'existe pas");
         }
         logger.info("Le affectation id : " + affectation.getId() + " vient d'étre modifier");
         return affectationRepository.save(affectation);
