@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Staff} from "./interfaces/Staff";
+import {RoleName} from "./interfaces/Role";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,8 @@ export class AppComponent {
   title = 'angular';
   isConnected = false;
   nom = "";
+  role : RoleName;
+  staff : Staff;
 
 
   connected($event){
@@ -19,11 +23,14 @@ export class AppComponent {
   }
 
   change_name($event){
-    this.nom = $event;
+    this.nom = $event[0];
+    this.role = $event[1];
+    console.log($event);
+    this.isConnected = true;
   }
 
   getNom(){
-  return this.nom;
+  return this.staff.lastName;
   }
 }
 

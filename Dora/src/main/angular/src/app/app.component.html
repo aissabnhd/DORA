@@ -34,11 +34,11 @@
 -->
 <div *ngIf="isConnected">
 
-  <app-staff (test)="connected($event)"></app-staff>
+  <app-staff (test)="connected($event)" [name]="nom" [role]="role"></app-staff>
 
 </div>
 <div *ngIf="!isConnected">
 
-  <app-connexion (name_event)="change_name($event)" (test)="connected($event)" ></app-connexion>
+  <app-connexion (infos)="change_name($event)" ></app-connexion>
 
 </div>

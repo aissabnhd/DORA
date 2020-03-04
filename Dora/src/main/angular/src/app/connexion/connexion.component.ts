@@ -1,6 +1,9 @@
 import { Component, OnInit, EventEmitter, Output  } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {LoginRequest} from "../interfaces/LoginRequest";
+import {AuthService} from "../services/Auth.service";
+import {Staff} from "../interfaces/Staff";
 
 
 @Component({
@@ -14,29 +17,34 @@ export class ConnexionComponent implements OnInit {
   test = new EventEmitter<number>();
 
   @Output()
-  name_event = new EventEmitter<String>();
+  connection_event = new EventEmitter<Staff>();
 
-  loginValue= "";
+  @Output()
+  infos = new EventEmitter<[String, String]>();
+
+
 
   connexionForm : FormGroup;
 
-  constructor(private router:Router, private formBuilder : FormBuilder) { }
+  constructor(private loginRequestService : AuthService, private router:Router, private formBuilder : FormBuilder) { }
 
   ngOnInit() {
     this.connexionForm = this.formBuilder.group({
-      login: [null, Validators.required],
+      email: [null, Validators.required],
       password: [null, Validators.required],
     });
 
   }
 
-  connect(){
-    this.test.emit(1);
-    this.name_event.emit(this.loginValue);
-  }
+  submit(){
+    let connexion : LoginRequest = this.connexionForm.value;
+    this.loginRequestService.authenticateUser(connexion).subscribe(
+      data => {
+        this.infos.emit([data.name, data.roles[0]])
 
-  onLoginChange($event){
-    this.loginValue = $event;
+      },
+      error => console.log(error)
+    )
   }
 
 

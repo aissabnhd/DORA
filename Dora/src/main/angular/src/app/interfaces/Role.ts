@@ -1,9 +1,9 @@
 export enum RoleName {
-   DOCTOR,
-   NURSE,
-   SECRETARY,
-   LABORATORY,
-   ADMINISTRATOR
+   DOCTOR="DOCTOR",
+   NURSE="NURSE",
+   SECRETARY="SECRETARY",
+   LABORATORY="LABORATORY",
+   ADMINISTRATOR="ADMINISTRATOR"
 }
 
 export interface Role {

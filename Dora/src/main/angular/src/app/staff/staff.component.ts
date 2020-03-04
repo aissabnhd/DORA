@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output  } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Staff} from "../interfaces/Staff";
 import {DMP} from "../interfaces/DMP";
 import {RoleName} from "../interfaces/Role";
@@ -12,8 +12,11 @@ import {DMPService} from "../services/DMP.service";
 })
 export class StaffComponent implements OnInit {
   staff : Staff;
-  id : number;
-  name = "Jaja";
+  id : number
+  @Input()
+  role : RoleName;
+  @Input()
+  name : String;
   @Input()
   dmp : DMP ;
   isMedecin: boolean = false;
@@ -52,12 +55,28 @@ export class StaffComponent implements OnInit {
       "structResponsible": null,
       "specialities": null
     };
-    this.isSecretaire = true;
+
+    if(this.role ==  RoleName.DOCTOR){
+      this.isMedecin = true;
+    }
+    else if(this.role == RoleName.NURSE){
+      this.isInfirmier = true;
+    }
+    else if(this.role == RoleName.LABORATORY){
+      this.isLaborantin = true;
+    }
+    else if(this.role == RoleName.SECRETARY){
+      this.isSecretaire = true;
+    }
+    else if(this.role == RoleName.ADMINISTRATOR){
+      this.isAdmin = true;
+    }
 
     this.dmpService.event.subscribe(
       data => this.dmp = data
     )
 
+    // @ts-ignore
     this.staff.lastName = this.name;
   }
 
