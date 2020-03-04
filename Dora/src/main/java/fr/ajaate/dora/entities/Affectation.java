@@ -24,11 +24,11 @@ public class Affectation {
     private Instant dateEndAffectation;
 
     @ManyToOne
-    @JoinColumn(name = "hospitalization_id", nullable = true)
+    @JoinColumn(name = "hospitalization_id", nullable = false)
     private Hospitalization hospitalization;
 
     @ManyToOne
-    @JoinColumn(name = "struct_id", referencedColumnName = "id")
+    @JoinColumn(name = "struct_id", referencedColumnName = "id", nullable = false)
     private Struct struct;
 
     @ManyToMany
@@ -40,9 +40,13 @@ public class Affectation {
 
     private Set<Staff> listOfStaffs;
 
-    public Affectation(Instant dateAffectation, Instant dateEndAffectation) {
+    public Affectation (){}
+
+    public Affectation(Instant dateAffectation, Instant dateEndAffectation, Hospitalization hospitalization, Struct struct) {
         this.dateAffectation = dateAffectation;
         this.dateEndAffectation = dateEndAffectation;
+        this.hospitalization = hospitalization;
+        this.struct = struct;
     }
 
     public Long getId() {
@@ -109,4 +113,5 @@ public class Affectation {
     public int hashCode() {
         return Objects.hash(id, dateAffectation, dateEndAffectation);
     }
+
 }

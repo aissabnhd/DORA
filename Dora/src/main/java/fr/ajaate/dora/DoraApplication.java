@@ -31,6 +31,6 @@ public class DoraApplication implements CommandLineRunner {
 				"k.marks@gmail.com", 75001, "Paris", "Boulevard saint-denis",
 				"France", "allergy"));
 
-		affectationServices.save(new Affectation(Instant.parse("1993-01-01T10:12:35Z"), Instant.parse("1993-01-01T10:12:35Z")));
+		//affectationServices.save(new Affectation(Instant.parse("1993-01-01T10:12:35Z"), Instant.parse("1993-01-01T10:12:35Z")));
 	}
 }
