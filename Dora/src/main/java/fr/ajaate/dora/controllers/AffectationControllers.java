@@ -8,6 +8,7 @@ import fr.ajaate.dora.entities.Act;
 import fr.ajaate.dora.entities.Affectation;
 import fr.ajaate.dora.entities.Hospitalization;
 import fr.ajaate.dora.entities.Staff;
+import fr.ajaate.dora.services.ActService;
 import fr.ajaate.dora.services.AffectationServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,9 @@ import java.util.Set;
 public class AffectationControllers {
     @Autowired
     private AffectationServices affectationServices;
+
+    @Autowired
+    private ActService actService;
 
 
     @PostMapping
@@ -46,8 +50,7 @@ public class AffectationControllers {
 
     @GetMapping("/{id}/acts")
     public ResponseEntity<Set<Act>> findAllActsByAffectationId(@PathVariable("id") Long id){
-        //TODO
-        return null;
+        return new ResponseEntity<Set<Act>> (actService.findAllByAffectationId(id), HttpStatus.OK);
     }
 
     @GetMapping("/date/{dateAffectation}")

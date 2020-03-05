@@ -1,11 +1,10 @@
 package fr.ajaate.dora;
 
 import fr.ajaate.dora.dao.DMPRepository;
+import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.dao.StructRepository;
-import fr.ajaate.dora.entities.Affectation;
-import fr.ajaate.dora.entities.DMP;
-import fr.ajaate.dora.entities.Hospitalization;
-import fr.ajaate.dora.entities.Struct;
+import fr.ajaate.dora.entities.*;
+import fr.ajaate.dora.services.ActService;
 import fr.ajaate.dora.services.DMPServices;
 import fr.ajaate.dora.services.HospitalizationServices;
 import fr.ajaate.dora.services.AffectationServices;
@@ -28,6 +27,12 @@ public class DoraApplication implements CommandLineRunner {
 
 	@Autowired
 	private AffectationServices affectationServices;
+
+	@Autowired
+	private ActService actService;
+
+	@Autowired
+	private StaffRepository staffRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(DoraApplication.class, args);
@@ -64,6 +69,10 @@ public class DoraApplication implements CommandLineRunner {
 
 		Affectation affectation = affectationServices.save(new Affectation(Instant.parse("1993-01-01T10:12:35Z"), Instant.parse("1993-01-01T10:12:35Z"), hospitalization, struct));
 
+		Staff staff = staffRepository.save(new Staff("john", "john", Instant.now(), "Algérienne",
+				"0786545676", "john@gmail.com", "ribsdghfgjhjk", 75000, "Paris", "Boulevard de Rivolet", "FRANCE", ""));
+
+		Act act = actService.save(new Act("scanner", Instant.now(), affectation, staff));
 
     }
 }
