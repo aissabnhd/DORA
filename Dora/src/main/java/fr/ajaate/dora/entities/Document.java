@@ -21,19 +21,32 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "type")
-    private String type;
+    private DocumentType type;
     @Column(name = "extension")
     private String extension;
     @Column(name = "date_creation")
     private Instant dateCreation;
     @Column(name = "validation")
-    private Boolean validation;
+    private boolean validation;
     @Column(name = "date_validation")
     private Instant dateValidation;
     @Column(name = "path")
     private String path;
 
-    public Document(String type, String extension, Instant dateCreation, String path, Act act, Staff staffCreator) {
+    @ManyToOne
+    @JoinColumn(name = "act_id", nullable = false)
+    private Act act;
+
+
+    @ManyToOne
+    @JoinColumn(name = "staff_validator_id")
+    private Staff staffValidator;
+
+    @ManyToOne
+    @JoinColumn(name = "staff_creator_id")
+    private Staff staffCreator;
+
+    public Document(DocumentType type, String extension, Instant dateCreation, String path, Act act, Staff staffCreator) {
 
         this.type = type;
         this.extension = extension;
@@ -44,24 +57,6 @@ public class Document {
         this.staffCreator = staffCreator;
     }
 
-    @ManyToOne
-    @NotFound(
-            action = NotFoundAction.IGNORE)
-    @JoinColumn(name = "act_id", nullable = false)
-    private Act act;
-
-
-    @ManyToOne
-    @NotFound(
-            action = NotFoundAction.IGNORE)
-    @JoinColumn(name = "staff_id", nullable = false)
-    private Staff staffValidator;
-
-    @ManyToOne
-    @NotFound(
-            action = NotFoundAction.IGNORE)
-    @JoinColumn(name = "staff_id", nullable = false)
-    private Staff staffCreator;
 
    /* public Document(Long id, DocumentType type, String extension, Instant dateCreation, Boolean validation, Instant dateValidation, String path) {
         this.id = id;
@@ -100,11 +95,11 @@ public class Document {
         this.id = id;
     }
 
-    public String getType() {
+    public DocumentType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(DocumentType type) {
         this.type = type;
     }
 

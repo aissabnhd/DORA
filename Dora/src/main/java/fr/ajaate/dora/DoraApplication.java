@@ -41,7 +41,6 @@ public class DoraApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Instant instant = Instant.now();
-		Act acte = new  Act ("act",instant);
 		dmpRepository.save(new DMP("9912345746534253", "Karl", "Marks",
 				Instant.parse("1993-01-01T10:12:35Z"), "France", "+33784563452",
 				"k.marks@gmail.com", 75001, "Paris", "Boulevard saint-denis",
@@ -49,11 +48,16 @@ public class DoraApplication implements CommandLineRunner {
 				Staff staff=new Staff("hamid","macron",instant,"franco-algerien","0000",
 						"hamid-macron@gmail.com","IBAN-BIC",93,"saint-denis","je sais pas ",
 						"FR","hisAgenda");
-				actRepository.save(acte);
-				staffRepository.save(staff);
-		Document d= new Document( "pdf", "pdf", instant,false, instant, "/DMPS",acte,staff);
-		documentRepository.save(d);
-		System.out.println(documentRepository.findAll());
+		staff = staffRepository.save(staff);
+		Act acte = new  Act ("act",instant, staff);
+
+		System.out.println(staffRepository.findAll());
+
+
+		actRepository.save(acte);
+		Document d= new Document( DocumentType.TEXT, ".txt", instant,"",acte,staff );
+
+			documentRepository.save(d);
 
     }
 

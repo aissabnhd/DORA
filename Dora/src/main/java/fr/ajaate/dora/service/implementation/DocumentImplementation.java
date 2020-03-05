@@ -5,6 +5,7 @@ import com.sun.xml.fastinfoset.dom.DOMDocumentSerializer;
 import fr.ajaate.dora.dao.DocumentRepository;
 import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.entities.Document;
+import fr.ajaate.dora.entities.Staff;
 import fr.ajaate.dora.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,14 @@ public class DocumentImplementation implements DocumentService {
 
     @Override
     public Document update(Document document) {
-        return null;
+        if(!document.getValidation())
+            if(documentRepository.existsById(document.getId()))
+                return documentRepository.save(document);
+            else
+                throw new IllegalStateException("Le document avec l'id " + document.getId() + " n'existe pas ");
+            else
+                throw new IllegalStateException("Le document avec l'id "+ document.getId() + " est déja validé");
+
     }
 
     @Override
@@ -49,29 +57,21 @@ public class DocumentImplementation implements DocumentService {
     }
 
     @Override
-    public boolean validateDocument(long idDocument, long idValidator, Instant dateValidation) {
-        Optional<Document> document=documentRepository.findById(idDocument);
-        if (document.isPresent()) {
-
-            Document document1=document.get();
-            document1.setValidation(Boolean.TRUE);
-            document1.setDateValidation(dateValidation);
-            document1.setStaffValidator(staffRepository.getOne(idValidator));
-            return  true;
-        }
-        else return  false;
-
+    public Document validateDocument(Document document, Long idValidator) {
+        if (documentRepository.existsById(document.getId()))
+            if(!document.getValidation()){
+                document.setValidation(true);
+                document.setDateValidation(Instant.now());
+                Optional<Staff> optionalStaff = staffRepository.findById(idValidator);
+                if(!optionalStaff.isPresent())
+                    throw new IllegalStateException("Le staff avec l'id "+ idValidator + " n'existe pas");
+                document.setStaffValidator(optionalStaff.get());
+                return document;
+            }else
+                throw new IllegalStateException("Le document avec l'id "+ document.getId() + " est déja validé");
+        else
+            throw new IllegalStateException("Le document avec l'id " + document.getId() + " n'existe pas");
     }
 
-    @Override
-    public boolean generatePDF(long idDocument) {
-        Optional<Document> document=documentRepository.findById(idDocument);
-        if (document.isPresent()) {
 
-            Document document1=document.get();
-
-            return  true;
-        }
-        else return  false;
-    }
 }

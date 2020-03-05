@@ -31,9 +31,10 @@ public class Act {
     @JoinColumn(name = "staff_id", nullable = false)
     private Staff staff;
 
-    public Act(String type, Instant date) {
+    public Act(String type, Instant date, Staff staff) {
         this.type = type;
         this.date = date;
+        this.staff = staff;
     }
 
     @Override

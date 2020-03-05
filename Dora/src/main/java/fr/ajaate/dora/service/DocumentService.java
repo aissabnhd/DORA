@@ -2,6 +2,7 @@ package fr.ajaate.dora.service;
 
 
 import fr.ajaate.dora.entities.Document;
+import fr.ajaate.dora.entities.Staff;
 import org.springframework.data.repository.query.Param;
 
 import java.time.Instant;
@@ -21,9 +22,8 @@ public interface DocumentService {
 
     void deleteById(Long id);
 
-     public  boolean validateDocument(long idDocument, long idValidator, Instant dateValidation);
+     public  Document validateDocument(Document document, Long idValidator);
 
-    public  boolean generatePDF(long idDocument);
 
 
 
