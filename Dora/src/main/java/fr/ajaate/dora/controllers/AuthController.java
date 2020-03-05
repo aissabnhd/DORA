@@ -69,8 +69,8 @@ public class AuthController {
 
 	@GetMapping("/logout/{id}")
 	public String logoutUser(@PathVariable("id") Long id) {
-
- tokenTools.invalidateToken(id);
+		System.out.println("it's okay");
+		tokenTools.invalidateToken(id);
 		return "logged out  ";
 	}
 

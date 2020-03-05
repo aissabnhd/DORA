@@ -20,8 +20,8 @@ export class AuthService {
     return this.httpClient.post<Token>('/api/auth/login', loginRequest)
   }
 
-  logOut(id : number) : Observable<String> {
-    return this.httpClient.get<String>('/logout/' + id);
+  logOut(id : number) : Observable<string> {
+    return this.httpClient.get<string>('/api/auth/logout/' + id);
   }
 
 

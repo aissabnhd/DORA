@@ -2,6 +2,8 @@ import {Component, Optional} from '@angular/core';
 import {Staff} from "./interfaces/Staff";
 import {RoleName} from "./interfaces/Role";
 import {StaffService} from "./services/Staff.service";
+import {AuthService} from "./services/Auth.service";
+import {error} from "util";
 
 @Component({
   selector: 'app-root',
@@ -15,15 +17,27 @@ export class AppComponent {
   role : RoleName;
   staff : Staff;
   token : string = "";
+  id : number;
 
-  constructor(private staffService : StaffService) {
+  constructor(private loginRequestService : AuthService, private staffService : StaffService) {
   }
 
   connected($event){
   if($event == 1)
      this.isConnected = true;
-  else
-    this.isConnected = false;
+  else{
+    this.loginRequestService.logOut(this.id).subscribe(
+      data => {
+        this.isConnected = false;
+      },//this.isConnected = false,
+      error => {
+        this.isConnected = false;
+
+      }
+
+  )
+
+  }
   }
 
   change_name($event){
@@ -34,7 +48,8 @@ export class AppComponent {
       data => {
         console.log(data);
         console.log($event.email)
-        this.staff = data;
+        this.staff = Optional.apply(data);
+
         console.log(this.staff)
         this.isConnected = true;
 
@@ -43,6 +58,7 @@ export class AppComponent {
       },
 
     );*/
+    this.id = $event.id;
     this.isConnected = true;
 
     this.nom = $event.name;
