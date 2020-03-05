@@ -2,8 +2,10 @@ package fr.ajaate.dora.controllers;
 
 import fr.ajaate.dora.entities.Act;
 import fr.ajaate.dora.entities.Affectation;
+import fr.ajaate.dora.entities.Document;
 import fr.ajaate.dora.services.ActService;
 import fr.ajaate.dora.services.AffectationServices;
+import fr.ajaate.dora.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,9 @@ public class ActController  {
 
     @Autowired
     private ActService actService;
+
+    @Autowired
+    private DocumentService documentService;
 
     @PostMapping
     public ResponseEntity<Act> save(@RequestBody Act act) {
@@ -36,9 +41,8 @@ public class ActController  {
     }
 
     @GetMapping("/{id}/documents")
-    public ResponseEntity<Set<Act>> findAllDocumentsByActId(@PathVariable("id") Long id){
-        //TODO
-        return null;
+    public ResponseEntity<Set<Document>> findAllDocumentsByActId(@PathVariable("id") Long id){
+        return new ResponseEntity<Set<Document>>(documentService.findDocumentsAllByActsId(id), HttpStatus.OK);
     }
 
     @GetMapping("/date/{date}")

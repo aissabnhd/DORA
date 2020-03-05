@@ -50,6 +50,7 @@ public class Act {
 
     public void setType(String type) {
         this.type = type;
+        this.date = date;
     }
 
     public Instant getDate() {
@@ -88,5 +89,16 @@ public class Act {
     @Override
     public int hashCode() {
         return Objects.hash(id, type);
+    }
+
+    @Override
+    public String toString() {
+        return "Act{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", date=" + date +
+                ", affectation=" + affectation +
+                ", staff=" + staff +
+                '}';
     }
 }

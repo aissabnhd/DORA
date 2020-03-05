@@ -1,4 +1,4 @@
-package fr.ajaate.dora.entities.enumeration;
+package fr.ajaate.dora.enumeration;
 
 public enum RoleName {
     DOCTOR,
