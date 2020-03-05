@@ -1,7 +1,10 @@
 package fr.ajaate.dora.controllers;
 
+import fr.ajaate.dora.entities.Affectation;
 import fr.ajaate.dora.entities.DMP;
+import fr.ajaate.dora.entities.Hospitalization;
 import fr.ajaate.dora.services.DMPServices;
+import fr.ajaate.dora.services.HospitalizationServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,9 @@ public class DMPController {
     @Autowired
     private DMPServices dmpServices;
 
+    @Autowired
+    private HospitalizationServices hospitalizationServices;
+
     @PostMapping
     public ResponseEntity<DMP> save(@RequestBody DMP dmp) {
         DMP savedDMP = dmpServices.save(dmp);
@@ -25,10 +31,7 @@ public class DMPController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DMP>> findAll(@RequestParam(name = "page", defaultValue = "0") int page,
-                                                @RequestParam(name = "size", defaultValue = "10") int size) {
-        List<DMP> dmps = dmpServices.findAll();
-        System.out.println(dmps.size());
+    public ResponseEntity<List<DMP>> findAll() {
         return new ResponseEntity<List<DMP>>(dmpServices.findAll(), HttpStatus.OK);
     }
 
@@ -57,10 +60,16 @@ public class DMPController {
         return new ResponseEntity<Set<DMP>>(dmpServices.findAllByStructId(id), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}/hospitalizations")
+    public ResponseEntity<Set<Hospitalization>> findAllHospitalizationsByDMPId(@PathVariable("id") Long id){
+        return new ResponseEntity<Set<Hospitalization>>(hospitalizationServices.findAllByDmpId(id), HttpStatus.OK);
+    }
 
+/*
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){
         dmpServices.deleteById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+ */
 }

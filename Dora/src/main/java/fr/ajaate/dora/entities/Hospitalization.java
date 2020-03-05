@@ -29,7 +29,7 @@ public class Hospitalization {
     private DMP dmp;
 
     @ManyToOne
-    @JoinColumn(name = "struct_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "struct_id", referencedColumnName = "id", nullable = false)
     private Struct struct;
 
     public Hospitalization() {

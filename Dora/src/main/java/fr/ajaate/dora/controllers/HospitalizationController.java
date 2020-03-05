@@ -2,6 +2,7 @@ package fr.ajaate.dora.controllers;
 
 import fr.ajaate.dora.entities.Affectation;
 import fr.ajaate.dora.entities.Hospitalization;
+import fr.ajaate.dora.services.AffectationServices;
 import fr.ajaate.dora.services.DMPServices;
 import fr.ajaate.dora.services.HospitalizationServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,16 @@ public class HospitalizationController {
     @Autowired
     private HospitalizationServices hospitalizationServices;
 
+    @Autowired
+    private AffectationServices affectationServices;
+
     @PostMapping
     public ResponseEntity<Hospitalization> save(@RequestBody Hospitalization hospitalization) {
         return new ResponseEntity<>(hospitalizationServices.save(hospitalization), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Hospitalization>> findAll(@RequestParam(name = "page", defaultValue = "0") int page,
-                                             @RequestParam(name = "size", defaultValue = "10") int size) {
+    public ResponseEntity<List<Hospitalization>> findAll() {
         return new ResponseEntity<List<Hospitalization>>(hospitalizationServices.findAll(), HttpStatus.OK);
     }
 
@@ -41,15 +44,17 @@ public class HospitalizationController {
     }
 
     @GetMapping("/{id}/affectations")
-    public ResponseEntity<Set<Affectation>> findAllByHospitalizationId(@PathVariable("id") Long id){
-        //TODO
-        return null;
+    public ResponseEntity<Set<Affectation>> findAllAffectationsByHospitalizationId(@PathVariable("id") Long id){
+        return new ResponseEntity<Set<Affectation>>(affectationServices.findAllByHospitalization(id), HttpStatus.OK);
     }
 
+    /*
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){
         hospitalizationServices.deleteById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+    */
+
 
 }
