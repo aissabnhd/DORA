@@ -2,6 +2,7 @@ package fr.ajaate.dora.controllers;
 
 import fr.ajaate.dora.entities.Affectation;
 import fr.ajaate.dora.entities.Hospitalization;
+import fr.ajaate.dora.services.AffectationServices;
 import fr.ajaate.dora.services.DMPServices;
 import fr.ajaate.dora.services.HospitalizationServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ import java.util.Set;
 public class HospitalizationController {
     @Autowired
     private HospitalizationServices hospitalizationServices;
+
+    @Autowired
+    private AffectationServices affectationServices;
 
     @PostMapping
     public ResponseEntity<Hospitalization> save(@RequestBody Hospitalization hospitalization) {
@@ -39,20 +43,22 @@ public class HospitalizationController {
     }
 
     @GetMapping("/date/{dateHospitalization}")
-    public ResponseEntity<Set<Hospitalization>> findById(@PathVariable("dateHospitalization") Instant dateHospitalization){
+    public ResponseEntity<Set<Hospitalization>> findByDate(@PathVariable("dateHospitalization") Instant dateHospitalization){
         return new ResponseEntity<Set<Hospitalization>>(hospitalizationServices.findAllByDateHospitalization(dateHospitalization), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/affectations")
-    public ResponseEntity<Set<Affectation>> findAllByHospitalizationId(@PathVariable("id") Long id){
-        //TODO
-        return null;
+    public ResponseEntity<Set<Affectation>> findAllAffectationsByHospitalizationId(@PathVariable("id") Long id){
+        return new ResponseEntity<Set<Affectation>>(affectationServices.findAllByHospitalization(id), HttpStatus.OK);
     }
 
+    /*
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){
         hospitalizationServices.deleteById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+    */
+
 
 }

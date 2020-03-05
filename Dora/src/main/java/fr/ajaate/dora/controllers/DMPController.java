@@ -27,8 +27,6 @@ public class DMPController {
     @GetMapping
     public ResponseEntity<List<DMP>> findAll(@RequestParam(name = "page", defaultValue = "0") int page,
                                                 @RequestParam(name = "size", defaultValue = "10") int size) {
-        List<DMP> dmps = dmpServices.findAll();
-        System.out.println(dmps.size());
         return new ResponseEntity<List<DMP>>(dmpServices.findAll(), HttpStatus.OK);
     }
 
@@ -57,10 +55,11 @@ public class DMPController {
         return new ResponseEntity<Set<DMP>>(dmpServices.findAllByStructId(id), HttpStatus.OK);
     }
 
-
+/*
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){
         dmpServices.deleteById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+ */
 }
