@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
@@ -31,6 +32,7 @@ public class AffectationControllers {
 
 
     @PostMapping
+    @PreAuthorize("hasAuthority('SECRETARY')")
     public ResponseEntity<Affectation> save(@RequestBody Affectation affectation) {
         Affectation savedAffectation = affectationServices.save(affectation);
         return new ResponseEntity<>(savedAffectation, HttpStatus.CREATED);
@@ -38,22 +40,26 @@ public class AffectationControllers {
 
 
     @GetMapping
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<List<Affectation>> findAll() {
         return new ResponseEntity<List<Affectation>>(affectationServices.findAll(), HttpStatus.CREATED);
     }
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<Affectation> findById(@PathVariable("id") Long id){
         return new ResponseEntity<Affectation>(affectationServices.findById(id).get(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/acts")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<Set<Act>> findAllActsByAffectationId(@PathVariable("id") Long id){
         return new ResponseEntity<Set<Act>> (actService.findAllByAffectationId(id), HttpStatus.OK);
     }
 
     @GetMapping("/date/{dateAffectation}")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<Set<Affectation>> findAllByDateAffectation(@PathVariable("dateAffectation") Instant dateAffectation){
         return new ResponseEntity<Set<Affectation>>(affectationServices.findAllByDateAffectation(dateAffectation), HttpStatus.OK);
     }

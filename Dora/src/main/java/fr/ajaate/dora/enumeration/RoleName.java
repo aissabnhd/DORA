@@ -5,5 +5,6 @@ public enum RoleName {
     NURSE,
     SECRETARY,
     LABORATORY,
-    ADMINISTRATOR
+    ADMINISTRATOR,
+    RESPONSIBLE
 }
