@@ -1,17 +1,19 @@
 package fr.ajaate.dora.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 
 @Entity
-@Table(name = "staff")
+@Table(name = "staff",uniqueConstraints = {
+
+        @UniqueConstraint(columnNames = "email")
+})
 public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,10 +43,19 @@ public class Staff {
     @Column(name = "link_calendar")
     private String linkCalendar;
 
-    @OneToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
 
+
+    @Column(name = "password")
+    private String password;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne
     @JoinColumn(name = "struct_belong_id", referencedColumnName = "id")
     private Struct structBelong;
@@ -64,7 +75,7 @@ public class Staff {
 
     }
 
-    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String email, String rib, int postcode, String city, String street, String country, String linkCalendar) {
+    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String rib, int postcode,Set<Role> roles,  String city, String street, String country, String linkCalendar, String email, String password) {
         this.firsName = firsName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -77,6 +88,9 @@ public class Staff {
         this.street = street;
         this.country = country;
         this.linkCalendar = linkCalendar;
+        this.password=password;
+        this.roles=roles;
+
     }
 
     @Override
@@ -96,6 +110,11 @@ public class Staff {
                 Objects.equals(city, staff.city) &&
                 Objects.equals(street, staff.street) &&
                 Objects.equals(country, staff.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
     }
 
     public Long getId() {
@@ -202,13 +221,6 @@ public class Staff {
         this.linkCalendar = linkCalendar;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 
     public Struct getStructBelong() {
         return structBelong;
@@ -234,26 +246,18 @@ public class Staff {
         this.specialities = specialities;
     }
 
-    @Override
-    public String toString() {
-        return "Staff{" +
-                "firsName='" + firsName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthday=" + birthday +
-                ", nationality='" + nationality + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", rib='" + rib + '\'' +
-                ", postcode=" + postcode +
-                ", city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                ", country='" + country + '\'' +
-                ", linkCalendar='" + linkCalendar + '\'' +
-                '}';
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
