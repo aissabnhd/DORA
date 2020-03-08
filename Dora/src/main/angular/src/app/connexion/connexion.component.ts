@@ -25,6 +25,7 @@ export class ConnexionComponent implements OnInit {
 
 
   connexionForm : FormGroup;
+  show = false;
 
   constructor(private snackBar : MatSnackBar, private loginRequestService : AuthService, private router:Router, private formBuilder : FormBuilder) { }
 
@@ -50,4 +51,7 @@ export class ConnexionComponent implements OnInit {
   }
 
 
+  showPassword() {
+    this.show = !this.show;
+  }
 }

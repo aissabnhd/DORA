@@ -8,16 +8,20 @@
 
   <label>
     <br>
-    Login :
+
+    Login :   <a  title="Entrer votre login (votre adresse mail)"> <img class="info" src="assets/img/info.png" /></a>
     <br>
     <input type="text" formControlName="email">
     <br><br>
   </label>
 
   <label>
-    Mot de passe :
+
+        Mot de passe :   <a  title="Entrer votre mot de passe"> <img class="info" src="assets/img/info.png" /></a>
     <br>
-    <input type="password" formControlName="password">
+    <input *ngIf="!show" type="password" formControlName="password">
+    <input *ngIf="show" type="text" formControlName="password">
+    <a title="Afficher/masquer mot de passe" class="mask" (click)="showPassword()">  <img class="affiche" src="assets/img/logo_affiche.png" /></a>
     <br>
     <a class="oubli" href="mot_de_passe_oublie.html">Mot de passe oublié</a>
     <br><br>

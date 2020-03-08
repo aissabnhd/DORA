@@ -19,6 +19,23 @@ a.oubli{
 font-style: italic;
 }
 
+a.mask{
+  width: 20px;
+  height: 20px;
+}
+
+img.affiche{
+
+  width: 20px;
+  height: 20px;
+}
+
+img.info{
+
+  width: 15px;
+  height: 15px;
+}
+
 button.connexion{
   text-align: center;
   background-image:linear-gradient(#fcfba9, #f9d531);
