@@ -41,6 +41,7 @@ import { ChangeDmpComponent } from './staff/change-dmp/change-dmp.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TokenInterceptor} from "./services/Interceptor";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import {TokenInterceptor} from "./services/Interceptor";
     MatSidenavModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
 
   ],
   providers: [{

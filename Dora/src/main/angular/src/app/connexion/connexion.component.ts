@@ -5,6 +5,7 @@ import {LoginRequest} from "../interfaces/LoginRequest";
 import {AuthService} from "../services/Auth.service";
 import {Staff} from "../interfaces/Staff";
 import {Token} from "../interfaces/Token";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -25,7 +26,7 @@ export class ConnexionComponent implements OnInit {
 
   connexionForm : FormGroup;
 
-  constructor(private loginRequestService : AuthService, private router:Router, private formBuilder : FormBuilder) { }
+  constructor(private snackBar : MatSnackBar, private loginRequestService : AuthService, private router:Router, private formBuilder : FormBuilder) { }
 
   ngOnInit() {
     this.connexionForm = this.formBuilder.group({
@@ -39,10 +40,12 @@ export class ConnexionComponent implements OnInit {
     let connexion : LoginRequest = this.connexionForm.value;
     this.loginRequestService.authenticateUser(connexion).subscribe(
       data => {
-        this.token.emit(data)
+        this.token.emit(data);
+        this.snackBar.open("Connecté(e) !", 'OK', { verticalPosition: 'top', duration:5000 })
+
 
       },
-      error => console.log(error)
+      error => this.snackBar.open("Mauvais login/mot de passe !", 'OK', { verticalPosition: 'top', duration:5000 })
     )
   }
 
