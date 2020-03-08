@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-creer-ordonnance',
   templateUrl: './creer-ordonnance.component.html',
   styleUrls: ['./creer-ordonnance.component.css']
 })
-export class CreerOrdonnanceComponent implements OnInit {
+export class CreerOrdonnanceComponent implements OnInit, OnDestroy {
   text: string = "";
 
   constructor() { }
@@ -19,5 +19,13 @@ export class CreerOrdonnanceComponent implements OnInit {
 
   onSubmit() {
 
+  }
+
+  onSave() {
+
+  }
+
+  ngOnDestroy(): void {
+    // save the document
   }
 }

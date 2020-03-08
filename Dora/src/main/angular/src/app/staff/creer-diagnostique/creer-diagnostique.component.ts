@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-creer-diagnostique',
   templateUrl: './creer-diagnostique.component.html',
   styleUrls: ['./creer-diagnostique.component.css']
 })
-export class CreerDiagnostiqueComponent implements OnInit {
+export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
   text: string = "";
 
   constructor() { }
@@ -19,5 +19,13 @@ export class CreerDiagnostiqueComponent implements OnInit {
 
   onSubmit() {
 
+  }
+
+  onSave() {
+
+  }
+
+  ngOnDestroy(): void {
+    // save the document
   }
 }
