@@ -16,6 +16,10 @@ export class CreerCrComponent implements OnInit {
 
   }
 
+  onCancel() {
+
+  }
+
   ngOnDestroy(){
     //sauvegarde du document
     console.log("sauvegarde auto");
