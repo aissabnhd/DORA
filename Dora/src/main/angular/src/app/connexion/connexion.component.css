@@ -1,5 +1,10 @@
-body {
+div.all {
   background-color: #f3f3f3ff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 div.logo {
   text-align: center;
@@ -21,13 +26,15 @@ button.connexion{
  }
 
  div.logo_2{
-   text-align: right;
+   position: absolute;
+   right: 0;
+   bottom: 0;
 
  }
 
 img.logo_ajaate {
 
   width : 100px;
-  height : 100 px;
+  height : 100px;
 
 }
