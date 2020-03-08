@@ -98,7 +98,7 @@ public class DoraApplication implements CommandLineRunner {
 		Staff staff=new Staff("hamid","macron",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
 				"IBAN-BIC",93,roles,"saint-denis","je sais pas ",
 				"FR","hisAgenda","hamid-macron@gmail.com","123456789");
-		Role role3=new Role(RoleName.LABORATORY);
+		Role role3=new Role(RoleName.SECRETARY);
 		Set<Role> roles3=new HashSet<>();
 		roles3.add(role3);
 		Staff staff3=new Staff("Thinhinane","Bouhaci",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
@@ -108,6 +108,28 @@ public class DoraApplication implements CommandLineRunner {
 		roleRepository.save(role3);
 		staffService.save(staff);
 		staffService.save(staff3);
+
+		Role role4=new Role(RoleName.LABORATORY);
+		Set<Role> roles4=new HashSet<>();
+		roles4.add(role4);
+		Staff staff4=new Staff("Benmammar","Eseid",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
+				"IBAN-BIC",93,roles4,"saint-denis","je sais pas ",
+				"FR","hisAgenda","eseid@gmail.com","eseid");
+		roleRepository.save(role);
+		roleRepository.save(role4);
+		staffService.save(staff);
+		staffService.save(staff4);
+
+		Role role5=new Role(RoleName.NURSE);
+		Set<Role> roles5=new HashSet<>();
+		roles5.add(role5);
+		Staff staff5=new Staff("Benni","Jaid",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
+				"IBAN-BIC",93,roles5,"saint-denis","je sais pas ",
+				"FR","hisAgenda","jaid@gmail.com","jaja");
+		roleRepository.save(role);
+		roleRepository.save(role5);
+		staffService.save(staff);
+		staffService.save(staff5);
 
 
 
