@@ -97,7 +97,7 @@ public class DoraApplication implements CommandLineRunner {
 
 		Staff staff=new Staff("hamid","macron",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
 				"IBAN-BIC",93,roles,"saint-denis","je sais pas ",
-				"FR","hisAgenda","hamid-macron@gmail.com","123456789");
+				"FR","hisAgenda","hamida-macron@gmail.com","123456789");
 		Role role3=new Role(RoleName.SECRETARY);
 		Set<Role> roles3=new HashSet<>();
 		roles3.add(role3);
@@ -117,7 +117,6 @@ public class DoraApplication implements CommandLineRunner {
 				"FR","hisAgenda","eseid@gmail.com","eseid");
 		roleRepository.save(role);
 		roleRepository.save(role4);
-		staffService.save(staff);
 		staffService.save(staff4);
 
 		Role role5=new Role(RoleName.NURSE);
@@ -128,7 +127,6 @@ public class DoraApplication implements CommandLineRunner {
 				"FR","hisAgenda","jaid@gmail.com","jaja");
 		roleRepository.save(role);
 		roleRepository.save(role5);
-		staffService.save(staff);
 		staffService.save(staff5);
 
 
