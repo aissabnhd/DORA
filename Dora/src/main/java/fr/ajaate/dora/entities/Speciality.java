@@ -24,6 +24,10 @@ public class Speciality {
         this.nameRole = nameRole;
     }
 
+    public Speciality(String nameRole) {
+        this.nameRole = nameRole;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

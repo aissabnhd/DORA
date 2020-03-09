@@ -54,7 +54,7 @@ public class Staff {
     @OneToOne(mappedBy = "responsible")
     private Struct structResponsible;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "staff_speciality",
             joinColumns = @JoinColumn(name = "staff_id"),
@@ -62,7 +62,36 @@ public class Staff {
     )
     private Set<Speciality> specialities;
 
-    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String email, String rib, int postcode, String city, String street, String country, String linkCalendar) {
+    public Staff(String lastName, Struct structBelong, Set<Speciality> spe) {
+        this.structBelong = structBelong;
+        this.lastName = lastName;
+        this.specialities = spe;
+    }
+    public Staff(String firsName, String lastName, Role role, Struct structBelong, Struct structResponsible, Set<Speciality> specialities) {
+        this.firsName = firsName;
+        this.lastName = lastName;
+        this.role = role;
+        this.structBelong = structBelong;
+        this.structResponsible = structResponsible;
+        this.specialities = specialities;
+    }
+
+    public Staff(String firsName, String lastName, String nationality, String phoneNumber, String email, String rib, int postcode, String city, String street, String country, String linkCalendar) {
+        this.firsName = firsName;
+        this.lastName = lastName;
+        //this.birthday = birthday;
+        this.nationality = nationality;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.rib = rib;
+        this.postcode = postcode;
+        this.city = city;
+        this.street = street;
+        this.country = country;
+        this.linkCalendar = linkCalendar;
+    }
+
+    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String email, String rib, int postcode, String city, String street, String country, String linkCalendar, Role role, Struct structBelong, Struct structResponsible, Set<Speciality> specialities) {
         this.firsName = firsName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -75,6 +104,10 @@ public class Staff {
         this.street = street;
         this.country = country;
         this.linkCalendar = linkCalendar;
+        this.role = role;
+        this.structBelong = structBelong;
+        this.structResponsible = structResponsible;
+        this.specialities = specialities;
     }
 
     @Override
@@ -99,5 +132,145 @@ public class Staff {
     @Override
     public int hashCode() {
         return Objects.hash(id, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirsName() {
+        return firsName;
+    }
+
+    public void setFirsName(String firsName) {
+        this.firsName = firsName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Instant getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Instant birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRib() {
+        return rib;
+    }
+
+    public void setRib(String rib) {
+        this.rib = rib;
+    }
+
+    public int getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getLinkCalendar() {
+        return linkCalendar;
+    }
+
+    public void setLinkCalendar(String linkCalendar) {
+        this.linkCalendar = linkCalendar;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Struct getStructBelong() {
+        return structBelong;
+    }
+
+    public void setStructBelong(Struct structBelong) {
+        this.structBelong = structBelong;
+    }
+
+    public Struct getStructResponsible() {
+        return structResponsible;
+    }
+
+    public void setStructResponsible(Struct structResponsible) {
+        this.structResponsible = structResponsible;
+    }
+
+    public Set<Speciality> getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(Set<Speciality> specialities) {
+        this.specialities = specialities;
+    }
+
+    public String toString() {
+        return this.lastName;
     }
 }

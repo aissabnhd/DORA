@@ -1,5 +1,6 @@
 package fr.ajaate.dora.entities;
 
+import fr.ajaate.dora.entities.enumeration.Level;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -14,12 +15,13 @@ import java.util.Objects;
 @Entity
 @Table(name = "struct")
 public class Struct implements Serializable {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "name_struct")
     private String nameStruct;
     @Column(name = "level")
-    private int level;
+    private Level level;
     @Column(name = "postcode")
     private int postCode;
     @Column(name = "city")
@@ -41,7 +43,7 @@ public class Struct implements Serializable {
     @JoinColumn(name = "staff_id", referencedColumnName = "id")
     private Staff responsible;
 
-    public Struct(String nameStruct, int level, int postCode, String city, String street, String country) {
+    public Struct(String nameStruct, Level level, int postCode, String city, String street, String country) {
         this.nameStruct = nameStruct;
         this.level = level;
         this.postCode = postCode;
@@ -49,6 +51,32 @@ public class Struct implements Serializable {
         this.street = street;
         this.country = country;
     }
+
+    public Struct(String nameStruct, Level level, Struct parent) {
+        this.nameStruct = nameStruct;
+        this.level = level;
+        this.struct = parent;
+    }
+
+    public Struct(String nameStruct, Level level, Struct parent, Staff responsible) {
+        this.nameStruct = nameStruct;
+        this.level = level;
+        this.struct = parent;
+        this.responsible = responsible;
+    }
+
+    public Struct(String nameStruct, Level level, int postCode, String city, String street, String country, Speciality spe, Staff responsible) {
+        this.nameStruct = nameStruct;
+        this.level = level;
+        this.postCode = postCode;
+        this.city = city;
+        this.street = street;
+        this.country = country;
+        this.speciality = spe;
+        //this.struct = parent;
+        this.responsible = responsible;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -69,4 +97,97 @@ public class Struct implements Serializable {
         return Objects.hash(id, nameStruct, level, postCode, city, street, country);
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNameStruct() {
+        return nameStruct;
+    }
+
+    public void setNameStruct(String nameStruct) {
+        this.nameStruct = nameStruct;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    public int getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(int postCode) {
+        this.postCode = postCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Speciality getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
+    }
+
+    public Struct getStruct() {
+        return struct;
+    }
+
+    public void setStruct(Struct struct) {
+        this.struct = struct;
+    }
+
+    public Staff getResponsible() {
+        return responsible;
+    }
+
+    public void setResponsible(Staff responsible) {
+        this.responsible = responsible;
+    }
+
+    @Override
+    public String toString() {
+        if (this.struct == null) {
+            if(this.responsible != null) {
+                return "Name : " + nameStruct + " | Level : " + this.getLevel() + " | Responsible : " + this.responsible + " | Parent : Racine " + "\n";
+            }
+            return "Name : " + nameStruct + " | Level : " + this.getLevel() + " | Parent : racine\n";
+        } else if (this.responsible == null) {
+            return "Name : " + nameStruct + " | Level : " + this.getLevel() + " | Responsible : Aucun" + " | Parent : " + this.struct + "\n";
+        } else {
+            return "Name : " + nameStruct + " | Level : " + this.getLevel() + " | Responsible : " + this.responsible + " | Parent : " + this.struct + "\n";
+        }
+    }
 }
