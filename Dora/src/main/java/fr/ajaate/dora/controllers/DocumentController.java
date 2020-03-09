@@ -7,11 +7,14 @@ import fr.ajaate.dora.enumeration.DocumentType;
 import fr.ajaate.dora.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/document")
@@ -63,6 +66,22 @@ public class DocumentController {
     @PreAuthorize("hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<List<Document>> getbyNature(@PathVariable("nature") String nature) {
         return new ResponseEntity<List<Document>>(documentService.getAllByNature(DocumentNature.valueOf(nature)), HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "/write/{id}", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity<String> writeDocumentContent(@RequestBody String requestBodyString,@PathVariable("id") Long id ) throws Exception {
+        Document document=documentService.findById(id).get();
+        documentService.setDocumentContent(requestBodyString,document.getPath());
+        return new ResponseEntity<String>(requestBodyString, HttpStatus.CREATED);
+    }
+
+
+    @RequestMapping(value = "/reader/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> DocumentContentReader(@PathVariable("id") Long id) throws Exception {
+        Document document=documentService.findById(id).get();
+        String content =documentService.getDocumentContent(document.getPath());
+        return new ResponseEntity<String>(content, HttpStatus.OK);
     }
 /*
 

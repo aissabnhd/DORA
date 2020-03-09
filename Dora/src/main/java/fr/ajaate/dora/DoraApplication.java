@@ -167,8 +167,9 @@ public class DoraApplication implements CommandLineRunner {
         /***************************************** Document ********************************************/
 
         Document document = documentService.save(new Document(DocumentNature.TEXT,DocumentType.CR, ".txt", new Date(),
-                "./file.txt", act, staff));
+                "./src/main/assets/cr/crKarl.txt", act, staff));
 
+        documentService.setDocumentContent("ceci est un test", document.getPath());
 
     }
 
