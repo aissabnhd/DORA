@@ -70,6 +70,7 @@ public class DocumentController {
 
 
     @RequestMapping(value = "/write/{id}", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public @ResponseBody ResponseEntity<String> writeDocumentContent(@RequestBody String requestBodyString,@PathVariable("id") Long id ) throws Exception {
         Document document=documentService.findById(id).get();
         documentService.setDocumentContent(requestBodyString,document.getPath());
@@ -78,6 +79,7 @@ public class DocumentController {
 
 
     @RequestMapping(value = "/reader/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<String> DocumentContentReader(@PathVariable("id") Long id) throws Exception {
         Document document=documentService.findById(id).get();
         String content =documentService.getDocumentContent(document.getPath());
