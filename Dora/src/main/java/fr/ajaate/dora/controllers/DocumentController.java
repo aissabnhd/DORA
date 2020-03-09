@@ -1,6 +1,9 @@
 package fr.ajaate.dora.controllers;
 
 import fr.ajaate.dora.entities.Document;
+import fr.ajaate.dora.entities.Hospitalization;
+import fr.ajaate.dora.enumeration.DocumentNature;
+import fr.ajaate.dora.enumeration.DocumentType;
 import fr.ajaate.dora.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,12 +45,27 @@ public class DocumentController {
     }
 
 
+
+
     @PostMapping("/validate/{id}")
     @PreAuthorize("hasAuthority('DOCTOR')")
     public ResponseEntity<Document> validate(@RequestBody Document document, @RequestParam Long id){
         return new ResponseEntity<Document>(documentService.validateDocument(document, id), HttpStatus.OK);
     }
+
+    @GetMapping("/type/{type}")
+    @PreAuthorize("hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
+    public ResponseEntity<List<Document>> getbyType(@PathVariable("type") String type) {
+        return new ResponseEntity<List<Document>>(documentService.getAllByType(DocumentType.valueOf(type)), HttpStatus.OK);
+    }
+
+    @GetMapping("/nature/{nature}")
+    @PreAuthorize("hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
+    public ResponseEntity<List<Document>> getbyNature(@PathVariable("nature") String nature) {
+        return new ResponseEntity<List<Document>>(documentService.getAllByNature(DocumentNature.valueOf(nature)), HttpStatus.OK);
+    }
 /*
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('DOCTOR')")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){
