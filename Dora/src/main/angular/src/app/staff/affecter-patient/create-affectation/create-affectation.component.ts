@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Hospitalization} from "../../../interfaces/Hospitalization";
-import {Struct} from "../../../interfaces/Struct";
+import {Level, Struct} from "../../../interfaces/Struct";
 import {DMP} from "../../../interfaces/DMP";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DMPService} from "../../../services/DMP.service";
@@ -44,7 +44,7 @@ export class CreateAffectationComponent implements OnInit {
                     this.affectationForm = this.formBuilder.group({
 
                       staff: this.formBuilder.array([
-                        new FormControl()
+                        new FormControl(this.staffs[0].id)
                       ]),
                       struct: new FormControl(0)
 
@@ -104,5 +104,27 @@ export class CreateAffectationComponent implements OnInit {
 
       control.removeAt(0);
     }
+  }
+
+
+  afficheLevel(level: Level) {
+    if (level == Level.HOSPITAL)
+      return "{Hopital}"
+
+
+    if (level == Level.APHP)
+      return "{AP-HP}"
+
+    if(level == Level.POLE)
+      return "{Pole}"
+
+    if(level == Level.SERVICE)
+      return "{Service}"
+
+    if(level == Level.CARE_UNIT)
+      return "{Unité de soins}"
+
+    if(level == Level.FONCTIONAL_UNIT)
+      return "{Unité fonctionnelle}"
   }
 }

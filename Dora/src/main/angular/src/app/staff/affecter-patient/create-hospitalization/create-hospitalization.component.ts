@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DMP} from "../../../interfaces/DMP";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DMPService} from "../../../services/DMP.service";
 import {Hospitalization} from "../../../interfaces/Hospitalization";
 import {HospitalizationService} from "../../../services/Hospitalization.service";
-import {Struct} from "../../../interfaces/Struct";
+import {Level, Struct} from "../../../interfaces/Struct";
 import {ActivatedRoute, Router} from "@angular/router";
 import {StructService} from "../../../services/Struct.service";
 
@@ -63,4 +63,24 @@ export class CreateHospitalizationComponent implements OnInit {
 
   }
 
+  afficheLevel(level: Level) {
+    if (level == Level.HOSPITAL)
+      return "{Hopital}"
+
+
+    if (level == Level.APHP)
+      return "{AP-HP}"
+
+    if(level == Level.POLE)
+      return "{Pole}"
+
+    if(level == Level.SERVICE)
+      return "{Service}"
+
+    if(level == Level.CARE_UNIT)
+      return "{Unité de soins}"
+
+    if(level == Level.FONCTIONAL_UNIT)
+      return "{Unité fonctionnelle}"
+  }
 }

@@ -1,5 +1,6 @@
 package fr.ajaate.dora.entities;
 
+import fr.ajaate.dora.enumeration.Level;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -19,7 +20,7 @@ public class Struct implements Serializable {
     @Column(name = "name_struct")
     private String nameStruct;
     @Column(name = "level")
-    private int level;
+    private Level level;
     @Column(name = "postcode")
     private int postCode;
     @Column(name = "city")
@@ -41,7 +42,7 @@ public class Struct implements Serializable {
     @JoinColumn(name = "staff_id", referencedColumnName = "id")
     private Staff responsible;
 
-    public Struct(String nameStruct, int level, int postCode, String city, String street, String country) {
+    public Struct(String nameStruct, Level level, int postCode, String city, String street, String country) {
         this.nameStruct = nameStruct;
         this.level = level;
         this.postCode = postCode;

@@ -5,6 +5,7 @@ import fr.ajaate.dora.dao.StructRepository;
 import fr.ajaate.dora.entities.DMP;
 import fr.ajaate.dora.entities.Hospitalization;
 import fr.ajaate.dora.entities.Struct;
+import fr.ajaate.dora.enumeration.Level;
 import fr.ajaate.dora.services.DMPServices;
 import fr.ajaate.dora.services.HospitalizationServices;
 import fr.ajaate.dora.dao.StaffRepository;
@@ -85,9 +86,9 @@ public class DoraApplication implements CommandLineRunner {
 
         /***************************************** Struct ********************************************/
 
-        Struct struct = structRepository.save(new Struct("Val De grace", 2, 1,
+        Struct struct = structRepository.save(new Struct("Val De grace", Level.HOSPITAL, 1,
                 "Genève", "10 rue de La passerelle", "Suisse"));
-        Struct struct2 = structRepository.save(new Struct("Salpêtrière", 2, 1,
+        Struct struct2 = structRepository.save(new Struct("Salpêtrière", Level.HOSPITAL, 1,
                 "Paris", "10 rue de La passerelle", "France"));
 
 
