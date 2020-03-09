@@ -39,37 +39,37 @@ public class DMPController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('SECRETARY') or hashRole('NURSE') or hashRole('DOCTOR') or hashRole('LABORATORY')")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<DMP> findById(@PathVariable("id") Long id){
         return new ResponseEntity<DMP>(dmpServices.findById(id).get(), HttpStatus.OK);
     }
 
     @GetMapping("/lastName/{lastName}")
-    @PreAuthorize("hasAuthority('SECRETARY') or hashRole('NURSE') or hashRole('DOCTOR') or hashRole('LABORATORY')")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<List<DMP>> findByLastName(@PathVariable("lastName") String lastName){
         return new ResponseEntity<List<DMP>>(dmpServices.findByLastName(lastName), HttpStatus.OK);
     }
 
     @GetMapping("/firstName/{firstName}")
-    @PreAuthorize("hasAuthority('SECRETARY') or hashRole('NURSE') or hashRole('DOCTOR') or hashRole('LABORATORY')")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<List<DMP>> findByFirstName(@PathVariable("firstName") String firstName){
         return new ResponseEntity<List<DMP>>(dmpServices.findByFirstName(firstName), HttpStatus.OK);
     }
 
     @GetMapping("/ssn/{ssn}")
-    @PreAuthorize("hasAuthority('SECRETARY') or hashRole('NURSE') or hashRole('DOCTOR') or hashRole('LABORATORY')")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<Optional<DMP>> findBySocialSecurityNumber(@PathVariable("ssn") String ssn){
         return new ResponseEntity<Optional<DMP>>(dmpServices.findBySocialSecurityNumber(ssn), HttpStatus.OK);
     }
 
     @GetMapping("/struct/{id}")
-    @PreAuthorize("hasAuthority('SECRETARY') or hashRole('NURSE') or hashRole('DOCTOR') or hashRole('LABORATORY')")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<Set<DMP>> findAllByStructId(@PathVariable("id") Long id){
         return new ResponseEntity<Set<DMP>>(dmpServices.findAllByStructId(id), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/hospitalizations")
-    @PreAuthorize("hasAuthority('SECRETARY') or hashRole('NURSE') or hashRole('DOCTOR') or hashRole('LABORATORY')")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<Set<Hospitalization>> findAllHospitalizationsByDMPId(@PathVariable("id") Long id){
         return new ResponseEntity<Set<Hospitalization>>(hospitalizationServices.findAllByDmpId(id), HttpStatus.OK);
     }
