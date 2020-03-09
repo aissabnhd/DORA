@@ -1,8 +1,9 @@
-package fr.ajaate.dora.services;
+package fr.ajaate.dora.services.implementation;
 
 import fr.ajaate.dora.dao.RoleRepository;
 import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.entities.Staff;
+import fr.ajaate.dora.services.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,17 +17,16 @@ public class StaffServiceImpl implements StaffService {
     @Autowired
     private StaffRepository staffRepository;
 
-
     @Autowired
     private RoleRepository roleRepository;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public void save(Staff staff) {
+    public Staff save(Staff staff) {
         staff.setPassword(bCryptPasswordEncoder.encode(staff.getPassword()));
-
-        staffRepository.save(staff);
+        return staffRepository.save(staff);
     }
 
     @Override

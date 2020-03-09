@@ -9,7 +9,7 @@ import fr.ajaate.dora.Exchange.LoginRequest;
 import fr.ajaate.dora.Exchange.TokenResponse;
 import fr.ajaate.dora.security.TokenFilter;
 import fr.ajaate.dora.security.TokenTools;
-import fr.ajaate.dora.services.UserDetailsImpl;
+import fr.ajaate.dora.services.implementation.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

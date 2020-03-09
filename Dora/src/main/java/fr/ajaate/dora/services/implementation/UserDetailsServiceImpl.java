@@ -1,9 +1,10 @@
-package fr.ajaate.dora.services;
+package fr.ajaate.dora.services.implementation;
 
 
 
 import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.entities.Staff;
+import fr.ajaate.dora.services.implementation.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,9 +1,10 @@
-package fr.ajaate.dora.entities.enumeration;
+package fr.ajaate.dora.enumeration;
 
 public enum RoleName {
     DOCTOR,
     NURSE,
     SECRETARY,
     LABORATORY,
-    ADMINISTRATOR
+    ADMINISTRATOR,
+    RESPONSIBLE
 }

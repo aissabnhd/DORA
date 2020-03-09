@@ -1,7 +1,7 @@
 package fr.ajaate.dora.dao;
 
-import fr.ajaate.dora.entities.enumeration.RoleName;
 import fr.ajaate.dora.entities.Role;
+import fr.ajaate.dora.enumeration.RoleName;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

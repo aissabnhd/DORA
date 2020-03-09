@@ -7,9 +7,14 @@ import fr.ajaate.dora.entities.Hospitalization;
 import fr.ajaate.dora.entities.Struct;
 import fr.ajaate.dora.services.DMPServices;
 import fr.ajaate.dora.services.HospitalizationServices;
+import fr.ajaate.dora.dao.StaffRepository;
+import fr.ajaate.dora.dao.StructRepository;
+import fr.ajaate.dora.entities.*;
+import fr.ajaate.dora.enumeration.DocumentType;
+import fr.ajaate.dora.enumeration.RoleName;
+import fr.ajaate.dora.services.*;
 import fr.ajaate.dora.dao.RoleRepository;
 import fr.ajaate.dora.entities.DMP;
-import fr.ajaate.dora.entities.enumeration.RoleName;
 import fr.ajaate.dora.entities.Role;
 import fr.ajaate.dora.entities.Staff;
 
@@ -26,11 +31,17 @@ import java.util.Set;
 
 @SpringBootApplication
 public class DoraApplication implements CommandLineRunner {
-	@Autowired
-	private DMPServices dmpServices;
+    @Autowired
+    private DMPServices dmpServices;
 
-	@Autowired
-	private HospitalizationServices hospitalizationServices;
+    @Autowired
+    private HospitalizationServices hospitalizationServices;
+
+    @Autowired
+    private StructRepository structRepository;
+
+    @Autowired
+    private AffectationServices affectationServices;
 
 	@Autowired
 	StaffService staffService;
@@ -39,56 +50,70 @@ public class DoraApplication implements CommandLineRunner {
 	@Autowired
 	RoleRepository roleRepository;
 
-	@Autowired
-	private StructRepository structRepository;
+
+    @Autowired
+    private ActService actService;
+
+    @Autowired
+    private StaffRepository staffRepository;
+
+    @Autowired
+    private DocumentService documentService;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(DoraApplication.class, args);
 	}
 	@Override
 	public void run(String... args) throws Exception {
-		DMP dmp = new DMP("9912345746534253", "Karl", "Marks",
-				null, "France", "+33784563452",
-				"k.marks@gmail.com", 75001, "Paris", "Boulevard saint-denis",
-				"France", "allergy");
-		DMP dmp2 = new DMP("9912345746584243", "Emile", "Zola",
-				null, "France", "+33784563452",
-				"e.zola@gmail.com", 75001, "Paris", "Boulevard saint-denis",
-				"France", "allergy");
+        /***************************************** DMP ********************************************/
 
-		DMP dmp3 = new DMP("10", "sara", "sara",
-				null, "France", "+33784563452",
-				"s.sara@gmail.com", 75001, "Paris", "Boulevard saint-denis",
-				"France", "allergy");
+        DMP dmp = dmpServices.save(new DMP("9912345746514253", "Karl", "Marks",
+				new Date("1993/01/01"), "France", "+33784563452",
+                "k.marks@gmail.com", 75001, "Paris", "Boulevard saint-denis",
+                "France", "allergy"));
+        DMP dmp2 = dmpServices.save(new DMP("9912345346584243", "Emile", "Zola",
+				new Date("1993/01/01"), "France", "+33784563452",
+                "e.zola@gmail.com", 75001, "Paris", "Boulevard saint-denis",
+                "France", "allergy"));
 
-		dmp = dmpServices.save(dmp);
-		dmp2 = dmpServices.save(dmp2);
-		dmp3 = dmpServices.save(dmp3);
-		Struct struct = structRepository.save(new Struct("Val De grace", 2, 1, "Genève", "10 rue de La passerelle", "Suisse"));
-		Struct struct2 = structRepository.save(new Struct("Salpêtrière", 2, 1, "Paris", "10 rue de La passerelle", "France"));
+        DMP dmp3 = dmpServices.save(new DMP("9912345748584263", "sara", "sara",
+				new Date("1993/01/01"), "France", "+33784563452",
+                "s.sara@gmail.com", 75001, "Paris", "Boulevard saint-denis",
+                "France", "allergy"));
 
-		Hospitalization hospitalization = new Hospitalization(Instant.now(), Instant.parse("2020-03-01T10:12:35Z"), 13, dmp, struct);
-		Hospitalization hospitalization1 = new Hospitalization(Instant.now(), Instant.parse("2020-03-01T10:12:35Z"), 14, dmp2, struct);
-		Hospitalization hospitalization3 = new Hospitalization(Instant.now(), Instant.parse("2020-03-01T10:12:35Z"), 14, dmp3, struct2);
 
-		System.out.println(" id hospitalisation : " + hospitalization.getId());
+        /***************************************** Struct ********************************************/
+
+        Struct struct = structRepository.save(new Struct("Val De grace", 2, 1,
+                "Genève", "10 rue de La passerelle", "Suisse"));
+        Struct struct2 = structRepository.save(new Struct("Salpêtrière", 2, 1,
+                "Paris", "10 rue de La passerelle", "France"));
+
+
+        /***************************************** Hospitalization ********************************************/
+
+        Hospitalization hospitalization = hospitalizationServices.save(new Hospitalization(new Date("1993/01/01"),
+				new Date("1993/10/01"),
+                13, dmp, struct));
+        Hospitalization hospitalization1 = hospitalizationServices.save(new Hospitalization(new Date("1993/01/01"),
+				new Date("1993/11/01"),
+                14, dmp, struct));
+        Hospitalization hospitalization3 = hospitalizationServices.save(new Hospitalization(new Date("1993/01/01"),
+				new Date("1993/12/01"),
+                14, dmp3, struct2));
+
 		hospitalizationServices.save(hospitalization);
 		hospitalizationServices.save(hospitalization1);
 		hospitalizationServices.save(hospitalization3);
-		//Set<DMP> dmpSet = dmpServices.findAllByStructId(struct.getId());
-		//System.out.println(dmpSet);
+
+        /***************************************** Affectation ********************************************/
+
+		Affectation affectation = affectationServices.save(new Affectation(new Date("1993/01/01"),
+				new Date("1993/01/01"), hospitalization, struct));
 
 
-
-		Role role2=new Role(RoleName.ADMINISTRATOR);
-		Set<Role> roles2=new HashSet<>();
-		roles2.add(role2);
-		Staff staff2=new Staff("hamid","macron",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
-				"IBAN-BIC",93,roles2,"saint-denis","je sais pas ",
-				"FR","hisAgenda","admin@gmail.com","admin");
-		roleRepository.save(role2);
-		staffService.save(staff2);
-
+        /***************************************** Roles and Staff ********************************************/
 
 
 		Role role=new Role(RoleName.DOCTOR);
@@ -130,9 +155,17 @@ public class DoraApplication implements CommandLineRunner {
 		staffService.save(staff5);
 
 
+        /***************************************** Act ********************************************/
+
+        Act act = actService.save(new Act("scanner", Instant.now(), affectation, staff));
 
 
+        /***************************************** Document ********************************************/
+
+        Document document = documentService.save(new Document(DocumentType.TEXT, ".txt", Instant.now(),
+                "./file.txt", act, staff));
 
 
-	}
+    }
+
 }

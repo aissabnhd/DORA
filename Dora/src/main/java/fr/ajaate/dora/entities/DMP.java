@@ -1,6 +1,7 @@
 package fr.ajaate.dora.entities;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 

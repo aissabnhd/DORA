@@ -2,7 +2,7 @@ package fr.ajaate.dora.security;
 
 
 
-import fr.ajaate.dora.services.UserDetailsServiceImpl;
+import fr.ajaate.dora.services.implementation.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

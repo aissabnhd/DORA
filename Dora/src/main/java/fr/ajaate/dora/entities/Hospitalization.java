@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -18,9 +19,9 @@ public class Hospitalization {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "date_hospitalization")
-    private Instant dateHospitalization;
+    private Date dateHospitalization;
     @Column(name = "date_end_hospitalization")
-    private Instant dateEndHospitalization;
+    private Date dateEndHospitalization;
     @Column(name = "room_number")
     private int roomNumber;
 
@@ -29,13 +30,13 @@ public class Hospitalization {
     private DMP dmp;
 
     @ManyToOne
-    @JoinColumn(name = "struct_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "struct_id", referencedColumnName = "id", nullable = false)
     private Struct struct;
 
     public Hospitalization() {
     }
 
-    public Hospitalization(Instant dateHospitalization, Instant dateEndHospitalization, int roomNumber, DMP dmp, Struct struct) {
+    public Hospitalization(Date dateHospitalization, Date dateEndHospitalization, int roomNumber, DMP dmp, Struct struct) {
         this.dateHospitalization = dateHospitalization;
         this.dateEndHospitalization = dateEndHospitalization;
         this.roomNumber = roomNumber;
@@ -47,19 +48,19 @@ public class Hospitalization {
         return id;
     }
 
-    public Instant getDateHospitalization() {
+    public Date getDateHospitalization() {
         return dateHospitalization;
     }
 
-    public void setDateHospitalization(Instant dateHospitalization) {
+    public void setDateHospitalization(Date dateHospitalization) {
         this.dateHospitalization = dateHospitalization;
     }
 
-    public Instant getDateEndHospitalization() {
+    public Date getDateEndHospitalization() {
         return dateEndHospitalization;
     }
 
-    public void setDateEndHospitalization(Instant dateEndHospitalization) {
+    public void setDateEndHospitalization(Date dateEndHospitalization) {
         this.dateEndHospitalization = dateEndHospitalization;
     }
 
