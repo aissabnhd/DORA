@@ -5,6 +5,8 @@ import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.entities.Act;
 import fr.ajaate.dora.entities.Document;
 import fr.ajaate.dora.entities.Staff;
+import fr.ajaate.dora.enumeration.DocumentNature;
+import fr.ajaate.dora.enumeration.DocumentType;
 import fr.ajaate.dora.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,13 +48,13 @@ public class DocumentImplementation implements DocumentService {
     }
 
     @Override
-    public List<Document> getAllByType() {
-        return documentRepository.findAllByType();
+    public List<Document> getAllByType(DocumentType documentType) {
+        return documentRepository.findAllByType(documentType);
     }
 
     @Override
-    public List<Document> getAllByNature() {
-        return documentRepository.findAllByNature();
+    public List<Document> getAllByNature(DocumentNature documentNature) {
+        return documentRepository.findAllByNature(documentNature);
     }
 
 
