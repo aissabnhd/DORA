@@ -36,35 +36,40 @@ export class ChangeDmpComponent implements OnInit {
 
   }
 
+  concatener(tab : Array<DMP>, tab2 : Array<DMP>){
+    if(tab == []){
+      return tab2;
+    }
+    if(tab2 == []){
+      return tab;
+    }
+    return tab.concat(tab2);
+
+  }
+
   onSubmit(){
     this.allDMP = [];
 
-    if(this.DMPForm.get('nom').value != "" && this.DMPForm.get('nom').value != null){
       this.dmpService.findByLastNameDMP(this.DMPForm.get('nom').value).subscribe(
         data => {
-          this.allDMP = data,
-            console.log(this.allDMP)
-        }
+          this.allDMP = this.concatener(this.allDMP, data)
+            this.dmpService.findByFirstNameDMP(this.DMPForm.get('prenom').value).subscribe(
+              data => {
+
+                this.allDMP = this.concatener(this.allDMP, data);
+                if(this.DMPForm.get('socialSecurityNumber').value != "" && this.DMPForm.get('socialSecurityNumber').value != null ) {
+                  this.dmpService.findBySocialSecurityNumberDMP(this.DMPForm.get('socialSecurityNumber').value).subscribe(
+                    data => {
+                      this.allDMP = []
+                      this.allDMP.push(data)
+                    },
+                  )
+                }
+              },
+            )
+          }
+
       )
-
-    }
-    else if(this.DMPForm.get('prenom').value != "" && this.DMPForm.get('prenom').value != null){
-      this.dmpService.findByFirstNameDMP(this.DMPForm.get('prenom').value).subscribe(
-        data => this.allDMP = data,
-      )
-
-    }
-    else if(this.DMPForm.get('socialSecurityNumber').value != "" && this.DMPForm.get('socialSecurityNumber').value != null ){
-      this.dmpService.findBySocialSecurityNumberDMP(this.DMPForm.get('socialSecurityNumber').value).subscribe(
-        data => {
-          this.allDMP = []
-          this.allDMP.push(data)
-        },
-      )
-
-    }
-
-
 
   }
 
