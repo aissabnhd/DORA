@@ -46,6 +46,17 @@ public class DocumentImplementation implements DocumentService {
     }
 
     @Override
+    public List<Document> getAllByType() {
+        return documentRepository.findAllByType();
+    }
+
+    @Override
+    public List<Document> getAllByNature() {
+        return documentRepository.findAllByNature();
+    }
+
+
+    @Override
     public Optional<Document> findById(Long id) {
         return documentRepository.findById(id);
     }

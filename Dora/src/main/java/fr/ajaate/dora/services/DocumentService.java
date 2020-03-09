@@ -17,6 +17,9 @@ public interface DocumentService {
     public Document update(Document document);
 
     public List<Document> getAll();
+    public List<Document> getAllByType();
+    public List<Document> getAllByNature();
+
 
     Optional<Document> findById(Long id);
 
