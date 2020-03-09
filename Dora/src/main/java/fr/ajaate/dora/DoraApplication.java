@@ -11,6 +11,7 @@ import fr.ajaate.dora.services.HospitalizationServices;
 import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.dao.StructRepository;
 import fr.ajaate.dora.entities.*;
+import fr.ajaate.dora.enumeration.DocumentNature;
 import fr.ajaate.dora.enumeration.DocumentType;
 import fr.ajaate.dora.enumeration.RoleName;
 import fr.ajaate.dora.services.*;
@@ -165,7 +166,7 @@ public class DoraApplication implements CommandLineRunner {
 
         /***************************************** Document ********************************************/
 
-        Document document = documentService.save(new Document(DocumentType.TEXT, ".txt", Instant.now(),
+        Document document = documentService.save(new Document(DocumentNature.TEXT,DocumentType.CR, ".txt", new Date(),
                 "./file.txt", act, staff));
 
 

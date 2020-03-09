@@ -5,11 +5,14 @@ import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.entities.Act;
 import fr.ajaate.dora.entities.Document;
 import fr.ajaate.dora.entities.Staff;
+import fr.ajaate.dora.enumeration.DocumentNature;
+import fr.ajaate.dora.enumeration.DocumentType;
 import fr.ajaate.dora.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -46,6 +49,17 @@ public class DocumentImplementation implements DocumentService {
     }
 
     @Override
+    public List<Document> getAllByType(DocumentType documentType) {
+        return documentRepository.findAllByType(documentType);
+    }
+
+    @Override
+    public List<Document> getAllByNature(DocumentNature documentNature) {
+        return documentRepository.findAllByNature(documentNature);
+    }
+
+
+    @Override
     public Optional<Document> findById(Long id) {
         return documentRepository.findById(id);
     }
@@ -60,7 +74,7 @@ public class DocumentImplementation implements DocumentService {
         if (documentRepository.existsById(document.getId()))
             if(!document.getValidation()){
                 document.setValidation(true);
-                document.setDateValidation(Instant.now());
+                document.setDateValidation(new Date());
                 Optional<Staff> optionalStaff = staffRepository.findById(idValidator);
                 if(!optionalStaff.isPresent())
                     throw new IllegalStateException("Le staff avec l'id "+ idValidator + " n'existe pas");

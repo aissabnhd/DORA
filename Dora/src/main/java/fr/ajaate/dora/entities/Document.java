@@ -1,5 +1,6 @@
 package fr.ajaate.dora.entities;
 
+import fr.ajaate.dora.enumeration.DocumentNature;
 import fr.ajaate.dora.enumeration.DocumentType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 @Data
@@ -20,16 +22,19 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "nature")
+    private DocumentNature nature;
+
     @Column(name = "type")
     private DocumentType type;
     @Column(name = "extension")
     private String extension;
     @Column(name = "date_creation")
-    private Instant dateCreation;
+    private Date dateCreation;
     @Column(name = "validation")
     private boolean validation;
     @Column(name = "date_validation")
-    private Instant dateValidation;
+    private Date dateValidation;
     @Column(name = "path")
     private String path;
 
@@ -46,7 +51,8 @@ public class Document {
     @JoinColumn(name = "staff_creator_id", nullable = false)
     private Staff staffCreator;
 
-    public Document(DocumentType type, String extension, Instant dateCreation, String path, Act act, Staff staffCreator) {
+    public Document(DocumentNature nature,DocumentType type, String extension, Date dateCreation, String path, Act act, Staff staffCreator) {
+        this.nature=nature;
         this.type = type;
         this.extension = extension;
         this.dateCreation = dateCreation;
@@ -56,6 +62,8 @@ public class Document {
     }
 
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,6 +71,7 @@ public class Document {
         Document document = (Document) o;
         return Objects.equals(id, document.id) &&
                 Objects.equals(type, document.type) &&
+                Objects.equals(nature, document.nature) &&
                 Objects.equals(extension, document.extension) &&
                 Objects.equals(dateCreation, document.dateCreation) &&
                 Objects.equals(validation, document.validation) &&
@@ -99,11 +108,11 @@ public class Document {
         this.extension = extension;
     }
 
-    public Instant getDateCreation() {
+    public Date getDateCreation() {
         return dateCreation;
     }
 
-    public void setDateCreation(Instant dateCreation) {
+    public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
     }
 
@@ -115,11 +124,11 @@ public class Document {
         this.validation = validation;
     }
 
-    public Instant getDateValidation() {
+    public Date getDateValidation() {
         return dateValidation;
     }
 
-    public void setDateValidation(Instant dateValidation) {
+    public void setDateValidation(Date dateValidation) {
         this.dateValidation = dateValidation;
     }
 
@@ -153,5 +162,21 @@ public class Document {
 
     public void setStaffCreator(Staff staffCreator) {
         this.staffCreator = staffCreator;
+    }
+
+    public DocumentNature getNature() {
+        return nature;
+    }
+
+    public void setNature(DocumentNature nature) {
+        this.nature = nature;
+    }
+
+    public boolean isValidation() {
+        return validation;
+    }
+
+    public void setValidation(boolean validation) {
+        this.validation = validation;
     }
 }
