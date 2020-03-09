@@ -94,7 +94,7 @@ export class CreateAffectationComponent implements OnInit {
     const control = <FormArray>this.affectationForm.controls['staff'];
     if(control.length < this.staffs.length) {
 
-      control.push(new FormControl())
+      control.push(new FormControl(this.staffs[control.length].id))
     }
   }
 
