@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'ajaate', component: AjaateComponent},
   { path: 'help', component: HelpComponent},
   // medecin links
-  { path: 'ordonnance', component: CreerOrdonnanceComponent},
+  { path: 'ordonnance/:idDMP/:idStaff', component: CreerOrdonnanceComponent},
   { path: 'diagnostique', component: CreerDiagnostiqueComponent},
   { path: 'cr', component: CreerCrComponent },
   { path: 'documents', component: AfficheDmpComponent },

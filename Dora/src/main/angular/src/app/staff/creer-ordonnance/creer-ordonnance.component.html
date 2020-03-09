@@ -1,4 +1,4 @@
-<div class="data">
+<div class="data" *ngIf="act">
   <p>Rédaction d'une ordonnance : </p>
   <textarea rows="20" cols="90">{{text}}</textarea>
   <br>
@@ -7,4 +7,24 @@
   <button (click)="onSave()">Save</button>
 
 </div>
-<p>creer-ordonnance works!</p>
+<div class="data" *ngIf="!act">
+  <div *ngIf="!listAct">
+    No act
+  </div>
+  <div *ngIf="listAct">
+    Voici les actes de l'affectation en cours :
+    <ul>
+      <li *ngFor="let act of listAct">
+          <div class="nom"> Type : {{act.type}} </div>
+          <br>
+          <div>
+            <button mat-fab (click)="Choose(act)"> Choose</button>
+          </div>
+
+      </li>
+
+    </ul>
+  </div>
+
+
+</div>

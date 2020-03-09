@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -17,7 +18,7 @@ public class Act {
     @Column(name = "type")
     private String type;
     @Column(name = "date")
-    private Instant date;
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name="affectation_id", nullable = false)
@@ -29,7 +30,7 @@ public class Act {
 
     public Act(){}
 
-    public Act(String type, Instant date, Affectation affectation, Staff staff) {
+    public Act(String type, Date date, Affectation affectation, Staff staff) {
         this.type = type;
         this.date = date;
         this.affectation = affectation;
@@ -53,11 +54,11 @@ public class Act {
         this.date = date;
     }
 
-    public Instant getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

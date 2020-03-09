@@ -24,4 +24,8 @@ export class StaffService {
     return this.httpClient.get<Array<Staff>>('/api/staff');
   }
 
+  findById(id : number) : Observable<Staff> {
+    return this.httpClient.get<Staff>('/api/staff/' + id);
+  }
+
 }

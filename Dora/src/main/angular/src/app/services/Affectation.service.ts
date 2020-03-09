@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {DMP} from "../interfaces/DMP";
 import {Affectation} from "../interfaces/Affectation";
+import {Act} from "../interfaces/Act";
 
 
 @Injectable({
@@ -27,4 +28,9 @@ export class AffectationService {
   changeStaff(idAffectation: number, tab: number[]) : Observable<Affectation>{
     return this.httpClient.post<Affectation>('api/affectation/change_staff/' + idAffectation, tab);
   }
+
+  findActsOf(idAffectation : number) : Observable<Array<Act>>{
+    return this.httpClient.get<Array<Act>>('/api/affectation/' + idAffectation + '/acts');
+  }
+
 }

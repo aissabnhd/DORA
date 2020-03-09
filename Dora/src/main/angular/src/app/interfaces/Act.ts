@@ -4,7 +4,7 @@ import { Staff } from './Staff';
 export interface Act{
   id: number;
   type: string;
-  date: any;
+  date: Date;
   affectation: Affectation;
   staff: Staff;
 }
