@@ -26,4 +26,6 @@ public interface AffectationServices {
     Set<Affectation> findAllByHospitalization(Long hospitalizationId);
 
     Set<Affectation> findAllByDateAffectation(Date dateAffectation);
+
+    Optional<Affectation> findCurrentAffectation(Long idDMP);
 }

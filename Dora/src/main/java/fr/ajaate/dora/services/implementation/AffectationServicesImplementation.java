@@ -80,5 +80,15 @@ public class AffectationServicesImplementation implements AffectationServices {
         return affectationRepository.findAllByDateAffectation(dateAffectation);
     }
 
+    @Override
+    public Optional<Affectation> findCurrentAffectation(Long idDMP) {
+        List<Affectation> affectations = findAll();
+        for(int i = 0; i < affectations.size(); i++){
+            if(affectations.get(i).getDateEndAffectation() == null && affectations.get(i).getHospitalization().getDmp().getId() == idDMP)
+                return Optional.of(affectations.get(i));
+        }
+        return Optional.empty();
+    }
+
 
 }

@@ -77,4 +77,14 @@ public class HospitalizationServicesImplementation implements HospitalizationSer
         return hospitalizationRepository.findAllByStructId(structId);
     }
 
+    @Override
+    public Optional<Hospitalization> findCurrentHospitalisation(Long idDMP) {
+        List<Hospitalization> lst = findAll();
+        for(int i = 0; i < lst.size(); i++){
+            if(lst.get(i).getDateEndHospitalization() == null && lst.get(i).getDmp().getId() == idDMP)
+                return Optional.of(lst.get(i));
+        }
+        return Optional.empty();
+    }
+
 }

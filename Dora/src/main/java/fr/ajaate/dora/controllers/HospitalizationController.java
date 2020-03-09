@@ -54,6 +54,12 @@ public class HospitalizationController {
         return new ResponseEntity<Set<Affectation>>(affectationServices.findAllByHospitalization(id), HttpStatus.OK);
     }
 
+    @GetMapping("/current/{idDMP}")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
+    public ResponseEntity<Hospitalization> findCurrentAffectation(@PathVariable("idDMP") Long idDMP){
+        return new ResponseEntity<Hospitalization>(hospitalizationServices.findCurrentHospitalisation(idDMP).get(), HttpStatus.OK);
+    }
+
     /*
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){

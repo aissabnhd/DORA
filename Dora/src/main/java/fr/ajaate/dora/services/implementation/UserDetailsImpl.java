@@ -49,7 +49,7 @@ public class UserDetailsImpl implements UserDetails {
 				user.getEmail(),
 
 				user.getPassword(), 
-				authorities, user.getFirsName(),user.getLastName());
+				authorities, user.getFirstName(),user.getLastName());
 	}
 
 	@Override

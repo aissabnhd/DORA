@@ -8,7 +8,7 @@ import {Struct} from "../interfaces/Struct";
 @Injectable({
   providedIn: 'root'
 })
-export class StaffService {
+export class StructService {
 
   event = new EventEmitter();
 
@@ -16,12 +16,8 @@ export class StaffService {
   constructor(private httpClient: HttpClient) {
   }
 
-  findByMail(mail : string) : Observable<Optional> {
-    return this.httpClient.get<Optional>('/api/staff/ByEmail/' + mail);
-  }
-
-  findAll() : Observable<Array<Staff>> {
-    return this.httpClient.get<Array<Staff>>('/api/staff');
+  findAll() : Observable<Array<Struct>> {
+    return this.httpClient.get<Array<Struct>>('/api/struct');
   }
 
 }

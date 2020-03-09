@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.Optional;
 
 @Service
@@ -45,7 +44,7 @@ public class StaffServiceImpl implements StaffService {
         if (staffRepository.findById(id).isPresent()){
             Staff existingStaff = staffRepository.findById(id).get();
 
-            existingStaff.setFirsName(newStaff.getFirsName());
+            existingStaff.setFirstName(newStaff.getFirstName());
             existingStaff.setLastName(newStaff.getLastName());
             existingStaff.setBirthday(newStaff.getBirthday());
             existingStaff.setPhoneNumber(newStaff.getPhoneNumber());

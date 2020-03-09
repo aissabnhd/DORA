@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -19,11 +20,11 @@ public class Staff {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "firstName")
-    private String firsName;
+    private String firstName;
     @Column(name = "lastName")
     private String lastName;
     @Column(name = "birthday")
-    private Instant birthday;
+    private Date birthday;
     @Column(name = "nationality")
     private String nationality;
     @Column(name = "phone_number")
@@ -75,8 +76,8 @@ public class Staff {
 
     }
 
-    public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String rib, int postcode,Set<Role> roles,  String city, String street, String country, String linkCalendar, String email, String password) {
-        this.firsName = firsName;
+    public Staff(String firstName, String lastName, Date birthday, String nationality, String phoneNumber, String rib, int postcode,Set<Role> roles,  String city, String street, String country, String linkCalendar, String email, String password) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.nationality = nationality;
@@ -100,7 +101,7 @@ public class Staff {
         Staff staff = (Staff) o;
         return postcode == staff.postcode &&
                 Objects.equals(id, staff.id) &&
-                Objects.equals(firsName, staff.firsName) &&
+                Objects.equals(firstName, staff.firstName) &&
                 Objects.equals(lastName, staff.lastName) &&
                 Objects.equals(birthday, staff.birthday) &&
                 Objects.equals(nationality, staff.nationality) &&
@@ -114,7 +115,7 @@ public class Staff {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
+        return Objects.hash(id, firstName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
     }
 
     public Long getId() {
@@ -125,12 +126,12 @@ public class Staff {
         this.id = id;
     }
 
-    public String getFirsName() {
-        return firsName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirsName(String firsName) {
-        this.firsName = firsName;
+    public void setFirstName(String firsName) {
+        this.firstName = firsName;
     }
 
     public String getLastName() {
@@ -141,11 +142,11 @@ public class Staff {
         this.lastName = lastName;
     }
 
-    public Instant getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Instant birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

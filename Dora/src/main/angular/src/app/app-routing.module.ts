@@ -25,6 +25,8 @@ import {AjaateComponent} from "./ajaate/ajaate.component";
 import {HelpComponent} from "./help/help.component";
 import {ChangeDmpComponent} from "./staff/change-dmp/change-dmp.component";
 import {AppComponent} from "./app.component";
+import {CreateAffectationComponent} from "./staff/affecter-patient/create-affectation/create-affectation.component";
+import {CreateHospitalizationComponent} from "./staff/affecter-patient/create-hospitalization/create-hospitalization.component";
 
 
 
@@ -46,7 +48,10 @@ const routes: Routes = [
   { path: 'creer_dmp', component: CreerDmpComponent },
   { path: 'gestion_materiel', component: GestionMaterielComponent},
   { path: 'gestion_agenda_medecin', component: GestionAgendaMedecinComponent },
-  { path: 'affectation_patient_service', component: AffecterPatientComponent},
+  { path: 'affectation_patient_service/:idDMP', component: AffecterPatientComponent},
+  { path: 'creer_affectation/:idDMP', component: CreateAffectationComponent},
+  { path: 'creer_hospitalization/:idDMP', component: CreateHospitalizationComponent},
+
   // admin links
   { path: 'ajout_membre', component: AjoutMembreComponent },
   { path: 'gestion_aphp', component: GestionAphpComponent},

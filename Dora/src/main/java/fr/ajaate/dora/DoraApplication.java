@@ -100,7 +100,7 @@ public class DoraApplication implements CommandLineRunner {
 				new Date("1993/11/01"),
                 14, dmp, struct));
         Hospitalization hospitalization3 = hospitalizationServices.save(new Hospitalization(new Date("1993/01/01"),
-				new Date("1993/12/01"),
+				null,
                 14, dmp3, struct2));
 
 		hospitalizationServices.save(hospitalization);
@@ -110,7 +110,9 @@ public class DoraApplication implements CommandLineRunner {
         /***************************************** Affectation ********************************************/
 
 		Affectation affectation = affectationServices.save(new Affectation(new Date("1993/01/01"),
-				new Date("1993/01/01"), hospitalization, struct));
+				null, hospitalization3, struct));
+		Affectation affectation2 = affectationServices.save(new Affectation(new Date("1993/01/01"),
+				new Date("1993/01/01"), hospitalization3, struct));
 
 
         /***************************************** Roles and Staff ********************************************/
@@ -120,13 +122,13 @@ public class DoraApplication implements CommandLineRunner {
 		Set<Role> roles=new HashSet<>();
 		roles.add(role);
 
-		Staff staff=new Staff("hamid","macron",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
+		Staff staff=new Staff("hamid","macron",new Date("1993/11/01"),"franco-algerien","0000",
 				"IBAN-BIC",93,roles,"saint-denis","je sais pas ",
 				"FR","hisAgenda","hamida-macron@gmail.com","123456789");
 		Role role3=new Role(RoleName.SECRETARY);
 		Set<Role> roles3=new HashSet<>();
 		roles3.add(role3);
-		Staff staff3=new Staff("Thinhinane","Bouhaci",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
+		Staff staff3=new Staff("Thinhinane","Bouhaci",new Date("1995/22/02"),"franco-algerien","0000",
 				"IBAN-BIC",93,roles3,"saint-denis","je sais pas ",
 				"FR","hisAgenda","thinhinane-bouhaci@gmail.com","tina95");
 		roleRepository.save(role);
@@ -137,7 +139,7 @@ public class DoraApplication implements CommandLineRunner {
 		Role role4=new Role(RoleName.LABORATORY);
 		Set<Role> roles4=new HashSet<>();
 		roles4.add(role4);
-		Staff staff4=new Staff("Benmammar","Eseid",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
+		Staff staff4=new Staff("Benmammar","Eseid", new Date("1995/10/01"),"franco-algerien","0000",
 				"IBAN-BIC",93,roles4,"saint-denis","je sais pas ",
 				"FR","hisAgenda","eseid@gmail.com","eseid");
 		roleRepository.save(role);
@@ -147,7 +149,7 @@ public class DoraApplication implements CommandLineRunner {
 		Role role5=new Role(RoleName.NURSE);
 		Set<Role> roles5=new HashSet<>();
 		roles5.add(role5);
-		Staff staff5=new Staff("Benni","Jaid",Instant.parse("1993-01-01T10:12:35Z"),"franco-algerien","0000",
+		Staff staff5=new Staff("Benni","Jaid",new Date("1993/15/02"),"franco-algerien","0000",
 				"IBAN-BIC",93,roles5,"saint-denis","je sais pas ",
 				"FR","hisAgenda","jaid@gmail.com","jaja");
 		roleRepository.save(role);

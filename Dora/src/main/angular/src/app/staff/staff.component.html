@@ -43,7 +43,7 @@
 
       <br>
     </a>
-    <a title="Affecter un DMP à un autre service" *ngIf="(isSecretaire) && dmp != null" class="iconeLateral" routerLink="/affectation_patient_service">
+    <a title="Affecter un DMP à un autre service" *ngIf="(isSecretaire) && dmp != null" class="iconeLateral" routerLink="/affectation_patient_service/{{dmp.id}}">
       <div class="iconLateral" style="background-image: url(assets/img/affectation_patient_service.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>

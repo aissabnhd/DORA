@@ -42,6 +42,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TokenInterceptor} from "./services/Interceptor";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { CreateAffectationComponent } from './staff/affecter-patient/create-affectation/create-affectation.component';
+import { CreateHospitalizationComponent } from './staff/affecter-patient/create-hospitalization/create-hospitalization.component';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     RemarquesComponent,
     PrescriptionsComponent,
     AgendaComponent,
-    ChangeDmpComponent
+    ChangeDmpComponent,
+    CreateAffectationComponent,
+    CreateHospitalizationComponent
   ],
   imports: [
     BrowserModule,
