@@ -1,4 +1,4 @@
-package fr.ajaate.dora.service;
+package fr.ajaate.dora.services;
 
 
 import fr.ajaate.dora.entities.Document;
@@ -22,9 +22,7 @@ public interface DocumentService {
 
     void deleteById(Long id);
 
-     public  Document validateDocument(Document document, Long idValidator);
+    public Document validateDocument(Document document, Long idValidator);
 
-
-
-
+    Set<Document> findDocumentsAllByActsId(Long actId);
 }

@@ -1,18 +1,18 @@
-package fr.ajaate.dora.service.implementation;
-
-import com.sun.xml.fastinfoset.dom.DOMDocumentSerializer;
+package fr.ajaate.dora.services.implementation;
 
 import fr.ajaate.dora.dao.DocumentRepository;
 import fr.ajaate.dora.dao.StaffRepository;
+import fr.ajaate.dora.entities.Act;
 import fr.ajaate.dora.entities.Document;
 import fr.ajaate.dora.entities.Staff;
-import fr.ajaate.dora.service.DocumentService;
+import fr.ajaate.dora.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class DocumentImplementation implements DocumentService {
@@ -53,7 +53,6 @@ public class DocumentImplementation implements DocumentService {
     @Override
     public void deleteById(Long id) {
          documentRepository.deleteById(id);
-
     }
 
     @Override
@@ -71,6 +70,11 @@ public class DocumentImplementation implements DocumentService {
                 throw new IllegalStateException("Le document avec l'id "+ document.getId() + " est déja validé");
         else
             throw new IllegalStateException("Le document avec l'id " + document.getId() + " n'existe pas");
+    }
+
+    @Override
+    public Set<Document> findDocumentsAllByActsId(Long actId) {
+        return documentRepository.findAllByActId(actId);
     }
 
 

@@ -1,4 +1,4 @@
-package fr.ajaate.dora.controlors;
+package fr.ajaate.dora.controllers;
 
 import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.entities.Document;

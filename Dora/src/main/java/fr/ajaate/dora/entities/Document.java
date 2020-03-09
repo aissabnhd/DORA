@@ -47,7 +47,7 @@ public class Document {
     private Staff staffValidator;
 
     @ManyToOne
-    @JoinColumn(name = "staff_creator_id")
+    @JoinColumn(name = "staff_creator_id", nullable = false)
     private Staff staffCreator;
 
     public Document(DocumentNature nature,DocumentType type, String extension, Instant dateCreation, String path, Act act, Staff staffCreator) {
@@ -55,7 +55,6 @@ public class Document {
         this.type = type;
         this.extension = extension;
         this.dateCreation = dateCreation;
-
         this.path = path;
         this.act = act;
         this.staffCreator = staffCreator;
