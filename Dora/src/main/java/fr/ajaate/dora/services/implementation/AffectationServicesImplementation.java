@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -75,7 +76,7 @@ public class AffectationServicesImplementation implements AffectationServices {
     }
 
     @Override
-    public Set<Affectation> findAllByDateAffectation(Instant dateAffectation) {
+    public Set<Affectation> findAllByDateAffectation(Date dateAffectation) {
         return affectationRepository.findAllByDateAffectation(dateAffectation);
     }
 

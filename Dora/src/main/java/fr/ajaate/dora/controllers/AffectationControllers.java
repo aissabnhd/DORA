@@ -18,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -60,7 +61,7 @@ public class AffectationControllers {
 
     @GetMapping("/date/{dateAffectation}")
     @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
-    public ResponseEntity<Set<Affectation>> findAllByDateAffectation(@PathVariable("dateAffectation") Instant dateAffectation){
+    public ResponseEntity<Set<Affectation>> findAllByDateAffectation(@PathVariable("dateAffectation") Date dateAffectation){
         return new ResponseEntity<Set<Affectation>>(affectationServices.findAllByDateAffectation(dateAffectation), HttpStatus.OK);
     }
 
