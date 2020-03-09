@@ -75,7 +75,6 @@ public class DocumentImplementation implements DocumentService {
     @Override
     public  String getDocumentContent ( String path   )
   {
-
       String line = "test";
       String content="";
       try {
@@ -95,18 +94,12 @@ public class DocumentImplementation implements DocumentService {
     @Override
     public String setDocumentContent(String content, String path){
         try {
-            //"./target/public/nomes.txt"
             File file = new File(path);
-
-            // Se o arquivo nao existir, ele gera
             if (!file.exists()) {
                 file.createNewFile();
             }
-
-            FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+            FileWriter fw = new FileWriter(file.getAbsoluteFile(), false);
             BufferedWriter bw = new BufferedWriter(fw);
-
-            // Escreve e fecha arquivo
             bw.write(content);
             bw.close();
 
