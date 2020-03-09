@@ -30,4 +30,8 @@ public interface DocumentService {
     public Document validateDocument(Document document, Long idValidator);
 
     Set<Document> findDocumentsAllByActsId(Long actId);
+
+    public String setDocumentContent(String content, String path);
+
+    public  String getDocumentContent ( String path   );
 }
