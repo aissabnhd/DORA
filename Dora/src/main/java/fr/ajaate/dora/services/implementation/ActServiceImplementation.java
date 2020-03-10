@@ -69,4 +69,17 @@ public class ActServiceImplementation implements ActService {
     public Set<Act> findAllByDate(Instant date) {
         return actRepository.findAllByDate(date);
     }
+
+    @Override
+    public List<Act> findAllByAffectationIdAndDone(Long id, boolean done) {
+        List<Act> lst = findAll();
+        for(int i = 0; i < lst.size(); i++){
+            if(lst.get(i).getDone() != done || lst.get(i).getAffectation().getId()  != id) {
+                lst.remove(i);
+                i--;
+            }
+        }
+        return lst;
+    }
+
 }

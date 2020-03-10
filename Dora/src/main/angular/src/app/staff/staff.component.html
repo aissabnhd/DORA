@@ -23,7 +23,7 @@
 
       <br>
     </a>
-    <a title="Demander un nouvel examen" *ngIf="(isMedecin) && dmp != null" class="iconeLateral" routerLink="/examen">
+    <a title="Demander/effectuer un nouvel examen" *ngIf="(isMedecin) && dmp != null" class="iconeLateral" routerLink="/examen/{{dmp.id}}/{{staff.id}}">
       <div class="iconLateral" style="background-image: url(assets/img/demande_examen.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
@@ -68,7 +68,7 @@
       <div class="iconLateral" style="background-image: url(assets/img/voir_anciens_examens.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
-    <a title="Voir les demandes d'examens" *ngIf="(isLaborantin) && dmp != null" class="iconeLateral" routerLink="/voir_demande_examen">
+    <a title="Voir les demandes d'examens" *ngIf="(isLaborantin) && dmp != null" class="iconeLateral" routerLink="/voir_demande_examen/{{dmp.id}}/{{staff.id}}">
       <div class="iconLateral" style="background-image: url(assets/img/voir_demande_examen.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>

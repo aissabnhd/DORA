@@ -46,9 +46,9 @@ const routes: Routes = [
   { path: 'diagnostique/:idDMP/:idStaff', component: CreerDiagnostiqueComponent},
   { path: 'cr/:idDMP/:idStaff', component: CreerCrComponent },
   { path: 'documents', component: AfficheDmpComponent },
-  { path: 'examen', component: DemandeExamenComponent},
-  { path: 'examen/demande', component: CreerDemandeComponent},
-  { path: 'examen/effectuer', component: EffectuerExamenComponent},
+  { path: 'examen/:idDMP/:idStaff', component: DemandeExamenComponent},
+  { path: 'examen/demande/:idDMP/:idStaff', component: CreerDemandeComponent},
+  { path: 'examen/effectuer/:idDMP/:idStaff', component: EffectuerExamenComponent},
 
   { path: 'change_dmp', component: ChangeDmpComponent},
   // secretaire links
@@ -66,7 +66,7 @@ const routes: Routes = [
   { path: 'modification_specialite', component: ModificationSpecialiteComponent},
   // laborantin links
   { path: 'voir_anciens_examens', component: VoirAnciensExamensComponent },
-  { path: 'voir_demande_examen', component: VoirDemandeExamenComponent},
+  { path: 'voir_demande_examen/:idDMP/:idStaff', component: EffectuerExamenComponent},
   // infirmier links
   { path: 'posologie', component: PosologieComponent },
   { path: 'constantes', component: ConstantesComponent},

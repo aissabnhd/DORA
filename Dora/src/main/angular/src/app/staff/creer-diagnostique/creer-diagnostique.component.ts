@@ -60,7 +60,7 @@ export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
         this.isDoctor = (this.staff.roles[0].name == RoleName.DOCTOR);
         this.doc.staffCreator = this.staff;
         this.affectationService.findCurrent(this.idDMP).subscribe(
-          data => this.affectationService.findActsOf(data.id).subscribe(
+          data => this.affectationService.findAllByDone(true, data.id).subscribe(
             data2 => {
 
               this.listAct = data2;

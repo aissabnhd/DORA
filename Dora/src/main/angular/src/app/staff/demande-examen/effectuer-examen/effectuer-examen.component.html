@@ -1,1 +1,19 @@
-<p>effectuer-examen works!</p>
+<div class="data">
+
+  <ul>
+    <li *ngFor="let act of listAct">
+
+        <div class="nom"> Acte : {{act.type}} </div>
+        <br>
+        <div class="esperance"> Médecin qui demande l'acte : Dr. {{act.staff.lastName}} </div>
+        <br>
+        <div class="regime"> Pour le patient : {{act.affectation.hospitalization.dmp.lastName}} </div>
+
+        <div class="links">
+          <button mat-fab (click)="examenDone(act)"> Choose</button>
+        </div>
+    </li>
+
+  </ul>
+
+</div>

@@ -171,8 +171,8 @@ public class DoraApplication implements CommandLineRunner {
 
         /***************************************** Act ********************************************/
 
-        Act act = actService.save(new Act("scanner", new Date(), affectation, staff));
-		Act act2 = actService.save(new Act("radio", new Date(), affectation, staff));
+        Act act = actService.save(new Act("scanner", new Date(), affectation, staff, true));
+		Act act2 = actService.save(new Act("radio", new Date(), affectation, staff, true));
 
 
         /***************************************** Document ********************************************/

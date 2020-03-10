@@ -1,1 +1,17 @@
-<p>creer-demande works!</p>
+<div class="data">
+
+  <form [formGroup]="actForm" *ngIf="actForm">
+
+    <label>
+      <br>
+      Type d'examen :
+      <br>
+      <input type="text" formControlName="type">
+      <br><br>
+    </label>
+    <button (click)="creationAct()">Valider</button>
+
+    <br>
+  </form>
+
+</div>

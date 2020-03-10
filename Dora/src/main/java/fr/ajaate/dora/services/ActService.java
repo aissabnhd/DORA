@@ -26,4 +26,6 @@ public interface ActService {
     Set<Act> findAllByAffectationId(Long affectationId);
 
     Set<Act> findAllByDate(Instant date);
+
+    List<Act> findAllByAffectationIdAndDone(Long id, boolean done);
 }

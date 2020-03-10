@@ -33,4 +33,8 @@ export class AffectationService {
     return this.httpClient.get<Array<Act>>('/api/affectation/' + idAffectation + '/acts');
   }
 
+  findAllByDone(done : boolean, idAffectation : number) : Observable<Array<Act>>{
+    return this.httpClient.get<Array<Act>>('/api/affectation/' + idAffectation + '/' + done + '/acts');
+  }
+
 }

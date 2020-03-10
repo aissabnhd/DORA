@@ -7,4 +7,5 @@ export interface Act{
   date: Date;
   affectation: Affectation;
   staff: Staff;
+  done: boolean;
 }

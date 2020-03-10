@@ -27,7 +27,7 @@ public class ActController  {
     private DocumentService documentService;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('DOCTOR')")
+    @PreAuthorize("hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<Act> save(@RequestBody Act act) {
         return new ResponseEntity<>(actService.save(act), HttpStatus.CREATED);
     }
@@ -55,6 +55,8 @@ public class ActController  {
     public ResponseEntity<Set<Act>> findAllByDateAffectation(@PathVariable("date") Instant date){
         return new ResponseEntity<Set<Act>>(actService.findAllByDate(date), HttpStatus.OK);
     }
+
+
 /*
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){

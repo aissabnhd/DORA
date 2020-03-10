@@ -19,6 +19,8 @@ public class Act {
     private String type;
     @Column(name = "date")
     private Date date;
+    @Column(name = "done")
+    private boolean done;
 
     @ManyToOne
     @JoinColumn(name="affectation_id", nullable = false)
@@ -30,11 +32,12 @@ public class Act {
 
     public Act(){}
 
-    public Act(String type, Date date, Affectation affectation, Staff staff) {
+    public Act(String type, Date date, Affectation affectation, Staff staff, boolean done) {
         this.type = type;
         this.date = date;
         this.affectation = affectation;
         this.staff = staff;
+        this.done = done;
     }
 
     public Long getId() {
@@ -52,6 +55,14 @@ public class Act {
     public void setType(String type) {
         this.type = type;
         this.date = date;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
     public Date getDate() {
@@ -101,5 +112,9 @@ public class Act {
                 ", affectation=" + affectation +
                 ", staff=" + staff +
                 '}';
+    }
+
+    public boolean getDone() {
+        return done;
     }
 }

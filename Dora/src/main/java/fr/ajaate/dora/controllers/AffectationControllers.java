@@ -64,6 +64,12 @@ public class AffectationControllers {
         return new ResponseEntity<Set<Act>> (actService.findAllByAffectationId(id), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}/{done}/acts")
+    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
+    public ResponseEntity<List<Act>> findAllActsByAffectationIdAndDone(@PathVariable("id") Long id, @PathVariable("done") boolean done){
+        return new ResponseEntity<List<Act>> (actService.findAllByAffectationIdAndDone(id, done), HttpStatus.OK);
+    }
+
     @GetMapping("/date/{dateAffectation}")
     @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<Set<Affectation>> findAllByDateAffectation(@PathVariable("dateAffectation") Date dateAffectation){
