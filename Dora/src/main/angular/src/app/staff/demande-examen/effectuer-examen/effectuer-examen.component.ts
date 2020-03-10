@@ -60,4 +60,10 @@ export class EffectuerExamenComponent implements OnInit {
       }
     )
   }
+
+  noAsk() {
+    if(this.listAct == [] || this.listAct == undefined || this.listAct.length == 0)
+      return true;
+    return false;
+  }
 }
