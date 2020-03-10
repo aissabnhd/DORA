@@ -65,6 +65,10 @@ public class StaffService {
         Optional <Struct> struct = structService.getOne(idStruct);
         if(staff.isPresent() && struct.isPresent()) {
             Staff s = staff.get();
+            Struct str = struct.get();
+            if(structService.getStructResponsible(str) != null) {
+                return false;
+            }
             s.setStructBelong(null);
             staffRepository.save(s);
             return true;

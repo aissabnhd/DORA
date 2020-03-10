@@ -60,8 +60,10 @@ public class DoraApplication implements CommandLineRunner {
 		Staff st1 = new Staff("Boss de Paris", s1, spe_set);
 		staffService.createStaff(st1);
 
+		System.out.println(staffService.deleteStaffToStruct(st1.getId(), s1.getId()));
 		structService.updateResponsible(s1, st1);
 
+		System.out.println(staffService.deleteStaffToStruct(st1.getId(), s1.getId()));
 		System.out.println(structService.getStructResponsible(s1));
 
 		Staff st2 = new Staff("President", null, spe_set);
