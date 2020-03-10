@@ -57,7 +57,7 @@ export class CreerCrComponent implements OnInit, OnDestroy {
       data3 => {
 
         this.staff = data3;
-        this.isDoctor = (this.staff.roles[0].name == RoleName.DOCTOR);
+        this.isDoctor = (this.staff.roles[0].name == RoleName.DOCTOR) || (this.staff.roles[0].name == RoleName.LABORATORY);
         this.doc.staffCreator = this.staff;
         this.affectationService.findCurrent(this.idDMP).subscribe(
           data => this.affectationService.findActsOf(data.id).subscribe(
