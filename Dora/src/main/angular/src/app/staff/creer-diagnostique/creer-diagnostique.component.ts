@@ -8,6 +8,7 @@ import {DocumentService} from "../../services/Document.service";
 import {ActivatedRoute} from "@angular/router";
 import {AffectationService} from "../../services/Affectation.service";
 import {RoleName} from "../../interfaces/Role";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-creer-diagnostique',
@@ -25,7 +26,7 @@ export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
   fileForm: FormGroup;
   private isDoctor= false;
   private isPublish: boolean = false;
-  constructor(private formBuilder : FormBuilder, private staffService : StaffService, private documentService : DocumentService, private route : ActivatedRoute, private affectationService : AffectationService) { }
+  constructor(private snackBar : MatSnackBar, private formBuilder : FormBuilder, private staffService : StaffService, private documentService : DocumentService, private route : ActivatedRoute, private affectationService : AffectationService) { }
 
   ngOnInit() {
     this.doc = new class implements Document {
@@ -87,13 +88,13 @@ export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
     this.doc.validation = true;
     this.isPublish = true;
     this.doc.staffValidator = this.doc.staffCreator;
+    this.snackBar.open("Document publié !", 'OK', { verticalPosition: 'top', duration:5000 })
     this.documentService.save(this.doc).subscribe(
       data => {
         console.log(data)
         this.documentService.write(this.fileForm.get("text").value, data.id).subscribe(
-          data2 => this.documentService.findAll().subscribe(
-            data => console.log(data)
-          )
+          data2 => console.log(data2)
+
         )
       }
     ),
@@ -101,13 +102,12 @@ export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
+    this.snackBar.open("Document sauvegardé !", 'OK', { verticalPosition: 'top', duration:5000 })
     this.documentService.save(this.doc).subscribe(
       data => {
         console.log(data)
         this.documentService.write(this.fileForm.get("text").value, data.id).subscribe(
-          data2 => this.documentService.findAll().subscribe(
-            data => console.log(data)
-          )
+          data2 => console.log(data2)
         )
       }
     ),
@@ -115,7 +115,9 @@ export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.onSave();
+    if(this.act && !this.isPublish) {
+      this.onSave();
+    }
   }
 
   Choose(act : Act) {
@@ -126,6 +128,7 @@ export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
   onCancel() {
     this.act = null;
     this.fileForm.get('text').reset();
+    this.isPublish = false;
     this.documentService.nextIdFile("./src/main/assets/diagnostic/").subscribe(
       data =>  this.doc.path = "./src/main/assets/diagnostic/diagnostic" + (data+1) +".txt"
     )

@@ -56,10 +56,37 @@ export class GestionProfilComponent implements OnInit {
       this.staffService.save(this.staff).subscribe(
      data => {
        this.staffService.sendStaff(data);
+       this.snackBar.open("Profil modifié !", 'OK', { verticalPosition: 'top', duration:5000 })
 
        console.log(data)
      }
    )
+
+  }
+
+  isEmpty(){
+    let s1 : String = this.staffForm.get('firstName').value;
+    let s2 : String = this.staffForm.get('lastName').value;
+    let s3 : String = this.staffForm.get('birthday').value;
+    let s4 : String = this.staffForm.get('nationality').value;
+    let s5 : String = this.staffForm.get('phoneNumber').value;
+    let s6 : String = this.staffForm.get('rib').value;
+    let s7 : string = this.staffForm.get('postcode').value;
+    let s8 : String = this.staffForm.get('city').value;
+    let s9 : String = this.staffForm.get('street').value;
+    let s10 : String = this.staffForm.get('country').value;
+    return (s1.trim()=="")
+      || (s2.trim()=="")
+      || (s3.trim()=="")
+      || (s4.trim()=="")
+      || (s5.trim()=="")
+      || (s6.trim()=="")
+      || s7 == null
+      || (s8.trim()=="")
+      || (s9.trim()=="")
+      || (s10.trim()=="")
+      ;
+
 
   }
 

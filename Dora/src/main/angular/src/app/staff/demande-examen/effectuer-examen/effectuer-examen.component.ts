@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {StaffService} from "../../../services/Staff.service";
 import {Staff} from "../../../interfaces/Staff";
 import {ActService} from "../../../services/Act.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-effectuer-examen',
@@ -17,7 +18,7 @@ export class EffectuerExamenComponent implements OnInit {
   listAct : Array<Act>;
   staff : Staff;
   idAffectation : number;
-  constructor(private actService : ActService, private staffService : StaffService, private route : ActivatedRoute, private affectationService : AffectationService) { }
+  constructor(private snackBar : MatSnackBar, private actService : ActService, private staffService : StaffService, private route : ActivatedRoute, private affectationService : AffectationService) { }
 
   ngOnInit() {
     this.idDMP = this.route.snapshot.params['idDMP'];
@@ -53,6 +54,8 @@ export class EffectuerExamenComponent implements OnInit {
     let actBis : Act = act;
     actBis.done = true;
     actBis.staff = this.staff;
+    this.snackBar.open(actBis.type + " réalisé !", 'OK', { verticalPosition: 'top', duration:5000 })
+
     this.actService.save(actBis).subscribe(
       data => {
         this.listAct = [];

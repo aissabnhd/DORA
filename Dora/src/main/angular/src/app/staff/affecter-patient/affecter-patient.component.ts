@@ -5,6 +5,7 @@ import {Affectation} from "../../interfaces/Affectation";
 import {Staff} from "../../interfaces/Staff";
 import {HospitalizationService} from "../../services/Hospitalization.service";
 import {Hospitalization} from "../../interfaces/Hospitalization";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-affecter-patient',
@@ -15,7 +16,7 @@ export class AffecterPatientComponent implements OnInit {
   idDMP : number;
   affectation : Affectation;
   hospitalisation : Hospitalization;
-  constructor(private hospitalizationService : HospitalizationService, private affectationService : AffectationService, private route : ActivatedRoute, private router : Router) { }
+  constructor(private snackBar : MatSnackBar, private hospitalizationService : HospitalizationService, private affectationService : AffectationService, private route : ActivatedRoute, private router : Router) { }
 
   ngOnInit() {
     this.idDMP = this.route.snapshot.params['idDMP'];
@@ -52,7 +53,10 @@ export class AffecterPatientComponent implements OnInit {
     this.affectationService.save(this.affectation).subscribe(
       data => {
         this.hospitalizationService.save(this.hospitalisation).subscribe(
-          data2 =>  this.getCurrentAffectationHospitalisation()
+          data2 =>  {
+            this.snackBar.open("Fin de l'affectation et de l'hospitalisation !", 'OK', { verticalPosition: 'top', duration:5000 })
+            this.getCurrentAffectationHospitalisation()
+          }
         )
 
       }
@@ -71,7 +75,10 @@ export class AffecterPatientComponent implements OnInit {
   endHospitalization() {
     this.hospitalisation.dateEndHospitalization = new Date(Date.now());
         this.hospitalizationService.save(this.hospitalisation).subscribe(
-          data2 =>  this.getCurrentAffectationHospitalisation()
+          data2 =>  {
+            this.snackBar.open("Fin de l'hospitalisation !", 'OK', { verticalPosition: 'top', duration:5000 })
+            this.getCurrentAffectationHospitalisation()
+          }
         )
 
 

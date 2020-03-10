@@ -9,7 +9,7 @@
       <input type="text" formControlName="type">
       <br><br>
     </label>
-    <button (click)="creationAct()">Valider</button>
+    <button (click)="creationAct()" routerLink="/examen/{{idDMP}}/{{idStaff}}" [disabled]="!actForm.valid || isEmpty()">Valider</button>
 
     <br>
   </form>

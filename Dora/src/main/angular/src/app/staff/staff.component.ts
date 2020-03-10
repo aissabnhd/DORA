@@ -44,6 +44,7 @@ export class StaffComponent implements OnInit {
     this.dmpService.event.subscribe(
       data => {
         this.dmp = data;
+        this.currentHospitalization = null;
         this.hospitalizationService.findCurrent(this.dmp.id).subscribe(
           data => this.currentHospitalization = data
         )

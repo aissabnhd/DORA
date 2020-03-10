@@ -7,6 +7,7 @@ import {HospitalizationService} from "../../../services/Hospitalization.service"
 import {Level, Struct} from "../../../interfaces/Struct";
 import {ActivatedRoute, Router} from "@angular/router";
 import {StructService} from "../../../services/Struct.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-create-hospitalization',
@@ -19,7 +20,7 @@ export class CreateHospitalizationComponent implements OnInit {
   structs : Array<Struct>;
   dmp : DMP;
   hospitalizationForm : FormGroup;
-  constructor(private router : Router, private route : ActivatedRoute, private dmpService : DMPService, private structService : StructService, private formBuilder : FormBuilder, private hospitalizationService : HospitalizationService) { }
+  constructor(private snackBar : MatSnackBar, private router : Router, private route : ActivatedRoute, private dmpService : DMPService, private structService : StructService, private formBuilder : FormBuilder, private hospitalizationService : HospitalizationService) { }
 
   ngOnInit() {
     this.idDMP = this.route.snapshot.params['idDMP'];
@@ -51,9 +52,10 @@ export class CreateHospitalizationComponent implements OnInit {
     //this.hospitalization.struct = this.structs[this.hospitalizationForm.get("struct").value];
    // let s : Struct = this.hospitalizationForm.get("struct").value;
     this.hospitalization.struct = this.structs[this.hospitalizationForm.get("struct").value];
-    console.log(this.hospitalization)
+
     this.hospitalizationService.save(this.hospitalization).subscribe(
       data => {
+        this.snackBar.open("Le patient est hospitalisé !", 'OK', { verticalPosition: 'top', duration:5000 })
         this.router.navigate(['/affectation_patient_service/'+this.idDMP]);
       }
     );

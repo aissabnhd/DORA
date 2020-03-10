@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DMP} from "../../interfaces/DMP";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DMPService} from "../../services/DMP.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-creer-dmp',
@@ -12,7 +13,7 @@ export class CreerDmpComponent implements OnInit {
   dmp: DMP;
 
   DMPForm : FormGroup
-  constructor(private formBuilder : FormBuilder, private dmpService : DMPService) { }
+  constructor(private snackBar : MatSnackBar, private formBuilder : FormBuilder, private dmpService : DMPService) { }
 
   ngOnInit() {
     this.DMPForm = this.formBuilder.group({
@@ -32,9 +33,13 @@ export class CreerDmpComponent implements OnInit {
   }
 
   creationDMP() {
-     this.dmp = this.DMPForm.value
+     this.dmp = this.DMPForm.value;
     this.dmpService.saveDMP(this.dmp).subscribe(
-      data => console.log(this.dmp)
+      data => {
+        this.snackBar.open("DMP créé !", 'OK', { verticalPosition: 'top', duration:5000 })
+
+        console.log(this.dmp)
+      }
     );
 
 

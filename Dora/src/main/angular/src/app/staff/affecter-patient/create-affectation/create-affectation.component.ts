@@ -11,6 +11,7 @@ import {Staff} from "../../../interfaces/Staff";
 import {StaffService} from "../../../services/Staff.service";
 import {Affectation} from "../../../interfaces/Affectation";
 import {AffectationService} from "../../../services/Affectation.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-create-affectation',
@@ -25,7 +26,7 @@ export class CreateAffectationComponent implements OnInit {
   dmp : DMP;
   hospitalization : Hospitalization;
   affectationForm : FormGroup;
-  constructor(private affectationService : AffectationService, private staffService : StaffService, private router : Router, private route : ActivatedRoute, private dmpService : DMPService, private structService : StructService, private formBuilder : FormBuilder, private hospitalizationService : HospitalizationService) { }
+  constructor(private snackBar : MatSnackBar, private affectationService : AffectationService, private staffService : StaffService, private router : Router, private route : ActivatedRoute, private dmpService : DMPService, private structService : StructService, private formBuilder : FormBuilder, private hospitalizationService : HospitalizationService) { }
 
   ngOnInit() {
     this.idDMP = this.route.snapshot.params['idDMP'];
@@ -82,7 +83,11 @@ export class CreateAffectationComponent implements OnInit {
     this.affectationService.save(this.affectation).subscribe(
       data => {
         this.affectationService.changeStaff(data.id, tab).subscribe(
-          data2 =>  this.router.navigate(['/affectation_patient_service/'+this.idDMP])
+          data2 => {
+            this.snackBar.open("Le patient est sous la responsabilité du service " + this.affectation.struct.nameStruct + " !", 'OK', { verticalPosition: 'top', duration:5000 })
+            this.router.navigate(['/affectation_patient_service/'+this.idDMP]);
+
+          }
         )
 
       }

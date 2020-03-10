@@ -46,7 +46,7 @@
   <div class="item">
     <label>
       postcode :
-      <input type="text" formControlName="postcode">
+      <input type="number" formControlName="postcode">
     </label>
   </div>
 
@@ -72,7 +72,7 @@
   </div>
 
   <div class="button">
-    <button (click)="onSubmit()" type="submit" class="button">Changer</button>
+    <button (click)="onSubmit()" type="submit" class="button"[disabled]="!staffForm.valid || isEmpty()" >Changer</button>
   </div>
 </form>
 </div>
