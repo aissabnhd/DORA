@@ -95,18 +95,18 @@
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <mat-toolbar-row>
-        <span *ngIf="isMedecin" title="Connecté en tant que médecin" > <img class="iconUser" src="assets/logo/medecin.png" /> </span>
-        <span *ngIf="isSecretaire" title="Connecté en tant que secrétaire" > <img class="iconUser" src="assets/logo/secretaire.png" /> </span>
-        <span *ngIf="isAdmin" title="Connecté en tant qu'administrateur" >  <img class="iconUser" src="assets/logo/admin.png" />  </span>
-        <span *ngIf="isLaborantin" title="Connecté en tant que laborantin" >  <img class="iconUser" src="assets/logo/laborantin.png" /> </span>
-        <span *ngIf="isInfirmier" title="Connecté en tant qu'infirmier">  <img class="iconUser" src="assets/logo/infirmier.png" /> </span>
+        <span *ngIf="isMedecin" title="Modifier le profil" > <a routerLink="profil/{{staff.id}}"><img class="iconUser" src="assets/logo/medecin.png" /> </a> </span>
+        <span *ngIf="isSecretaire" title="Modifier le profil" > <a routerLink="profil/{{staff.id}}"><img class="iconUser" src="assets/logo/secretaire.png" />  </a></span>
+        <span *ngIf="isAdmin" title="Modifier le profil" >  <a routerLink="profil/{{staff.id}}"><img class="iconUser" src="assets/logo/admin.png" />  </a> </span>
+        <span *ngIf="isLaborantin" title="Modifier le profil" >  <a routerLink="profil/{{staff.id}}"><img class="iconUser" src="assets/logo/laborantin.png" />  </a></span>
+        <span *ngIf="isInfirmier" title="Modifier le profil">  <a routerLink="profil/{{staff.id}}"><img class="iconUser" src="assets/logo/infirmier.png" /> </a> </span>
 
         <span *ngIf="isMedecin" ><input type="text" id="name" name="name" required
-                     minlength="4" maxlength="8" size="10" readonly="true" value="Dr. {{staff.lastName}}"></span>
+                                                                             minlength="4" maxlength="8" size="10" readonly="true" value="Dr. {{staff.lastName}}"></span>
         <span *ngIf="isLaborantin" ><input type="text" id="name" name="name" required
                                         minlength="4" maxlength="8" size="10" readonly="true" value="Pr. {{staff.lastName}}"></span>
         <span *ngIf="isSecretaire || isAdmin || isInfirmier" ><input type="text" id="name" name="name" required
-                                        minlength="4" maxlength="8" size="10" readonly="true" value="{{staff.lastName}}"></span>
+
         <span>  <a title="Déconnexion" class="icone" (click)="disconnect()" href="/"> <img class="iconUser" src="assets/img/deconnexion.png" /> </a> </span>
         <span>  <a title="Consulter son agenda" class="icone" routerLink="/agenda"> <img class="iconUser" src="assets/img/agenda.png" /> </a> </span>
         <span *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp != null" ><input type="text" id="name2" name="name" required

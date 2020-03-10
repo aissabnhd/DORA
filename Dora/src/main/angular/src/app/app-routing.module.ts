@@ -27,6 +27,9 @@ import {ChangeDmpComponent} from "./staff/change-dmp/change-dmp.component";
 import {AppComponent} from "./app.component";
 import {CreateAffectationComponent} from "./staff/affecter-patient/create-affectation/create-affectation.component";
 import {CreateHospitalizationComponent} from "./staff/affecter-patient/create-hospitalization/create-hospitalization.component";
+import {CreerDemandeComponent} from "./staff/demande-examen/creer-demande/creer-demande.component";
+import {EffectuerExamenComponent} from "./staff/demande-examen/effectuer-examen/effectuer-examen.component";
+import {GestionProfilComponent} from "./staff/gestion-profil/gestion-profil.component";
 
 
 
@@ -37,12 +40,16 @@ const routes: Routes = [
   { path: 'agenda', component: AgendaComponent},
   { path: 'ajaate', component: AjaateComponent},
   { path: 'help', component: HelpComponent},
+  { path: 'profil/:idStaff', component: GestionProfilComponent},
   // medecin links
   { path: 'ordonnance/:idDMP/:idStaff', component: CreerOrdonnanceComponent},
   { path: 'diagnostique/:idDMP/:idStaff', component: CreerDiagnostiqueComponent},
   { path: 'cr/:idDMP/:idStaff', component: CreerCrComponent },
   { path: 'documents', component: AfficheDmpComponent },
   { path: 'examen', component: DemandeExamenComponent},
+  { path: 'examen/demande', component: CreerDemandeComponent},
+  { path: 'examen/effectuer', component: EffectuerExamenComponent},
+
   { path: 'change_dmp', component: ChangeDmpComponent},
   // secretaire links
   { path: 'creer_dmp', component: CreerDmpComponent },

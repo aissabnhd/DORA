@@ -44,6 +44,9 @@ import {TokenInterceptor} from "./services/Interceptor";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { CreateAffectationComponent } from './staff/affecter-patient/create-affectation/create-affectation.component';
 import { CreateHospitalizationComponent } from './staff/affecter-patient/create-hospitalization/create-hospitalization.component';
+import { CreerDemandeComponent } from './staff/demande-examen/creer-demande/creer-demande.component';
+import { EffectuerExamenComponent } from './staff/demande-examen/effectuer-examen/effectuer-examen.component';
+import { GestionProfilComponent } from './staff/gestion-profil/gestion-profil.component';
 
 
 @NgModule({
@@ -82,7 +85,10 @@ import { CreateHospitalizationComponent } from './staff/affecter-patient/create-
     AgendaComponent,
     ChangeDmpComponent,
     CreateAffectationComponent,
-    CreateHospitalizationComponent
+    CreateHospitalizationComponent,
+    CreerDemandeComponent,
+    EffectuerExamenComponent,
+    GestionProfilComponent,
   ],
   imports: [
     BrowserModule,
