@@ -104,7 +104,7 @@ public class DocumentImplementation implements DocumentService {
                 file.createNewFile();
             }
 
-            FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+            FileWriter fw = new FileWriter(file.getAbsoluteFile(), false);
             BufferedWriter bw = new BufferedWriter(fw);
 
             // Escreve e fecha arquivo

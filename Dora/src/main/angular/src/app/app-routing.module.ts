@@ -39,8 +39,8 @@ const routes: Routes = [
   { path: 'help', component: HelpComponent},
   // medecin links
   { path: 'ordonnance/:idDMP/:idStaff', component: CreerOrdonnanceComponent},
-  { path: 'diagnostique', component: CreerDiagnostiqueComponent},
-  { path: 'cr', component: CreerCrComponent },
+  { path: 'diagnostique/:idDMP/:idStaff', component: CreerDiagnostiqueComponent},
+  { path: 'cr/:idDMP/:idStaff', component: CreerCrComponent },
   { path: 'documents', component: AfficheDmpComponent },
   { path: 'examen', component: DemandeExamenComponent},
   { path: 'change_dmp', component: ChangeDmpComponent},

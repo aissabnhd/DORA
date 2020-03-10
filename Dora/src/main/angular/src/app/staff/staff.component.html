@@ -9,11 +9,11 @@
 
       <br>
     </a>
-    <a title="Créer un diagnostique" *ngIf="(isMedecin) && dmp != null" class="iconeLateral" routerLink="/diagnostique">
+    <a title="Créer un diagnostique" *ngIf="(isMedecin) && dmp != null" class="iconeLateral" routerLink="/diagnostique/{{dmp.id}}/{{staff.id}}">
       <div class="iconLateral" style="background-image: url(assets/img/diagnostic.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
    <br>
     </a>
-    <a title="Créer un compte rendu" *ngIf="(isMedecin || isLaborantin) && dmp != null" class="iconeLateral" routerLink="/cr">
+    <a title="Créer un compte rendu" *ngIf="(isMedecin || isLaborantin) && dmp != null" class="iconeLateral" routerLink="/cr/{{dmp.id}}/{{staff.id}}">
       <div class="iconLateral" style="background-image: url(assets/img/compte_rendu.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>

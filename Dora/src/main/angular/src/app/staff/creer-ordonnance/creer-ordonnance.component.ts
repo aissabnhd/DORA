@@ -75,6 +75,7 @@ export class CreerOrdonnanceComponent implements OnInit, OnDestroy {
 
   onPublish() {
     this.doc.dateValidation = new Date(Date.now());
+    this.doc.validation = true;
     this.doc.staffValidator = this.doc.staffCreator;
     this.documentService.save(this.doc).subscribe(
       data => {
