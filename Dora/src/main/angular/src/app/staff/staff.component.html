@@ -124,8 +124,12 @@
 
 
 
-        <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" ><input type="text" id="name3" name="name" required
-                     minlength="4" maxlength="8" size="10" readonly="true" value="Chambre 213"></span>
+        <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" >
+          <input *ngIf="currentHospitalization" type="text" id="name3" name="name" required
+                     minlength="4" maxlength="8" size="10" readonly="true" value="Chambre {{currentHospitalization.roomNumber}}">
+           <input *ngIf="!currentHospitalization" type="text" id="name3" name="name" required
+                  minlength="4" maxlength="16" size="16" readonly="true" value="Aucune hospitalisation">
+        </span>
         <span>  <a title="Consulter la page d'aide" class="icone" routerLink="/help"> <img class="iconUser" src="assets/img/help.png" /> </a> </span>
         <span>  <a title="En savoir plus sur Ajaate..." class="icone" routerLink="/ajaate"> <img class="iconUser" src="assets/img/ajaate.png" /> </a> </span>
 

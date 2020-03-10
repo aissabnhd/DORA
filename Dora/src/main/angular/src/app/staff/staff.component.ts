@@ -4,6 +4,8 @@ import {DMP} from "../interfaces/DMP";
 import {RoleName} from "../interfaces/Role";
 import {ActivatedRoute} from "@angular/router";
 import {DMPService} from "../services/DMP.service";
+import {HospitalizationService} from "../services/Hospitalization.service";
+import {Hospitalization} from "../interfaces/Hospitalization";
 
 @Component({
   selector: 'app-staff',
@@ -24,10 +26,12 @@ export class StaffComponent implements OnInit {
   isAdmin : boolean = false;
   isSecretaire: boolean = false;
   isInfirmier: boolean = false;
+  currentHospitalization: Hospitalization;
   @Output()
   test = new EventEmitter<number>();
 
-  constructor(private route : ActivatedRoute, private dmpService : DMPService) { }
+
+  constructor(private hospitalizationService : HospitalizationService, private route : ActivatedRoute, private dmpService : DMPService) { }
 
   ngOnInit() {
     let id = this.route.snapshot.params['id']
@@ -73,7 +77,12 @@ export class StaffComponent implements OnInit {
     }
 
     this.dmpService.event.subscribe(
-      data => this.dmp = data
+      data => {
+        this.dmp = data;
+        this.hospitalizationService.findCurrent(this.dmp.id).subscribe(
+          data => this.currentHospitalization = data
+        )
+      }
     )
 
     // @ts-ignore

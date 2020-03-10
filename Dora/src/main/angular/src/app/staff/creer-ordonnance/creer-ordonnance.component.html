@@ -1,15 +1,19 @@
 <div class="data" *ngIf="act">
+  <form [formGroup]="fileForm">
   <p>Rédaction d'une ordonnance : </p>
-  <textarea rows="20" cols="90">{{text}}</textarea>
+  <textarea rows="20" cols="90" formControlName="text"></textarea>
   <br>
+  </form>
   <button (click)="onCancel()">Cancel</button>
-  <button (click)="onSubmit()">Submit</button>
   <button (click)="onSave()">Save</button>
+  <button (click)="onPublish()">Publish</button>
 
 </div>
 <div class="data" *ngIf="!act">
   <div *ngIf="!listAct">
-    No act
+    Aucun acte auquel associer ce document.
+    <button routerLink="/examen">Demander un acte</button>
+    <button routerLink="/examen">Effectuer un acte</button>
   </div>
   <div *ngIf="listAct">
     Voici les actes de l'affectation en cours :

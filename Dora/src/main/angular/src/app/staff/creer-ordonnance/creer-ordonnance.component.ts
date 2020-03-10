@@ -6,6 +6,7 @@ import {DocumentService} from "../../services/Document.service";
 import {Document, DocumentNature, DocumentType} from "../../interfaces/Document";
 import {StaffService} from "../../services/Staff.service";
 import {Staff} from "../../interfaces/Staff";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-creer-ordonnance',
@@ -20,7 +21,8 @@ export class CreerOrdonnanceComponent implements OnInit, OnDestroy {
   listAct : Array<Act>;
   doc : Document;
   staff : Staff;
-  constructor(private staffService : StaffService, private documentService : DocumentService, private route : ActivatedRoute, private affectationService : AffectationService) { }
+  fileForm: FormGroup;
+  constructor(private formBuilder : FormBuilder, private staffService : StaffService, private documentService : DocumentService, private route : ActivatedRoute, private affectationService : AffectationService) { }
 
   ngOnInit() {
     this.doc = new class implements Document {
@@ -36,6 +38,10 @@ export class CreerOrdonnanceComponent implements OnInit, OnDestroy {
       type: DocumentType;
       validation: boolean;
     };
+
+    this.fileForm = this.formBuilder.group({
+      text: [null, Validators.required]
+    });
     this.doc.dateCreation = new Date(Date.now());
     this.doc.extension = ".txt";
     this.doc.path = "./src/main/assets/ordonnance/" + "test" +".txt"
@@ -66,20 +72,31 @@ export class CreerOrdonnanceComponent implements OnInit, OnDestroy {
 
   }
 
-  onCancel() {
 
-  }
-
-  onSubmit() {
-
+  onPublish() {
+    this.doc.dateValidation = new Date(Date.now());
+    this.doc.staffValidator = this.doc.staffCreator;
+    this.documentService.save(this.doc).subscribe(
+      data => {
+        console.log(data)
+        this.documentService.write(this.fileForm.get("text").value, data.id).subscribe(
+          data2 => this.documentService.findAll().subscribe(
+            data => console.log(data)
+          )
+        )
+      }
+    ),
+      error => console.log(error)
   }
 
   onSave() {
     this.documentService.save(this.doc).subscribe(
       data => {
         console.log(data)
-        this.documentService.write(this.text, data.id).subscribe(
-          data2 => console.log(data2)
+        this.documentService.write(this.fileForm.get("text").value, data.id).subscribe(
+          data2 => this.documentService.findAll().subscribe(
+            data => console.log(data)
+          )
         )
       }
     ),
@@ -87,11 +104,15 @@ export class CreerOrdonnanceComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // save the document
+    this.onSave();
   }
 
   Choose(act : Act) {
     this.act = act
     this.doc.act = act;
+  }
+
+  onCancel() {
+    this.act = null;
   }
 }

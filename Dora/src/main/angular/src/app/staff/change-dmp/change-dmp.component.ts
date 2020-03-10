@@ -4,6 +4,7 @@ import {DMPService} from "../../services/DMP.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-change-dmp',
@@ -21,7 +22,7 @@ export class ChangeDmpComponent implements OnInit {
 
   DMPForm : FormGroup;
 
-  constructor(private dmpService : DMPService, private formBuilder : FormBuilder) { }
+  constructor(private snackBar : MatSnackBar, private dmpService : DMPService, private formBuilder : FormBuilder) { }
 
   ngOnInit() {
     this.dmpService.findAllDMP().subscribe(
@@ -76,8 +77,9 @@ export class ChangeDmpComponent implements OnInit {
   Choose(id: number) {
     this.dmpService.findByIdDMP(id).subscribe(
       data => {
-        this.dmp = data,
-          this.dmpService.sendDMP(this.dmp)
+        this.dmp = data;
+        this.dmpService.sendDMP(this.dmp);
+        this.snackBar.open("Vous avez choisi le patient " +this.dmp.lastName + " " + this.dmp.firstName +  " !", 'OK', { verticalPosition: 'top', duration:5000 })
       }
     )
 

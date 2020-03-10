@@ -21,7 +21,11 @@ export class DocumentService {
   }
 
   write(s : String, id : number) : Observable<string>{
-    return this.httpClient.post<string>('api/document/write/' + id, 'eee');
+    return this.httpClient.post<string>('api/document/write/' + id, s);
+  }
+
+  findAll() : Observable<Array<Document>> {
+    return this.httpClient.get<Array<Document>>('api/document');
   }
 
 }
