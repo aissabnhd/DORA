@@ -16,8 +16,6 @@ import {StaffService} from "../services/Staff.service";
 export class StaffComponent implements OnInit {
   id : number
   @Input()
-  role : RoleName;
-  @Input()
   dmp : DMP ;
   @Input()
   staff : Staff;
@@ -41,21 +39,7 @@ export class StaffComponent implements OnInit {
       )
     }
 
-    if(this.role ==  RoleName.DOCTOR){
-      this.isMedecin = true;
-    }
-    else if(this.role == RoleName.NURSE){
-      this.isInfirmier = true;
-    }
-    else if(this.role == RoleName.LABORATORY){
-      this.isLaborantin = true;
-    }
-    else if(this.role == RoleName.SECRETARY){
-      this.isSecretaire = true;
-    }
-    else if(this.role == RoleName.ADMINISTRATOR){
-      this.isAdmin = true;
-    }
+
 
     this.dmpService.event.subscribe(
       data => {
@@ -67,12 +51,31 @@ export class StaffComponent implements OnInit {
     )
 
     this.staffService.findById(this.staff.id).subscribe(
-      data => this.staff = data
+      data => {
+        this.staff = data;
+        if(this.staff.roles[0].name ==  RoleName.DOCTOR){
+          this.isMedecin = true;
+        }
+        else if(this.staff.roles[0].name == RoleName.NURSE){
+          this.isInfirmier = true;
+        }
+        else if(this.staff.roles[0].name == RoleName.LABORATORY){
+          this.isLaborantin = true;
+        }
+        else if(this.staff.roles[0].name == RoleName.SECRETARY){
+          this.isSecretaire = true;
+        }
+        else if(this.staff.roles[0].name == RoleName.ADMINISTRATOR){
+          this.isAdmin = true;
+        }
+      }
     )
 
     this.staffService.event.subscribe(
       data => {
         this.staff = data;
+        console.log(this.staff)
+
       }
     )
 
