@@ -8,10 +8,6 @@ import javax.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
 
-
-@Data
-@NoArgsConstructor
-@ToString
 @Entity
 @Table(name = "acts")
 public class Act {
@@ -31,9 +27,54 @@ public class Act {
     @JoinColumn(name = "staff_id", nullable = false)
     private Staff staff;
 
-    public Act(String type, Instant date) {
+    public Act(){}
+
+    public Act(String type, Instant date, Affectation affectation, Staff staff) {
         this.type = type;
         this.date = date;
+        this.affectation = affectation;
+        this.staff = staff;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+        this.date = date;
+    }
+
+    public Instant getDate() {
+        return date;
+    }
+
+    public void setDate(Instant date) {
+        this.date = date;
+    }
+
+    public Affectation getAffectation() {
+        return affectation;
+    }
+
+    public void setAffectation(Affectation affectation) {
+        this.affectation = affectation;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     @Override
@@ -48,5 +89,16 @@ public class Act {
     @Override
     public int hashCode() {
         return Objects.hash(id, type);
+    }
+
+    @Override
+    public String toString() {
+        return "Act{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", date=" + date +
+                ", affectation=" + affectation +
+                ", staff=" + staff +
+                '}';
     }
 }

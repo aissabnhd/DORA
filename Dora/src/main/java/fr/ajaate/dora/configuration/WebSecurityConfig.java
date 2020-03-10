@@ -4,11 +4,12 @@ package fr.ajaate.dora.configuration;
 
 import fr.ajaate.dora.security.EntryPointWithToken;
 import fr.ajaate.dora.security.TokenFilter;
-import fr.ajaate.dora.services.UserDetailsServiceImpl;
+import fr.ajaate.dora.services.implementation.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -76,13 +77,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
-			.antMatchers("/api/test/**").permitAll().antMatchers("/api/staff/**").authenticated()
-			.anyRequest().permitAll().and()
-				.logout()
-				.logoutUrl("logout")
-				.invalidateHttpSession(true)
-				.deleteCookies("JSESSIONID")
-		;
+			.antMatchers("/api/test/**").permitAll()
+				/*
+				.antMatchers(HttpMethod.GET,"/api/staff/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/DMP/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/hospitalization/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/affectations/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/act/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/document/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/profil/**").permitAll()
+				 */
+				.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}

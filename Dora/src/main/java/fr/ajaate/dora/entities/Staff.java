@@ -1,9 +1,6 @@
 package fr.ajaate.dora.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -11,8 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
-@NoArgsConstructor
 
 @Entity
 @Table(name = "staff",uniqueConstraints = {
@@ -68,13 +63,17 @@ public class Staff {
     @OneToOne(mappedBy = "responsible")
     private Struct structResponsible;
 
-    @ManyToMany(cascade = CascadeType.MERGE  ,fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "staff_speciality",
             joinColumns = @JoinColumn(name = "staff_id"),
             inverseJoinColumns =@JoinColumn(name = "speciality_id")
     )
     private Set<Speciality> specialities;
+
+    public Staff(){
+
+    }
 
     public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String rib, int postcode,Set<Role> roles,  String city, String street, String country, String linkCalendar, String email, String password) {
         this.firsName = firsName;

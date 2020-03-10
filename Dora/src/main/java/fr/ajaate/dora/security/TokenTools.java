@@ -1,7 +1,7 @@
 package fr.ajaate.dora.security;
 
 
-import fr.ajaate.dora.services.UserDetailsImpl;
+import fr.ajaate.dora.services.implementation.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

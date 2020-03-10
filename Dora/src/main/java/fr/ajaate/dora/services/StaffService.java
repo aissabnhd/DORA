@@ -7,10 +7,10 @@ import java.util.Optional;
 
 public interface StaffService{
 
-    void save(Staff staff);
-
+    public Staff save(Staff staff);
 
     Optional<Staff> findByEmail(String email);
+
     Staff findByID(Long staffID);
 
     public Staff updateStaff(Long id, Staff newStaff);

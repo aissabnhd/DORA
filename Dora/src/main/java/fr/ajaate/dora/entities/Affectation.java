@@ -9,8 +9,7 @@ import java.time.Instant;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
-@NoArgsConstructor
+
 @ToString
 @Entity
 @Table(name = "affectations")
@@ -28,7 +27,7 @@ public class Affectation {
     private Hospitalization hospitalization;
 
     @ManyToOne
-    @JoinColumn(name = "struct_id", referencedColumnName = "id")
+    @JoinColumn(name = "struct_id", referencedColumnName = "id", nullable = false)
     private Struct struct;
 
     @ManyToMany
@@ -39,10 +38,64 @@ public class Affectation {
     )
     private Set<Staff> listOfStaffs;
 
-    public Affectation(Instant dateAffectation, Instant dateEndAffectation) {
+    public Affectation (){}
+
+    public Affectation(Instant dateAffectation, Instant dateEndAffectation, Hospitalization hospitalization, Struct struct) {
         this.dateAffectation = dateAffectation;
         this.dateEndAffectation = dateEndAffectation;
+        this.hospitalization = hospitalization;
+        this.struct = struct;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Instant getDateAffectation() {
+        return dateAffectation;
+    }
+
+    public Instant getDateEndAffectation() {
+        return dateEndAffectation;
+    }
+
+    public Hospitalization getHospitalization() {
+        return hospitalization;
+    }
+
+    public Struct getStruct() {
+        return struct;
+    }
+
+    public Set<Staff> getListOfStaffs() {
+        return listOfStaffs;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setDateAffectation(Instant dateAffectation) {
+        this.dateAffectation = dateAffectation;
+    }
+
+    public void setDateEndAffectation(Instant dateEndAffectation) {
+        this.dateEndAffectation = dateEndAffectation;
+    }
+
+    public void setHospitalization(Hospitalization hospitalization) {
+        this.hospitalization = hospitalization;
+    }
+
+    public void setStruct(Struct struct) {
+        this.struct = struct;
+    }
+
+    public void setListOfStaffs(Set<Staff> listOfStaffs) {
+        this.listOfStaffs = listOfStaffs;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -58,4 +111,5 @@ public class Affectation {
     public int hashCode() {
         return Objects.hash(id, dateAffectation, dateEndAffectation);
     }
+
 }

@@ -1,6 +1,6 @@
 package fr.ajaate.dora.entities;
 
-import fr.ajaate.dora.entities.enumeration.RoleName;
+import fr.ajaate.dora.enumeration.RoleName;
 
 import javax.persistence.*;
 
