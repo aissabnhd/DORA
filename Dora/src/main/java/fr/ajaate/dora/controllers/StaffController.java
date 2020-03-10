@@ -14,4 +14,12 @@ public class StaffController {
     @Autowired
     StaffService staffService;
 
+    @PostMapping
+    public ResponseEntity<Staff> save(@RequestBody Staff s) {
+        Staff newStaff = staffService.createStaff(s);
+        return new ResponseEntity<>(newStaff, HttpStatus.CREATED);
+    }
+
+
+
 }
