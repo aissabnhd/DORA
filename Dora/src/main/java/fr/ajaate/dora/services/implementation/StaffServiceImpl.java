@@ -52,6 +52,8 @@ public class StaffServiceImpl implements StaffService {
             existingStaff.setCity(newStaff.getCity());
             existingStaff.setPostcode(newStaff.getPostcode());
             existingStaff.setStreet(newStaff.getStreet());
+            existingStaff.setRib(newStaff.getRib());
+            existingStaff.setNationality(newStaff.getNationality());
 
 
             Staff updatedStaff = staffRepository.save(existingStaff);

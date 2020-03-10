@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Staff} from "../interfaces/Staff";
 import {Struct} from "../interfaces/Struct";
+import {DMP} from "../interfaces/DMP";
 
 
 @Injectable({
@@ -26,6 +27,15 @@ export class StaffService {
 
   findById(id : number) : Observable<Staff> {
     return this.httpClient.get<Staff>('/api/staff/' + id);
+  }
+
+  save(staff : Staff) : Observable<Staff>{
+    return this.httpClient.post<Staff>('/api/staff', staff);
+  }
+
+
+  sendStaff(staff: Staff) {
+    this.event.emit(staff);
   }
 
 }
