@@ -27,5 +27,18 @@ public class StaffController {
         return new ResponseEntity<Staff>(staffService.getOne(id).get(), HttpStatus.OK);
     }
 
+    @GetMapping("/lastName/{lastName}")
+    public ResponseEntity<List<Staff>> findByName(@PathVariable("lastName") String lastName){
+        return new ResponseEntity<List<Staff>>(staffService.findByLastName(lastName), HttpStatus.OK);
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Staff> findByEmail(@PathVariable("email") String email){
+        return new ResponseEntity<Staff>(staffService.findByEmail(email), HttpStatus.OK);
+    }
+
+
+
+
 
 }

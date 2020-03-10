@@ -89,6 +89,13 @@ public class StaffService {
         return null;
     }
 
+    public Staff findByEmail(String email) {
+        return staffRepository.findByEmail(email);
+    }
+
+    public List<Staff> findByLastName(String lastname) {
+        return staffRepository.findByLastName(lastname);
+    }
 
 
     }
