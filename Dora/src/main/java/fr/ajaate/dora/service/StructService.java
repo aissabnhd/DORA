@@ -9,6 +9,7 @@ import fr.ajaate.dora.repository.StructRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -72,7 +73,10 @@ public class StructService {
     }
 
     public Optional<Struct> getOne(Long id) {
-        return structRepository.findById(id);
+        if(structRepository.existsById(id)) {
+            return structRepository.findById(id);
+        }
+        return Optional.empty();
     }
 
     public List<Struct> getAll() {
@@ -81,7 +85,7 @@ public class StructService {
 
     public boolean deleteStruct(Long id) {
         if (!structRepository.existsById(id)) {
-            throw new IllegalArgumentException("id : " + id + " Structure n'existe pas");
+            return false;
         }
         Struct s = structRepository.findById(id).get();
         if((getSubStruct(s).size() == 0) && (getAllStaff(s).size() == 0) && (getStructResponsible(s) == null)) {

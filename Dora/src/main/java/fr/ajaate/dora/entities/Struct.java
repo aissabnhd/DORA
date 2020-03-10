@@ -65,7 +65,7 @@ public class Struct implements Serializable {
         this.responsible = responsible;
     }
 
-    public Struct(String nameStruct, Level level, int postCode, String city, String street, String country, Speciality spe, Staff responsible) {
+    public Struct(String nameStruct, Level level, int postCode, String city, String street, String country, Speciality spe, Staff responsible, Struct parent) {
         this.nameStruct = nameStruct;
         this.level = level;
         this.postCode = postCode;
@@ -73,7 +73,7 @@ public class Struct implements Serializable {
         this.street = street;
         this.country = country;
         this.speciality = spe;
-        //this.struct = parent;
+        this.struct = parent;
         this.responsible = responsible;
     }
 

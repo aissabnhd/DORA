@@ -33,7 +33,6 @@ public class StructController {
         return new ResponseEntity<Struct>(structService.getOne(id).get(), HttpStatus.OK);
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){
         structService.deleteStruct(id);

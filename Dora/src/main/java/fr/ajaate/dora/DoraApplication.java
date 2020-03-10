@@ -46,6 +46,8 @@ public class DoraApplication implements CommandLineRunner {
 		specialityRepository.deleteAll();
 		Set<Speciality> spe_set = new HashSet<>();
 
+		Speciality sp1 =  new Speciality("Neurologie");
+		specialityRepository.save(sp1);
 		Speciality s = new Speciality( "Chirurgie");
 		specialityRepository.save(s);
 		spe_set.add(s);
@@ -55,9 +57,31 @@ public class DoraApplication implements CommandLineRunner {
 		Struct s1 = new Struct("APHP", Level.APHP, null);
 		structService.createStruct(s1);
 
-		Staff st2 = new Staff("President", s1, spe_set);
+		Staff st1 = new Staff("Boss de Paris", s1, spe_set);
+		staffService.createStaff(st1);
+
+		structService.updateResponsible(s1, st1);
+
+		System.out.println(structService.getStructResponsible(s1));
+
+		Staff st2 = new Staff("President", null, spe_set);
 		staffService.createStaff(st2);
 
+		Struct s2 = new Struct("HOPITAL PARIS", Level.HOSPITAL, 77410, "Paris", "20 rue des champs", "France", sp1, null, s1);
+		structService.createStruct(s2);
+
+		System.out.println(staffService.affectStaffToStruct(st2.getId(), s2.getId()));
+
+		System.out.println(staffService.getStructAffectation(st2));
+
+		structService.updateResponsible(s2, st2);
+		System.out.println(structService.getStructResponsible(s2));
+
+		System.out.println(staffService.deleteStaffToStruct(st2.getId(), s1.getId()));
+
+		System.out.println(staffService.getStructAffectation(st2));
+
+/*
 		structService.updateResponsible(s1, st2);
 
 		Struct s2 = new Struct("HOPITAL PARIS", Level.HOSPITAL, s1);
@@ -88,11 +112,11 @@ public class DoraApplication implements CommandLineRunner {
 		Struct s4 = new Struct("UNKNOWN", 1, s3);
 		structService.createStruct(s4);
 
-		 */
 
 
 
-	/*
+
+
 		List<Struct> lst6 = structService.getAll();
 		System.out.println(lst6.size());
 		for(Struct it : lst6) {
