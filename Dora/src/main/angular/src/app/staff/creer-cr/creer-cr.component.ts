@@ -24,6 +24,7 @@ export class CreerCrComponent implements OnInit, OnDestroy {
   staff : Staff;
   fileForm: FormGroup;
   private isDoctor= false;
+  private isPublish: boolean = false;
   constructor(private formBuilder : FormBuilder, private staffService : StaffService, private documentService : DocumentService, private route : ActivatedRoute, private affectationService : AffectationService) { }
 
   ngOnInit() {
@@ -44,9 +45,12 @@ export class CreerCrComponent implements OnInit, OnDestroy {
     this.fileForm = this.formBuilder.group({
       text: [null, Validators.required]
     });
+    this.documentService.nextIdFile("./src/main/assets/cr/").subscribe(
+      data =>  this.doc.path = "./src/main/assets/cr/cr" + (data+1) +".txt"
+    )
     this.doc.dateCreation = new Date(Date.now());
     this.doc.extension = ".txt";
-    this.doc.path = "./src/main/assets/cr/" + "test" +".txt"
+
     this.doc.validation = false;
     this.doc.nature = DocumentNature.TEXT;
     this.doc.type = DocumentType.ORDER;
@@ -83,12 +87,16 @@ export class CreerCrComponent implements OnInit, OnDestroy {
     this.doc.dateValidation = new Date(Date.now());
     this.doc.validation = true;
     this.doc.staffValidator = this.doc.staffCreator;
+    this.isPublish = true;
+
     this.documentService.save(this.doc).subscribe(
       data => {
         console.log(data)
         this.documentService.write(this.fileForm.get("text").value, data.id).subscribe(
           data2 => this.documentService.findAll().subscribe(
-            data => console.log(data)
+            data => {
+              console.log(data)
+            }
           )
         )
       }
@@ -121,6 +129,10 @@ export class CreerCrComponent implements OnInit, OnDestroy {
 
   onCancel() {
     this.act = null;
+    this.fileForm.get('text').reset();
+    this.documentService.nextIdFile("./src/main/assets/cr/").subscribe(
+      data =>  this.doc.path = "./src/main/assets/cr/cr" + (data+1) +".txt"
+    )
   }
 
   isMedecin() {

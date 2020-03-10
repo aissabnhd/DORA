@@ -24,6 +24,7 @@ export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
   staff : Staff;
   fileForm: FormGroup;
   private isDoctor= false;
+  private isPublish: boolean = false;
   constructor(private formBuilder : FormBuilder, private staffService : StaffService, private documentService : DocumentService, private route : ActivatedRoute, private affectationService : AffectationService) { }
 
   ngOnInit() {
@@ -46,7 +47,9 @@ export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
     });
     this.doc.dateCreation = new Date(Date.now());
     this.doc.extension = ".txt";
-    this.doc.path = "./src/main/assets/diagnostic/" + "test" +".txt"
+    this.documentService.nextIdFile("./src/main/assets/diagnostic/").subscribe(
+      data =>  this.doc.path = "./src/main/assets/diagnostic/diagnostic" + (data+1) +".txt"
+    );
     this.doc.validation = false;
     this.doc.nature = DocumentNature.TEXT;
     this.doc.type = DocumentType.ORDER;
@@ -82,6 +85,7 @@ export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
   onPublish() {
     this.doc.dateValidation = new Date(Date.now());
     this.doc.validation = true;
+    this.isPublish = true;
     this.doc.staffValidator = this.doc.staffCreator;
     this.documentService.save(this.doc).subscribe(
       data => {
@@ -121,6 +125,10 @@ export class CreerDiagnostiqueComponent implements OnInit, OnDestroy {
 
   onCancel() {
     this.act = null;
+    this.fileForm.get('text').reset();
+    this.documentService.nextIdFile("./src/main/assets/diagnostic/").subscribe(
+      data =>  this.doc.path = "./src/main/assets/diagnostic/diagnostic" + (data+1) +".txt"
+    )
   }
 
   isMedecin() {

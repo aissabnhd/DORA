@@ -92,6 +92,13 @@ public class DocumentImplementation implements DocumentService {
       return  content;
   }
 
+    @Override
+    public int getNextId(String path) {
+        File repertoire = new File(path);
+        File[] files=repertoire.listFiles();
+        return files.length;
+    }
+
 
     @Override
     public String setDocumentContent(String content, String path){

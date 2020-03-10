@@ -34,4 +34,6 @@ public interface DocumentService {
     public String setDocumentContent(String content, String path);
 
     public  String getDocumentContent ( String path   );
+
+    int getNextId(String path);
 }

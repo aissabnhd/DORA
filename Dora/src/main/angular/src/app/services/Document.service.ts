@@ -24,6 +24,10 @@ export class DocumentService {
     return this.httpClient.post<string>('api/document/write/' + id, s);
   }
 
+  nextIdFile(path : String) : Observable<string>{
+    return this.httpClient.post<string>('api/document/nextIdFile' , path);
+  }
+
   findAll() : Observable<Array<Document>> {
     return this.httpClient.get<Array<Document>>('api/document');
   }

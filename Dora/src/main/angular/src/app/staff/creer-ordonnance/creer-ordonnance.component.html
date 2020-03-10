@@ -5,8 +5,8 @@
   <br>
   </form>
   <button (click)="onCancel()">Cancel</button>
-  <button (click)="onSave()">Save</button>
-  <button *ngIf="isMedecin()" (click)="onPublish()">Publish</button>
+  <button *ngIf="!isPublish" (click)="onSave()">Save</button>
+  <button *ngIf="isMedecin() && !isPublish" (click)="onPublish()">Publish</button>
 
 </div>
 <div class="data" *ngIf="!act">

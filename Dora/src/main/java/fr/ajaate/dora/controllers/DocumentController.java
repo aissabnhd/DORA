@@ -83,6 +83,12 @@ public class DocumentController {
         String content =documentService.getDocumentContent(document.getPath());
         return new ResponseEntity<String>(content, HttpStatus.OK);
     }
+
+    @PostMapping("/nextIdFile")
+    public ResponseEntity<Integer> getNextId(@RequestBody String path){
+        return new ResponseEntity<Integer>(documentService.getNextId(path), HttpStatus.OK);
+
+    }
 /*
 
     @DeleteMapping("/{id}")
