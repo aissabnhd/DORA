@@ -127,6 +127,14 @@ public class DoraApplication implements CommandLineRunner {
 		Staff staff=new Staff("hamid","macron",new Date("1993/11/01"),"franco-algerien","0000",
 				"IBAN-BIC",93,roles,"saint-denis","je sais pas ",
 				"FR","hisAgenda","hamida-macron@gmail.com","123456789");
+
+		Role role2=new Role(RoleName.ADMINISTRATOR);
+		Set<Role> roles2=new HashSet<>();
+		roles2.add(role2);
+
+		Staff staff2=new Staff("admin","Aïssa",new Date("1993/11/01"),"franco-algerien","0000",
+				"IBAN-BIC",77,roles2,"saint-denis","je sais pas ",
+				"FR","hisAgenda","aissa@gmail.com","admin");
 		Role role3=new Role(RoleName.SECRETARY);
 		Set<Role> roles3=new HashSet<>();
 		roles3.add(role3);
@@ -134,8 +142,10 @@ public class DoraApplication implements CommandLineRunner {
 				"IBAN-BIC",93,roles3,"saint-denis","je sais pas ",
 				"FR","hisAgenda","thinhinane-bouhaci@gmail.com","tina95");
 		roleRepository.save(role);
+		roleRepository.save(role2);
 		roleRepository.save(role3);
 		staffService.save(staff);
+		staffService.save(staff2);
 		staffService.save(staff3);
 
 		Role role4=new Role(RoleName.LABORATORY);
@@ -162,6 +172,7 @@ public class DoraApplication implements CommandLineRunner {
         /***************************************** Act ********************************************/
 
         Act act = actService.save(new Act("scanner", new Date(), affectation, staff));
+		Act act2 = actService.save(new Act("radio", new Date(), affectation, staff));
 
 
         /***************************************** Document ********************************************/
@@ -169,7 +180,6 @@ public class DoraApplication implements CommandLineRunner {
         Document document = documentService.save(new Document(DocumentNature.TEXT,DocumentType.CR, ".txt", new Date(),
                 "./src/main/assets/cr/crKarl.txt", act, staff));
 
-        documentService.setDocumentContent("ceci est un test", document.getPath());
 
     }
 

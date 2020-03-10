@@ -13,7 +13,6 @@ import {Hospitalization} from "../interfaces/Hospitalization";
   styleUrls: ['./staff.component.css']
 })
 export class StaffComponent implements OnInit {
-  staff : Staff;
   id : number
   @Input()
   role : RoleName;
@@ -21,6 +20,8 @@ export class StaffComponent implements OnInit {
   name : String;
   @Input()
   dmp : DMP ;
+  @Input()
+  staff : Staff;
   isMedecin: boolean = false;
   isLaborantin : boolean = false;
   isAdmin : boolean = false;
@@ -40,25 +41,6 @@ export class StaffComponent implements OnInit {
         data => this.dmp = data
       )
     }
-    this.staff = {
-      "id": 1,
-      "firstName": "Jaja",
-      "lastName": "Benni",
-      "birthday": null,
-      "nationality": "francais(?)",
-      "phoneNumber": "06",
-      "email": "jaja@gmail.com",
-      "rib": "0",
-      "postcode": 75000,
-      "city": "Pavillons-sous-bois",
-      "street": "garsdelastreet",
-      "country": "France",
-      "linkCalendar": "???",
-      "roles": null,
-      "structBelong": null,
-      "structResponsible": null,
-      "specialities": null
-    };
 
     if(this.role ==  RoleName.DOCTOR){
       this.isMedecin = true;

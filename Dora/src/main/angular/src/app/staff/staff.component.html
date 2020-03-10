@@ -9,16 +9,16 @@
 
       <br>
     </a>
-    <a title="Créer un diagnostique" *ngIf="(isMedecin) && dmp != null" class="iconeLateral" routerLink="/diagnostique/{{dmp.id}}/{{staff.id}}">
+    <a title="Créer un diagnostique" *ngIf="(isMedecin || isSecretaire) && dmp != null" class="iconeLateral" routerLink="/diagnostique/{{dmp.id}}/{{staff.id}}">
       <div class="iconLateral" style="background-image: url(assets/img/diagnostic.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
    <br>
     </a>
-    <a title="Créer un compte rendu" *ngIf="(isMedecin || isLaborantin) && dmp != null" class="iconeLateral" routerLink="/cr/{{dmp.id}}/{{staff.id}}">
+    <a title="Créer un compte rendu" *ngIf="(isMedecin || isLaborantin || isSecretaire) && dmp != null" class="iconeLateral" routerLink="/cr/{{dmp.id}}/{{staff.id}}">
       <div class="iconLateral" style="background-image: url(assets/img/compte_rendu.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
     </a>
-    <a title="Créer une ordonnance" *ngIf="(isMedecin) && dmp != null" class="iconeLateral"routerLink="/ordonnance/{{dmp.id}}/{{staff.id}}">
+    <a title="Créer une ordonnance" *ngIf="(isMedecin || isSecretaire) && dmp != null" class="iconeLateral"routerLink="/ordonnance/{{dmp.id}}/{{staff.id}}">
       <div class="iconLateral" style="background-image: url(assets/img/ordonnance.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
 
       <br>
@@ -106,7 +106,7 @@
         <span *ngIf="isLaborantin" ><input type="text" id="name" name="name" required
                                         minlength="4" maxlength="8" size="10" readonly="true" value="Pr. {{staff.lastName}}"></span>
         <span *ngIf="isSecretaire || isAdmin || isInfirmier" ><input type="text" id="name" name="name" required
-
+                                        minlength="4" maxlength="8" size="10" readonly="true" value="{{staff.lastName}}"></span>
         <span>  <a title="Déconnexion" class="icone" (click)="disconnect()" href="/"> <img class="iconUser" src="assets/img/deconnexion.png" /> </a> </span>
         <span>  <a title="Consulter son agenda" class="icone" routerLink="/agenda"> <img class="iconUser" src="assets/img/agenda.png" /> </a> </span>
         <span *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp != null" ><input type="text" id="name2" name="name" required

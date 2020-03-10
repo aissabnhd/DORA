@@ -6,14 +6,14 @@
   </form>
   <button (click)="onCancel()">Cancel</button>
   <button (click)="onSave()">Save</button>
-  <button (click)="onPublish()">Publish</button>
+  <button *ngIf="isMedecin()" (click)="onPublish()">Publish</button>
 
 </div>
 <div class="data" *ngIf="!act">
   <div *ngIf="!listAct">
     Aucun acte auquel associer cette ordonnance.
-    <button routerLink="/examen/demande">Demander un acte</button>
-    <button routerLink="/examen/effectuer">Effectuer un acte</button>
+    <button *ngIf="isMedecin()" routerLink="/examen/demande">Demander un acte</button>
+    <button *ngIf="isMedecin()" routerLink="/examen/effectuer">Effectuer un acte</button>
   </div>
   <div *ngIf="listAct">
     Voici les actes de l'affectation en cours :

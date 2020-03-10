@@ -1,9 +1,11 @@
 import {Component, Optional} from '@angular/core';
 import {Staff} from "./interfaces/Staff";
-import {RoleName} from "./interfaces/Role";
+import {Role, RoleName} from "./interfaces/Role";
 import {StaffService} from "./services/Staff.service";
 import {AuthService} from "./services/Auth.service";
 import {error} from "util";
+import {Speciality} from "./interfaces/Speciality";
+import {Struct} from "./interfaces/Struct";
 
 @Component({
   selector: 'app-root',
@@ -41,6 +43,25 @@ export class AppComponent {
   }
 
   change_name($event){
+    this.staff = new class implements Staff {
+      birthday: any;
+      city: string;
+      country: string;
+      email: string;
+      firstName: string;
+      id: number;
+      lastName: string;
+      linkCalendar: string;
+      nationality: string;
+      phoneNumber: string;
+      postcode: number;
+      rib: string;
+      roles: Set<Role>;
+      specialities: Set<Speciality>;
+      street: string;
+      structBelong: Struct;
+      structResponsible: Struct;
+    }
     this.token = $event.token;
     localStorage.setItem('Token', this.token);
 
@@ -59,6 +80,7 @@ export class AppComponent {
 
     );*/
     this.id = $event.id;
+    this.staff.id = this.id;
     this.isConnected = true;
 
     this.nom = $event.name;

@@ -7,6 +7,7 @@ import {Document, DocumentNature, DocumentType} from "../../interfaces/Document"
 import {StaffService} from "../../services/Staff.service";
 import {Staff} from "../../interfaces/Staff";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {RoleName} from "../../interfaces/Role";
 
 @Component({
   selector: 'app-creer-ordonnance',
@@ -22,6 +23,7 @@ export class CreerOrdonnanceComponent implements OnInit, OnDestroy {
   doc : Document;
   staff : Staff;
   fileForm: FormGroup;
+  private isDoctor= false;
   constructor(private formBuilder : FormBuilder, private staffService : StaffService, private documentService : DocumentService, private route : ActivatedRoute, private affectationService : AffectationService) { }
 
   ngOnInit() {
@@ -51,24 +53,28 @@ export class CreerOrdonnanceComponent implements OnInit, OnDestroy {
     this.idDMP = this.route.snapshot.params['idDMP'];
     this.idStaff = this.route.snapshot.params['idStaff'];
 
-    this.affectationService.findCurrent(this.idDMP).subscribe(
-      data => this.affectationService.findActsOf(data.id).subscribe(
-        data2 => {
+    this.staffService.findById(this.idStaff).subscribe(
+      data3 => {
 
-          this.listAct = data2;
-          this.staffService.findById(this.idStaff).subscribe(
-            data3 => {
+        this.staff = data3;
+        this.isDoctor = (this.staff.roles[0].name == RoleName.DOCTOR);
+        this.doc.staffCreator = this.staff;
+        this.affectationService.findCurrent(this.idDMP).subscribe(
+          data => this.affectationService.findActsOf(data.id).subscribe(
+            data2 => {
 
-              this.staff = data3;
-              this.doc.staffCreator = this.staff;
+              this.listAct = data2;
+
+              console.log(this.listAct)
             }
+
           )
-          console.log(this.listAct)
-        }
 
-      )
-
+        )
+      }
     )
+
+
 
   }
 
@@ -115,5 +121,13 @@ export class CreerOrdonnanceComponent implements OnInit, OnDestroy {
 
   onCancel() {
     this.act = null;
+  }
+
+  isMedecin() {
+
+        return this.isDoctor;
+
+
+
   }
 }
