@@ -5,7 +5,6 @@ import fr.ajaate.dora.entities.Staff;
 import fr.ajaate.dora.entities.Struct;
 import fr.ajaate.dora.entities.enumeration.Level;
 import fr.ajaate.dora.repository.StructRepository;
-import fr.ajaate.dora.service.StaffService;
 import fr.ajaate.dora.service.StructService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ public class StructServiceImplementation implements StructService {
     StructRepository structRepository;
 
     @Autowired
-    StaffService staffService;
+    StaffServiceImplementation staffServiceImplementation;
 
     public Struct createStruct(Struct s) {
         if(s.getStruct() == null) {
@@ -32,10 +31,11 @@ public class StructServiceImplementation implements StructService {
         else if(s.getStruct().getLevel() == Level.CARE_UNIT) {
             throw new IllegalArgumentException("Une Structure de niveau 5 ne peut avoir de sous structure !\n");
         }
+        /*
         else if(getAllStaff(s.getStruct()).size() == 0) {
             throw new IllegalArgumentException("Une Structure n'ayant aucun personnel affecté ne peut avoir de sous structure\n");
         }
-/*
+
         else if(getStructResponsible(s.getStruct()) == null){
             throw new IllegalArgumentException("Affectez un responsable à la structure avant de lui créer une sous structure\n");
         }
@@ -95,6 +95,11 @@ public class StructServiceImplementation implements StructService {
          */
         return false;
     }
+
+    @Override
+    public List<Staff> getAllStaff(Struct s) {
+        return null;
+    }
 /*
     public Staff getStructResponsible(Struct  struct) {
         Optional<Struct> s = structRepository.findById(struct.getId());
@@ -107,11 +112,6 @@ public class StructServiceImplementation implements StructService {
 
  */
 
-    public List<Staff> getAllStaff(Struct s) {
-        List<Staff> l = new ArrayList<>();
-        l.addAll(staffService.getAllFromStruct(s));
-        return l;
-    }
 
     public List<Struct> getStructByLevel(Level level) {
         List<Struct> lst = new ArrayList<>();

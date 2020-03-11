@@ -1,16 +1,11 @@
 package fr.ajaate.dora.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.Set;
 
 
-@ToString
 @Entity
 @Table(name = "staff")
 public class Staff {
@@ -65,35 +60,6 @@ public class Staff {
 
     public Staff(){};
 
-    public Staff(String lastName, Struct structBelong, Set<Speciality> spe) {
-        this.structBelong = structBelong;
-        this.lastName = lastName;
-        this.specialities = spe;
-    }
-    public Staff(String firsName, String lastName, Role role, Struct structBelong, Struct structResponsible, Set<Speciality> specialities) {
-        this.firsName = firsName;
-        this.lastName = lastName;
-        this.role = role;
-        this.structBelong = structBelong;
-        this.structResponsible = structResponsible;
-        this.specialities = specialities;
-    }
-
-    public Staff(String firsName, String lastName, String nationality, String phoneNumber, String email, String rib, int postcode, String city, String street, String country, String linkCalendar) {
-        this.firsName = firsName;
-        this.lastName = lastName;
-        //this.birthday = birthday;
-        this.nationality = nationality;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.rib = rib;
-        this.postcode = postcode;
-        this.city = city;
-        this.street = street;
-        this.country = country;
-        this.linkCalendar = linkCalendar;
-    }
-
     public Staff(String firsName, String lastName, Instant birthday, String nationality, String phoneNumber, String email, String rib, int postcode, String city, String street, String country, String linkCalendar, Role role, Struct structBelong, Struct structResponsible, Set<Speciality> specialities) {
         this.firsName = firsName;
         this.lastName = lastName;
@@ -111,30 +77,6 @@ public class Staff {
         this.structBelong = structBelong;
         this.structResponsible = structResponsible;
         this.specialities = specialities;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Staff staff = (Staff) o;
-        return postcode == staff.postcode &&
-                Objects.equals(id, staff.id) &&
-                Objects.equals(firsName, staff.firsName) &&
-                Objects.equals(lastName, staff.lastName) &&
-                Objects.equals(birthday, staff.birthday) &&
-                Objects.equals(nationality, staff.nationality) &&
-                Objects.equals(phoneNumber, staff.phoneNumber) &&
-                Objects.equals(email, staff.email) &&
-                Objects.equals(rib, staff.rib) &&
-                Objects.equals(city, staff.city) &&
-                Objects.equals(street, staff.street) &&
-                Objects.equals(country, staff.country);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
     }
 
     public Long getId() {
@@ -273,7 +215,50 @@ public class Staff {
         this.specialities = specialities;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Staff staff = (Staff) o;
+        return postcode == staff.postcode &&
+                Objects.equals(id, staff.id) &&
+                Objects.equals(firsName, staff.firsName) &&
+                Objects.equals(lastName, staff.lastName) &&
+                Objects.equals(birthday, staff.birthday) &&
+                Objects.equals(nationality, staff.nationality) &&
+                Objects.equals(phoneNumber, staff.phoneNumber) &&
+                Objects.equals(email, staff.email) &&
+                Objects.equals(rib, staff.rib) &&
+                Objects.equals(city, staff.city) &&
+                Objects.equals(street, staff.street) &&
+                Objects.equals(country, staff.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firsName, lastName, birthday, nationality, phoneNumber, email, rib, postcode, city, street, country);
+    }
+
+    @Override
     public String toString() {
-        return this.lastName;
+        return "Staff{" +
+                "id=" + id +
+                ", firsName='" + firsName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthday=" + birthday +
+                ", nationality='" + nationality + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", rib='" + rib + '\'' +
+                ", postcode=" + postcode +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", country='" + country + '\'' +
+                ", linkCalendar='" + linkCalendar + '\'' +
+                ", role=" + role +
+                ", structBelong=" + structBelong +
+                ", structResponsible=" + structResponsible +
+                ", specialities=" + specialities +
+                '}';
     }
 }

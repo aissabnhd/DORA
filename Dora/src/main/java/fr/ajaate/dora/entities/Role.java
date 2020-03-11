@@ -11,9 +11,6 @@ import java.util.Objects;
 /**
  * 
  */
-@Data
-@NoArgsConstructor
-@ToString
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -25,6 +22,8 @@ public class Role {
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "role_name")
     private RoleName roleName;
+
+    public Role(){};
 
     public Role(RoleName roleName) {
         this.roleName = roleName;

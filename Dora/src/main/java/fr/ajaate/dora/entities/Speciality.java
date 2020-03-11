@@ -8,9 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Data
-@NoArgsConstructor
-@ToString
+
 @Entity
 @Table(name = "speciality")
 public class Speciality {
@@ -19,12 +17,25 @@ public class Speciality {
     @Column(name = "name_role")
     private String nameRole;
 
-    public Speciality(Long id, String nameRole) {
-        this.id = id;
+    public  Speciality(){};
+
+    public Speciality(String nameRole) {
         this.nameRole = nameRole;
     }
 
-    public Speciality(String nameRole) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNameRole() {
+        return nameRole;
+    }
+
+    public void setNameRole(String nameRole) {
         this.nameRole = nameRole;
     }
 
@@ -40,5 +51,13 @@ public class Speciality {
     @Override
     public int hashCode() {
         return Objects.hash(id, nameRole);
+    }
+
+    @Override
+    public String toString() {
+        return "Speciality{" +
+                "id=" + id +
+                ", nameRole='" + nameRole + '\'' +
+                '}';
     }
 }

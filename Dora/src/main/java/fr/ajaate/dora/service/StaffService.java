@@ -1,34 +1,35 @@
 package fr.ajaate.dora.service;
 
+import fr.ajaate.dora.entities.Speciality;
 import fr.ajaate.dora.entities.Staff;
-import fr.ajaate.dora.entities.Struct;
-import fr.ajaate.dora.repository.StaffRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
-@Service
-public class StaffService {
-    @Autowired
-    StaffRepository staffRepository;
+public interface StaffService {
+    public Staff createStaff(Staff staff);
 
-    public Staff createStaff(Staff s) {
-        return staffRepository.save(s);
-    }
+    public Staff update(Staff staff);
 
+    public List<Staff> findAll();
 
-    public Optional<Staff> getOne(Long id) {
-        return staffRepository.findById(id);
-    }
+    Optional<Staff> findById(Long id);
 
-    public List<Staff> getAllFromStruct(Struct struct) {
-        List<Staff> listUser = new ArrayList<>();
-        listUser.addAll(staffRepository.findAllByStructBelong(struct));
-        return listUser;
-    }
+    void deleteById(Long id);
+
+    public Set<Staff> findAllByLastName(String lastName);
+
+    public Set<Staff> findAllByFirsName(String firstName);
+
+    public Optional<Staff> findByEmail(String email);
+
+    public Optional<Staff> findByPhoneNumber(String phoneNumber);
+
+    public Set<Staff> findAllByStructBelongId(Long structBelongId);
+
+    public Set<Staff> findAllByStaffSpeciality(Speciality speciality);
 
 
 

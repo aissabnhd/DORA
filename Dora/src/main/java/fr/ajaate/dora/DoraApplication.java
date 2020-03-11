@@ -2,26 +2,26 @@ package fr.ajaate.dora;
 
 import fr.ajaate.dora.entities.*;
 import fr.ajaate.dora.entities.enumeration.Level;
+import fr.ajaate.dora.entities.enumeration.RoleName;
+import fr.ajaate.dora.repository.RoleRepository;
 import fr.ajaate.dora.repository.SpecialityRepository;
 import fr.ajaate.dora.repository.StaffRepository;
 import fr.ajaate.dora.repository.StructRepository;
 import fr.ajaate.dora.service.StaffService;
+import fr.ajaate.dora.service.impl.StaffServiceImplementation;
 import fr.ajaate.dora.service.StructService;
-import fr.ajaate.dora.service.impl.StructServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.Instant;
 import java.util.*;
 
 @SpringBootApplication
 public class DoraApplication implements CommandLineRunner {
     @Autowired
     private StructRepository structRepository;
-
-    @Autowired
-	private StaffRepository staffRepository;
 
     @Autowired
 	private SpecialityRepository specialityRepository;
@@ -32,6 +32,9 @@ public class DoraApplication implements CommandLineRunner {
     @Autowired
 	private StaffService staffService;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(DoraApplication.class, args);
     }
@@ -39,64 +42,31 @@ public class DoraApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		//staffRepository.deleteAll();
-		//structRepository.deleteAll();
-		specialityRepository.deleteAll();
-		Set<Speciality> spe_set = new HashSet<>();
+               Role role = new Role(RoleName.ADMINISTRATOR);
 
-		Speciality s = new Speciality( "Chirurgie");
-		specialityRepository.save(s);
-		spe_set.add(s);
+               roleRepository.save(role);
 
+                System.out.println("Create APHP\n");
+                Struct aphp = new Struct("APHP", Level.APHP, null);
+                structService.createStruct(aphp);
 
-		System.out.println("Create APHP\n");
-		Struct s1 = new Struct("APHP", Level.APHP, null);
-		structService.createStruct(s1);
+                Struct parisHopital = new Struct("HOPITAL PARIS", Level.HOSPITAL, aphp);
+                structService.createStruct(parisHopital);
 
-		Staff st2 = new Staff("President", s1, spe_set);
-		staffService.createStaff(st2);
+                Struct pole = new Struct("pole adminitsratif", Level.POLE, parisHopital);
+                structService.createStruct(pole);
 
-	//	structService.updateResponsible(s1, st2);
+                Set<Speciality> spe_set = new HashSet<>();
 
-		Struct s2 = new Struct("HOPITAL PARIS", Level.HOSPITAL, s1);
-		structService.createStruct(s2);
+                Speciality s = new Speciality("Chirurgie");
+                specialityRepository.save(s);
+                spe_set.add(s);
 
-		Staff st3 = new Staff("Boss de Paris", s2, spe_set);
-		staffService.createStaff(st3);
+                Staff jaid = new Staff("jaid", "BENNI", Instant.now(), "France",
+                        "0765467653", "jaid.benni@gmail.com", "RIB", 77000, "Shelle",
+                        "rue", "FRANCE", "calendarLink", role, pole, null, spe_set);
 
-	//	structService.updateResponsible(s2, st3);
-
-		Struct s3 = new Struct("KREMLIN BICETRE", Level.HOSPITAL, s1);
-		structService.createStruct(s3);
-
-		Staff st = new Staff("Nium", s3, spe_set);
-		staffService.createStaff(st);
-
-		Struct tmp = new Struct("Unité de Soin", Level.CARE_UNIT, s1);
-		structService.createStruct(tmp);
-
-
-		System.out.println(structService.deleteStruct(tmp.getId()));
-
-
-
-		/*Struct s3 = new Struct("UF", 5, s2);
-		structService.createStruct(s3);
-
-		Struct s4 = new Struct("UNKNOWN", 1, s3);
-		structService.createStruct(s4);
-
-		 */
-
-
-
-	/*
-		List<Struct> lst6 = structService.getAll();
-		System.out.println(lst6.size());
-		for(Struct it : lst6) {
-			System.out.println(it.toString());
-		}
-		*/
+                staffService.createStaff(jaid);
 
 	}
 }
