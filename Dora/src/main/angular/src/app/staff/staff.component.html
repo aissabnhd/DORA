@@ -72,7 +72,7 @@
       <div class="iconLateral" style="background-image: url(assets/img/voir_demande_examen.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
-    <a title="Délivrer une posologie" *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/posologie">
+    <a title="Délivrer une posologie" *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/posologie/{{dmp.id}}/{{staff.id}}">
       <div class="iconLateral" style="background-image: url(assets/img/posologie.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>

@@ -1,3 +1,13 @@
-<div class="data">
-  <p>posologie works!</p>
+<div class="data" *ngIf="!effectuer">
+
+      Voulez-vous effectuer une posologie à {{dmp.lastName}} {{dmp.firstName}} ?
+      <div class="links">
+        <button mat-fab (click)="creationPosologie()">Effectuer</button>
+      </div>
+
+</div>
+<div class="data" *ngIf="effectuer">
+
+  Vous avez effectué une posologie à {{dmp.lastName}} {{dmp.firstName}} !
+  <button mat-fab routerLink="/">Retour</button>
 </div>

@@ -70,7 +70,7 @@ const routes: Routes = [
   { path: 'voir_anciens_examens', component: VoirAnciensExamensComponent },
   { path: 'voir_demande_examen/:idDMP/:idStaff', component: EffectuerExamenComponent},
   // infirmier links
-  { path: 'posologie', component: PosologieComponent },
+  { path: 'posologie/:idDMP/:idStaff', component: PosologieComponent },
   { path: 'constantes', component: ConstantesComponent},
   { path: 'remarques/:idDMP/:idStaff', component: RemarquesComponent },
   { path: 'prescriptions', component: PrescriptionsComponent}
