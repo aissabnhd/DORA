@@ -27,6 +27,7 @@ export class RemarquesComponent implements OnInit, OnDestroy {
   staff : Staff;
   act : Act;
   fileForm: FormGroup;
+  affectation : Affectation;
   hospitalisation : Hospitalization;
   constructor(private actService : ActService, private snackBar : MatSnackBar, private formBuilder : FormBuilder, private staffService : StaffService, private documentService : DocumentService, private route : ActivatedRoute, private affectationService : AffectationService) { }
 
@@ -69,6 +70,7 @@ export class RemarquesComponent implements OnInit, OnDestroy {
         this.documentService.findRemarqueOf(this.idDMP).subscribe(
           data => {
             this.doc = data;
+            this.affectation = this.doc.act.affectation;
             console.log("reader : ",this.doc.id);
 
             this.documentService.reader(this.doc.id).subscribe(
@@ -114,6 +116,7 @@ export class RemarquesComponent implements OnInit, OnDestroy {
     this.affectationService.findCurrent(this.idDMP).subscribe(
         data => {
           act.affectation = data;
+          this.affectation = data;
           act.done = true;
           act.type = "Remarques";
           act.staff = this.staff;

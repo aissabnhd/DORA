@@ -1,4 +1,4 @@
-<div class="data" *ngIf="!effectuer">
+<div class="data" *ngIf="!effectuer && affectation">
 
       Voulez-vous effectuer une posologie à {{dmp.lastName}} {{dmp.firstName}} ?
       <div class="links">
@@ -6,8 +6,13 @@
       </div>
 
 </div>
-<div class="data" *ngIf="effectuer">
+<div class="data" *ngIf="effectuer && affectation">
 
   Vous avez effectué une posologie à {{dmp.lastName}} {{dmp.firstName}} !
+  <button mat-fab routerLink="/">Retour</button>
+</div>
+<div class="data" *ngIf="!affectation">
+
+  Impossible d'effectuer une posologie à un patient non hospitalisé !
   <button mat-fab routerLink="/">Retour</button>
 </div>

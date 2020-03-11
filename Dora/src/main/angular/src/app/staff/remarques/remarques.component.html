@@ -1,8 +1,13 @@
-<div class="data">
+<div class="data" *ngIf="affectation">
   <form [formGroup]="fileForm">
     <p>Remarques sur le patient : </p>
     <textarea rows="20" cols="90" formControlName="text"></textarea>
     <br>
   </form>
   <button (click)="onSave()">Save</button>
+</div>
+<div class="data" *ngIf="!affectation">
+
+  Impossible d'ajouter des remarques à un patient non hospitalisé !
+  <button mat-fab routerLink="/">Retour</button>
 </div>
