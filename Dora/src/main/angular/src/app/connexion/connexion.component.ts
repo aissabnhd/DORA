@@ -67,7 +67,9 @@ export class ConnexionComponent implements OnInit {
 
   sendMail() {
     this.loginRequestService.sendMail(this.connexionForm.get('email').value, "77777").subscribe(
-      data => console.log(data)
+      data =>  this.snackBar.open("Mail envoyé à " + this.connexionForm.get('email').value + "  !", 'OK', { verticalPosition: 'top', duration:5000 }),
+
+    error => console.log(error)
     );
   }
 }

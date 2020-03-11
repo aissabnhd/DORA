@@ -76,10 +76,10 @@ public class AuthController {
 	}
 
 	@GetMapping("/pwdForget/{mail}/{cle}")
-	public String pwdForget(@PathVariable("mail") String mail, @PathVariable("cle") String cle){
+	public boolean pwdForget(@PathVariable("mail") String mail, @PathVariable("cle") String cle){
 			EnvoyerEmail test = new EnvoyerEmail();
-			test.envoyer(mail, cle);
-			return "send";
+
+			return test.envoyer(mail, cle);
 	}
 
 

@@ -8,7 +8,7 @@ import java.util.Properties;
 public class EnvoyerEmail {
 private String username = "geston.aphp.delire@gmail.com";
 private String password = "delire2020";
-public void envoyer(String mail, String cle) {
+public boolean envoyer(String mail, String cle) {
 // Etape 1 : Création de la session
 Properties props = new Properties();
 props.put("mail.smtp.auth", "true");
@@ -34,6 +34,7 @@ message.setText("Bonjour, vous avez reçu ce mail car vous avez effectué(e) une
 // Etape 3 : Envoyer le message
 Transport.send(message);
 System.out.println("Message_envoye");
+return true;
 } catch (MessagingException e) {
 throw new RuntimeException(e);
 } }

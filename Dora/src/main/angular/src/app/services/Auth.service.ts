@@ -25,8 +25,8 @@ export class AuthService {
   }
 
 
-    sendMail(mail : string, cle : string) : Observable<string> {
-      return this.httpClient.get<string>('/api/auth/pwdForget/' + mail + '/' + cle);
+    sendMail(mail : string, cle : string) : Observable<boolean> {
+      return this.httpClient.get<boolean>('/api/auth/pwdForget/' + mail + '/' + cle);
     }
 
   getToken() {
