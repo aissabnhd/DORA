@@ -69,12 +69,16 @@ export class ConnexionComponent implements OnInit {
 
   mailForgot() {
     this.forgot = true;
+    this.show = false;
+
   }
 
   sendMail() {
     this.loginRequestService.sendMail(this.connexionForm.get('email').value).subscribe(
       data =>  {
         this.send = true;
+        this.passwordForm.get('key').reset();
+        this.passwordForm.get('password').reset();
         this.passwordForm.patchValue({
           email: this.connexionForm.get('email').value,
         });
@@ -86,9 +90,14 @@ export class ConnexionComponent implements OnInit {
     );
   }
 
-  back() {
+  back(b : boolean) {
     this.forgot = false;
     this.send = false;
+    this.show = false;
+    this.connexionForm.get('password').reset()
+    if(b)
+     this.snackBar.open("Annulation !", 'OK', { verticalPosition: 'top', duration:5000 });
+
   }
 
   changePassword() {
@@ -97,6 +106,8 @@ export class ConnexionComponent implements OnInit {
         this.snackBar.open("Mot de passe modifié !", 'OK', { verticalPosition: 'top', duration:5000 });
         this.forgot = false;
         this.send = false;
+        this.show = false;
+        this.connexionForm.get('password').reset()
       },
             error =>   {
           console.log(error);
