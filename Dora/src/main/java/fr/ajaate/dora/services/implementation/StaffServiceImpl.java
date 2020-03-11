@@ -55,6 +55,7 @@ public class StaffServiceImpl implements StaffService {
             existingStaff.setStreet(newStaff.getStreet());
             existingStaff.setRib(newStaff.getRib());
             existingStaff.setNationality(newStaff.getNationality());
+            existingStaff.setPassword(newStaff.getPassword());
 
 
             Staff updatedStaff = staffRepository.save(existingStaff);

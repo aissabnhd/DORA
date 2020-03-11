@@ -23,9 +23,10 @@ export class ConnexionComponent implements OnInit {
 
 
 
-
+  send = false;
   connexionForm : FormGroup;
   show = false;
+  passwordForm : FormGroup;
   private forgot: boolean = false;
 
   constructor(private snackBar : MatSnackBar, private loginRequestService : AuthService, private router:Router, private formBuilder : FormBuilder) { }
@@ -35,6 +36,12 @@ export class ConnexionComponent implements OnInit {
       email: [null, Validators.required],
       password: [null, Validators.required],
     });
+    this.passwordForm = this.formBuilder.group({
+      key: [null, Validators.required],
+      password: [null, Validators.required],
+      email: [null, Validators.required]
+
+    })
 
   }
 
@@ -61,15 +68,41 @@ export class ConnexionComponent implements OnInit {
   }
 
   mailForgot() {
-    this.connexionForm.get('email').reset()
     this.forgot = true;
   }
 
   sendMail() {
-    this.loginRequestService.sendMail(this.connexionForm.get('email').value, "77777").subscribe(
-      data =>  this.snackBar.open("Mail envoyé à " + this.connexionForm.get('email').value + "  !", 'OK', { verticalPosition: 'top', duration:5000 }),
+    this.loginRequestService.sendMail(this.connexionForm.get('email').value).subscribe(
+      data =>  {
+        this.send = true;
+        this.passwordForm.patchValue({
+          email: this.connexionForm.get('email').value,
+        });
+        this.snackBar.open("Mail envoyé à " + this.connexionForm.get('email').value + "  !", 'OK', { verticalPosition: 'top', duration:5000 })
+      },
 
-    error => console.log(error)
+    error => this.snackBar.open("Mail : " + this.connexionForm.get('email').value + " inconnu  !", 'OK', { verticalPosition: 'top', duration:5000 })
+
     );
+  }
+
+  back() {
+    this.forgot = false;
+    this.send = false;
+  }
+
+  changePassword() {
+    this.loginRequestService.changePassword(this.passwordForm.get('email').value, this.passwordForm.get('key').value, this.passwordForm.get('password').value).subscribe(
+      data =>         {
+        this.snackBar.open("Mot de passe modifié !", 'OK', { verticalPosition: 'top', duration:5000 });
+        this.forgot = false;
+        this.send = false;
+      },
+            error =>   {
+          console.log(error);
+        this.snackBar.open(error.error.message, 'OK', { verticalPosition: 'top', duration:5000 })
+            }
+
+  )
   }
 }

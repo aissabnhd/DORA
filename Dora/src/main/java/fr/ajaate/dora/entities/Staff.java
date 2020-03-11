@@ -44,7 +44,11 @@ public class Staff {
     @Column(name = "link_calendar")
     private String linkCalendar;
 
+    @Column(name = "key")
+    private String key;
 
+    @Column(name = "expire")
+    private long expire;
 
     @Column(name = "password")
     private String password;
@@ -92,6 +96,22 @@ public class Staff {
         this.password=password;
         this.roles=roles;
 
+    }
+
+    public long getExpire() {
+        return expire;
+    }
+
+    public void setExpire(long expire) {
+        this.expire = expire;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     @Override

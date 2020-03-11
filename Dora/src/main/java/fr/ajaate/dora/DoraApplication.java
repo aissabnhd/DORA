@@ -134,13 +134,13 @@ public class DoraApplication implements CommandLineRunner {
 
 		Staff staff2=new Staff("admin","Aïssa",new Date("1993/11/01"),"franco-algerien","0000",
 				"IBAN-BIC",77,roles2,"saint-denis","je sais pas ",
-				"FR","hisAgenda","aissa@gmail.com","admin");
+				"FR","hisAgenda","aissa.bnhd@gmail.com","admin");
 		Role role3=new Role(RoleName.SECRETARY);
 		Set<Role> roles3=new HashSet<>();
 		roles3.add(role3);
 		Staff staff3=new Staff("Thinhinane","Bouhaci",new Date("1995/22/02"),"franco-algerien","0000",
 				"IBAN-BIC",93,roles3,"saint-denis","je sais pas ",
-				"FR","hisAgenda","thinhinane-bouhaci@gmail.com","tina95");
+				"FR","hisAgenda","thinhinane.bouhaci@gmail.com","tina95");
 		roleRepository.save(role);
 		roleRepository.save(role2);
 		roleRepository.save(role3);

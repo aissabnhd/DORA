@@ -8,6 +8,7 @@ import fr.ajaate.dora.dao.StaffRepository;
 
 import fr.ajaate.dora.Exchange.LoginRequest;
 import fr.ajaate.dora.Exchange.TokenResponse;
+import fr.ajaate.dora.entities.Staff;
 import fr.ajaate.dora.security.TokenFilter;
 import fr.ajaate.dora.security.TokenTools;
 import fr.ajaate.dora.services.implementation.UserDetailsImpl;
@@ -75,11 +76,42 @@ public class AuthController {
 		return "logged out  ";
 	}
 
-	@GetMapping("/pwdForget/{mail}/{cle}")
-	public boolean pwdForget(@PathVariable("mail") String mail, @PathVariable("cle") String cle){
-			EnvoyerEmail test = new EnvoyerEmail();
+	@GetMapping("/pwdForget/{mail}")
+	public boolean pwdForget(@PathVariable("mail") String mail) throws Exception {
+		Staff s = this.userRepository.findByemail(mail).get();
+		if(!this.userRepository.existsByEmail(mail))
+			throw new Exception("L'utilisateur n'existe pas");
+		String cle = generateNewKey();
+		s.setKey(cle);
+		s.setExpire(System.currentTimeMillis());
+		userRepository.save(s);
+		EnvoyerEmail test = new EnvoyerEmail();
 
-			return test.envoyer(mail, cle);
+		return test.envoyer(mail, cle);
+	}
+
+	private String generateNewKey() {
+		String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		String pass = "";
+		for(int x=0;x<9;x++)
+		{
+			int i = (int)Math.floor(Math.random() * 62);
+			pass += chars.charAt(i);
+		}
+		return pass;
+	}
+
+	@GetMapping("/pwdChange/{mail}/{cle}/{password}")
+	public boolean changePassword(@PathVariable("mail") String mail, @PathVariable("cle") String cle, @PathVariable("password") String password) throws Exception {
+		Staff s = this.userRepository.findByemail(mail).get();
+
+		System.out.println(System.currentTimeMillis() - s.getExpire() );
+		if(!(s.getKey().equals(cle)) || ((System.currentTimeMillis() - s.getExpire() ) > (10 * 60 * 1000) ))
+			throw new Exception("La clé est invalide ou expiré");
+
+		s.setPassword(encoder.encode(password));
+		userRepository.save(s);
+		return true;
 	}
 
 
