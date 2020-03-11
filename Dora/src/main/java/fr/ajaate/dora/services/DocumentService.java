@@ -34,4 +34,5 @@ public interface DocumentService {
     public String setDocumentContent(String content, String path);
 
     public  String getDocumentContent ( String path   );
+    public  String readFileInList(String fileName);
 }

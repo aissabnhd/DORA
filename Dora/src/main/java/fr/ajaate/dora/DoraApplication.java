@@ -20,6 +20,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 @SpringBootApplication
@@ -137,6 +139,13 @@ public class DoraApplication implements CommandLineRunner {
                 "./target/public/crKarl.txt", act, staff));
 
 
+        String s =documentService.setDocumentContent("just fort test ",document.getPath());
+        System.out.println("*******************************************");
+        String l = documentService.readFileInList(document.getPath());
+
+            System.out.println(l);
     }
+
+
 
 }

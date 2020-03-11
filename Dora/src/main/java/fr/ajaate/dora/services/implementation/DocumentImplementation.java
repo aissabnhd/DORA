@@ -14,10 +14,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Instant;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class DocumentImplementation implements DocumentService {
@@ -122,6 +123,32 @@ public class DocumentImplementation implements DocumentService {
     public void deleteById(Long id) {
          documentRepository.deleteById(id);
     }
+    @Override
+    public  String readFileInList(String fileName)
+    {
+
+        List<String> lines = Collections.emptyList();
+        StringBuilder sb=null;
+        try
+        {
+            lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
+            Iterator<String> itr = lines.iterator();
+          sb=new StringBuilder("");
+
+            while (itr.hasNext())
+                sb.append(itr.next());
+
+        }
+
+        catch (IOException e)
+        {
+
+            // do something
+            e.printStackTrace();
+        }
+        return sb.toString() ;
+    }
+
 
     @Override
     public Document validateDocument(Document document, Long idValidator) {

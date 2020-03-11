@@ -79,10 +79,10 @@ public class DocumentController {
 
 
     @RequestMapping(value = "/reader/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
-    public ResponseEntity<String> DocumentContentReader(@PathVariable("id") Long id) throws Exception {
+   // @PreAuthorize("hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
+    public ResponseEntity<String>DocumentContentReader(@PathVariable("id") Long id) throws Exception {
         Document document=documentService.findById(id).get();
-        String content =documentService.getDocumentContent(document.getPath());
+        String content =documentService.readFileInList(document.getPath());
         return new ResponseEntity<String>(content, HttpStatus.OK);
     }
 /*
