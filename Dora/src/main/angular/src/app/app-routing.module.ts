@@ -72,7 +72,7 @@ const routes: Routes = [
   // infirmier links
   { path: 'posologie', component: PosologieComponent },
   { path: 'constantes', component: ConstantesComponent},
-  { path: 'remarques', component: RemarquesComponent },
+  { path: 'remarques/:idDMP/:idStaff', component: RemarquesComponent },
   { path: 'prescriptions', component: PrescriptionsComponent}
 
 

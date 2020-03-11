@@ -80,7 +80,7 @@
       <div class="iconLateral" style="background-image: url(assets/img/constantes.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>
-    <a title="Transmettre des remarques" *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/remarques">
+    <a title="Transmettre des remarques" *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/remarques/{{dmp.id}}/{{staff.id}}">
       <div class="iconLateral" style="background-image: url(assets/img/remarques.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
       <br>
     </a>

@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,6 +69,12 @@ public class DocumentController {
         return new ResponseEntity<List<Document>>(documentService.getAllByNature(DocumentNature.valueOf(nature)), HttpStatus.OK);
     }
 
+    @GetMapping("/remarqueOf/{idDMP}")
+    @PreAuthorize("hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
+    public ResponseEntity<Document> getRemarque(@PathVariable("idDMP") Long idDMP) {
+        return new ResponseEntity<Document>(documentService.getRemarqueOf(idDMP).get(), HttpStatus.OK);
+    }
+
 
     @RequestMapping(value = "/write/{id}", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<String> writeDocumentContent(@RequestBody String requestBodyString,@PathVariable("id") Long id ) throws Exception {
@@ -78,10 +85,11 @@ public class DocumentController {
 
 
     @RequestMapping(value = "/reader/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> DocumentContentReader(@PathVariable("id") Long id) throws Exception {
+    public ResponseEntity<List<String>> DocumentContentReader(@PathVariable("id") Long id) throws Exception {
         Document document=documentService.findById(id).get();
-        String content =documentService.getDocumentContent(document.getPath());
-        return new ResponseEntity<String>(content, HttpStatus.OK);
+
+        List<String> lst = documentService.getDocumentContent(document.getPath());
+        return new ResponseEntity<List<String>>(lst, HttpStatus.OK);
     }
 
     @PostMapping("/nextIdFile")

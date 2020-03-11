@@ -24,6 +24,15 @@ export class DocumentService {
     return this.httpClient.post<string>('api/document/write/' + id, s);
   }
 
+  reader(id : number) : Observable<Array<String>>{
+    return this.httpClient.get<Array<String>>('api/document/reader/' + id);
+  }
+
+  findRemarqueOf(idDMP : number) : Observable<Document>{
+    return this.httpClient.get<Document>('api/document/remarqueOf/' + idDMP);
+
+  }
+
   nextIdFile(path : String) : Observable<string>{
     return this.httpClient.post<string>('api/document/nextIdFile' , path);
   }

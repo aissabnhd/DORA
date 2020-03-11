@@ -1,3 +1,8 @@
 <div class="data">
-  <p>remarques works!</p>
+  <form [formGroup]="fileForm">
+    <p>Remarques sur le patient : </p>
+    <textarea rows="20" cols="90" formControlName="text"></textarea>
+    <br>
+  </form>
+  <button (click)="onSave()">Save</button>
 </div>

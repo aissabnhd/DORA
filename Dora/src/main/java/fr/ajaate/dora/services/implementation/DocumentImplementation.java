@@ -2,23 +2,16 @@ package fr.ajaate.dora.services.implementation;
 
 import fr.ajaate.dora.dao.DocumentRepository;
 import fr.ajaate.dora.dao.StaffRepository;
-import fr.ajaate.dora.entities.Act;
 import fr.ajaate.dora.entities.Document;
 import fr.ajaate.dora.entities.Staff;
 import fr.ajaate.dora.enumeration.DocumentNature;
 import fr.ajaate.dora.enumeration.DocumentType;
 import fr.ajaate.dora.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.time.Instant;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class DocumentImplementation implements DocumentService {
@@ -74,22 +67,25 @@ public class DocumentImplementation implements DocumentService {
     }
 
     @Override
-    public  String getDocumentContent ( String path   )
+    public List<String> getDocumentContent (String path   )
   {
 
       String line = "test";
       String content="";
+      List<String> lst = new ArrayList<>();
       try {
           FileReader ler = new FileReader(path);
           BufferedReader reader = new BufferedReader(ler);
           while ((line = reader.readLine()) != null) {
              // System.out.println(line);
-              content.concat(line);
+              lst.add(line);
+              //content.concat(line);
           }
       } catch (IOException e) {
           e.printStackTrace();
       }
-      return  content;
+      System.out.println(content);
+      return  lst;
   }
 
     @Override
@@ -97,6 +93,17 @@ public class DocumentImplementation implements DocumentService {
         File repertoire = new File(path);
         File[] files=repertoire.listFiles();
         return files.length;
+    }
+
+    @Override
+    public Optional<Document> getRemarqueOf(Long idDMP) {
+        List<Document> lst = getAll();
+        for(int i = 0; i < lst.size(); i++){
+            if(lst.get(i).getAct().getAffectation().getHospitalization().getDmp().getId() == idDMP && lst.get(i).getType() == DocumentType.NOTES)
+                return Optional.of(lst.get(i));
+
+        }
+        return Optional.empty();
     }
 
 

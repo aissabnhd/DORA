@@ -27,7 +27,7 @@ public class ActController  {
     private DocumentService documentService;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
+    @PreAuthorize("hasAuthority('DOCTOR') or hasAuthority('LABORATORY') or hasAuthority('NURSE')")
     public ResponseEntity<Act> save(@RequestBody Act act) {
         return new ResponseEntity<>(actService.save(act), HttpStatus.CREATED);
     }

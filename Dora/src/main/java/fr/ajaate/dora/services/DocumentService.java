@@ -2,12 +2,9 @@ package fr.ajaate.dora.services;
 
 
 import fr.ajaate.dora.entities.Document;
-import fr.ajaate.dora.entities.Staff;
 import fr.ajaate.dora.enumeration.DocumentNature;
 import fr.ajaate.dora.enumeration.DocumentType;
-import org.springframework.data.repository.query.Param;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -33,7 +30,9 @@ public interface DocumentService {
 
     public String setDocumentContent(String content, String path);
 
-    public  String getDocumentContent ( String path   );
+    public List<String> getDocumentContent (String path   );
 
     int getNextId(String path);
+
+    Optional<Document> getRemarqueOf(Long idDMP);
 }
