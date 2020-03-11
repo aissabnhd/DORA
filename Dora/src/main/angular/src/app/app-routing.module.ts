@@ -30,6 +30,7 @@ import {CreateHospitalizationComponent} from "./staff/affecter-patient/create-ho
 import {CreerDemandeComponent} from "./staff/demande-examen/creer-demande/creer-demande.component";
 import {EffectuerExamenComponent} from "./staff/demande-examen/effectuer-examen/effectuer-examen.component";
 import {GestionProfilComponent} from "./staff/gestion-profil/gestion-profil.component";
+import {MailOublieComponent} from "./mail-oublie/mail-oublie.component";
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'ajaate', component: AjaateComponent},
   { path: 'help', component: HelpComponent},
   { path: 'profil/:idStaff', component: GestionProfilComponent},
+  { path: 'mail_oublie', component: MailOublieComponent},
   // medecin links
   { path: 'ordonnance/:idDMP/:idStaff', component: CreerOrdonnanceComponent},
   { path: 'diagnostique/:idDMP/:idStaff', component: CreerDiagnostiqueComponent},

@@ -1,4 +1,4 @@
-<div class="all">
+<div class="all" *ngIf="!isForgot()">
 <div class="logo" >
  <img src="assets/img/aphp.png" />
 </div>
@@ -23,7 +23,7 @@
     <input *ngIf="show" type="text" formControlName="password">
     <a title="Afficher/masquer mot de passe" class="mask" (click)="showPassword()">  <img class="affiche" src="assets/img/logo_affiche.png" /></a>
     <br>
-    <a class="oubli" href="mot_de_passe_oublie.html">Mot de passe oublié</a>
+    <a class="oubli" (click)="mailForgot()">Mot de passe oublié</a>
     <br><br>
   </label>
 
@@ -38,4 +38,116 @@
 <div class="logo_2">
   <img class="logo_ajaate" src="assets/img/logo_ajaate.png" />
 </div>
+</div>
+<div class="all" *ngIf="!isForgot()">
+  <div class="logo" >
+    <img src="assets/img/aphp.png" />
+  </div>
+
+
+  <form [formGroup]="connexionForm">
+
+    <label>
+      <br>
+
+      Login :   <a  title="Entrer votre login (votre adresse mail)"> <img class="info" src="assets/img/info.png" /></a>
+      <br>
+      <input type="text" formControlName="email">
+      <br><br>
+    </label>
+
+    <label>
+
+      Mot de passe :   <a  title="Entrer votre mot de passe"> <img class="info" src="assets/img/info.png" /></a>
+      <br>
+      <input *ngIf="!show" type="password" formControlName="password">
+      <input *ngIf="show" type="text" formControlName="password">
+      <a title="Afficher/masquer mot de passe" class="mask" (click)="showPassword()">  <img class="affiche" src="assets/img/logo_affiche.png" /></a>
+      <br>
+      <a class="oubli" (click)="mailForgot()">Mot de passe oublié</a>
+      <br><br>
+    </label>
+
+
+
+    <br>
+    <button class="connexion" (click)="submit()">Connexion</button>
+
+  </form>
+
+
+  <div class="logo_2">
+    <img class="logo_ajaate" src="assets/img/logo_ajaate.png" />
+  </div>
+</div>
+<div class="all" *ngIf="!isForgot()">
+  <div class="logo" >
+    <img src="assets/img/aphp.png" />
+  </div>
+
+
+  <form [formGroup]="connexionForm">
+
+    <label>
+      <br>
+
+      Login :   <a  title="Entrer votre login (votre adresse mail)"> <img class="info" src="assets/img/info.png" /></a>
+      <br>
+      <input type="text" formControlName="email">
+      <br><br>
+    </label>
+
+    <label>
+
+      Mot de passe :   <a  title="Entrer votre mot de passe"> <img class="info" src="assets/img/info.png" /></a>
+      <br>
+      <input *ngIf="!show" type="password" formControlName="password">
+      <input *ngIf="show" type="text" formControlName="password">
+      <a title="Afficher/masquer mot de passe" class="mask" (click)="showPassword()">  <img class="affiche" src="assets/img/logo_affiche.png" /></a>
+      <br>
+      <a class="oubli" (click)="mailForgot()">Mot de passe oublié</a>
+      <br><br>
+    </label>
+
+
+
+    <br>
+    <button class="connexion" (click)="submit()">Connexion</button>
+
+  </form>
+
+
+  <div class="logo_2">
+    <img class="logo_ajaate" src="assets/img/logo_ajaate.png" />
+  </div>
+</div>
+
+
+<div class="all" *ngIf="isForgot()">
+  <div class="logo" >
+    <img src="assets/img/aphp.png" />
+  </div>
+
+
+  <form [formGroup]="connexionForm">
+
+    <label>
+      <br>
+
+      Login :   <a  title="Entrer votre login (votre adresse mail)"> <img class="info" src="assets/img/info.png" /></a>
+      <br>
+      <input type="text" formControlName="email">
+      <br><br>
+    </label>
+
+
+    <br>
+    <button class="connexion" (click)="sendMail()">Envoyer mail</button>
+
+  </form>
+
+
+  <div class="logo_2">
+    <img class="logo_ajaate" src="assets/img/logo_ajaate.png" />
+  </div>
 </div>

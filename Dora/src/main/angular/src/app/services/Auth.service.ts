@@ -25,6 +25,10 @@ export class AuthService {
   }
 
 
+    sendMail(mail : string, cle : string) : Observable<string> {
+      return this.httpClient.get<string>('/api/auth/pwdForget/' + mail + '/' + cle);
+    }
+
   getToken() {
     return localStorage.getItem('Token');
   }

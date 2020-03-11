@@ -2,6 +2,7 @@ package fr.ajaate.dora.controllers;
 
 
 
+import fr.ajaate.dora.EnvoyerEmail;
 import fr.ajaate.dora.dao.RoleRepository;
 import fr.ajaate.dora.dao.StaffRepository;
 
@@ -72,6 +73,13 @@ public class AuthController {
 		System.out.println("it's okay");
 		tokenTools.invalidateToken(id);
 		return "logged out  ";
+	}
+
+	@GetMapping("/pwdForget/{mail}/{cle}")
+	public String pwdForget(@PathVariable("mail") String mail, @PathVariable("cle") String cle){
+			EnvoyerEmail test = new EnvoyerEmail();
+			test.envoyer(mail, cle);
+			return "send";
 	}
 
 

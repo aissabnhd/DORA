@@ -1,5 +1,6 @@
 package fr.ajaate.dora.services.implementation;
 
+import fr.ajaate.dora.EnvoyerEmail;
 import fr.ajaate.dora.dao.RoleRepository;
 import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.entities.Staff;
@@ -63,4 +64,5 @@ public class StaffServiceImpl implements StaffService {
             return null;
         }
     }
+
 }

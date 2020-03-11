@@ -26,6 +26,7 @@ export class ConnexionComponent implements OnInit {
 
   connexionForm : FormGroup;
   show = false;
+  private forgot: boolean = false;
 
   constructor(private snackBar : MatSnackBar, private loginRequestService : AuthService, private router:Router, private formBuilder : FormBuilder) { }
 
@@ -53,5 +54,20 @@ export class ConnexionComponent implements OnInit {
 
   showPassword() {
     this.show = !this.show;
+  }
+
+  isForgot() {
+    return this.forgot;
+  }
+
+  mailForgot() {
+    this.connexionForm.get('email').reset()
+    this.forgot = true;
+  }
+
+  sendMail() {
+    this.loginRequestService.sendMail(this.connexionForm.get('email').value, "77777").subscribe(
+      data => console.log(data)
+    );
   }
 }
