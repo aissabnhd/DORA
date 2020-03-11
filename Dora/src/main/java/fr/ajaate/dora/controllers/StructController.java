@@ -1,21 +1,20 @@
 package fr.ajaate.dora.controllers;
 
 import fr.ajaate.dora.entities.Struct;
-import fr.ajaate.dora.service.StructService;
+import fr.ajaate.dora.service.impl.StructServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/Struct")
+@RequestMapping("/api/struct")
 public class StructController {
 
     @Autowired
-    private StructService structService;
+    private StructServiceImplementation structService;
 
     @PostMapping
     public ResponseEntity<Struct> save(@RequestBody Struct s) {
@@ -33,11 +32,9 @@ public class StructController {
         return new ResponseEntity<Struct>(structService.getOne(id).get(), HttpStatus.OK);
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){
         structService.deleteStruct(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-
 }

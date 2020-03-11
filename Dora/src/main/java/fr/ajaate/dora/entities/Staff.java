@@ -9,8 +9,7 @@ import java.time.Instant;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
-@NoArgsConstructor
+
 @ToString
 @Entity
 @Table(name = "staff")
@@ -51,8 +50,10 @@ public class Staff {
     @JoinColumn(name = "struct_belong_id", referencedColumnName = "id")
     private Struct structBelong;
 
-    @OneToOne(mappedBy = "responsible")
+    @OneToOne
+    @JoinColumn(name = "struct_id", referencedColumnName = "id")
     private Struct structResponsible;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -61,6 +62,8 @@ public class Staff {
             inverseJoinColumns =@JoinColumn(name = "speciality_id")
     )
     private Set<Speciality> specialities;
+
+    public Staff(){};
 
     public Staff(String lastName, Struct structBelong, Set<Speciality> spe) {
         this.structBelong = structBelong;

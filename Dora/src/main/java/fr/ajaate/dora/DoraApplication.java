@@ -1,21 +1,18 @@
 package fr.ajaate.dora;
 
-import fr.ajaate.dora.dao.DMPRepository;
 import fr.ajaate.dora.entities.*;
 import fr.ajaate.dora.entities.enumeration.Level;
-import fr.ajaate.dora.entities.enumeration.RoleName;
 import fr.ajaate.dora.repository.SpecialityRepository;
 import fr.ajaate.dora.repository.StaffRepository;
 import fr.ajaate.dora.repository.StructRepository;
 import fr.ajaate.dora.service.StaffService;
 import fr.ajaate.dora.service.StructService;
+import fr.ajaate.dora.service.impl.StructServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Repository;
 
-import java.time.Instant;
 import java.util.*;
 
 @SpringBootApplication
@@ -41,8 +38,9 @@ public class DoraApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		staffRepository.deleteAll();
-		structRepository.deleteAll();
+
+		//staffRepository.deleteAll();
+		//structRepository.deleteAll();
 		specialityRepository.deleteAll();
 		Set<Speciality> spe_set = new HashSet<>();
 
@@ -58,7 +56,7 @@ public class DoraApplication implements CommandLineRunner {
 		Staff st2 = new Staff("President", s1, spe_set);
 		staffService.createStaff(st2);
 
-		structService.updateResponsible(s1, st2);
+	//	structService.updateResponsible(s1, st2);
 
 		Struct s2 = new Struct("HOPITAL PARIS", Level.HOSPITAL, s1);
 		structService.createStruct(s2);
@@ -66,7 +64,7 @@ public class DoraApplication implements CommandLineRunner {
 		Staff st3 = new Staff("Boss de Paris", s2, spe_set);
 		staffService.createStaff(st3);
 
-		structService.updateResponsible(s2, st3);
+	//	structService.updateResponsible(s2, st3);
 
 		Struct s3 = new Struct("KREMLIN BICETRE", Level.HOSPITAL, s1);
 		structService.createStruct(s3);

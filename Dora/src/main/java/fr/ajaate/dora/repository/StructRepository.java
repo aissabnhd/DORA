@@ -11,8 +11,12 @@ import java.util.List;
 
 @Repository
 public interface StructRepository extends JpaRepository<Struct, Long> {
+
+    public boolean existsByNameStruct(String nameStruct);
+
     public List<Struct> findAllByStruct(Struct s);
-    public Staff findByResponsible(Struct s);
+   // public Staff findByResponsible(Struct s);
     public List<Struct> findAllByLevel(Level level);
+    public List<Struct> findStructByNameStruct(String nameStruct);
 
 }

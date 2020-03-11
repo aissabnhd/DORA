@@ -9,9 +9,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Data
-@ToString
-@NoArgsConstructor
 @Entity
 @Table(name = "struct")
 public class Struct implements Serializable {
@@ -38,10 +35,13 @@ public class Struct implements Serializable {
     @OneToOne
     @JoinColumn(name = "struct_id", referencedColumnName = "id")
     private Struct struct;
-
+/*
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "staff_id", referencedColumnName = "id")
-    private Staff responsible;
+    private Staff ;
+*/
+
+    public Struct(){};
 
     public Struct(String nameStruct, Level level, int postCode, String city, String street, String country) {
         this.nameStruct = nameStruct;
@@ -57,7 +57,7 @@ public class Struct implements Serializable {
         this.level = level;
         this.struct = parent;
     }
-
+/*
     public Struct(String nameStruct, Level level, Struct parent, Staff responsible) {
         this.nameStruct = nameStruct;
         this.level = level;
@@ -65,7 +65,8 @@ public class Struct implements Serializable {
         this.responsible = responsible;
     }
 
-    public Struct(String nameStruct, Level level, int postCode, String city, String street, String country, Speciality spe, Staff responsible) {
+ */
+    public Struct(String nameStruct, Level level, int postCode, String city, String street, String country, Speciality spe) {
         this.nameStruct = nameStruct;
         this.level = level;
         this.postCode = postCode;
@@ -74,7 +75,7 @@ public class Struct implements Serializable {
         this.country = country;
         this.speciality = spe;
         //this.struct = parent;
-        this.responsible = responsible;
+        //this.responsible = responsible;
     }
 
 
@@ -168,7 +169,7 @@ public class Struct implements Serializable {
     public void setStruct(Struct struct) {
         this.struct = struct;
     }
-
+/*
     public Staff getResponsible() {
         return responsible;
     }
@@ -176,6 +177,8 @@ public class Struct implements Serializable {
     public void setResponsible(Staff responsible) {
         this.responsible = responsible;
     }
+
+
 
     @Override
     public String toString() {
@@ -190,4 +193,6 @@ public class Struct implements Serializable {
             return "Name : " + nameStruct + " | Level : " + this.getLevel() + " | Responsible : " + this.responsible + " | Parent : " + this.struct + "\n";
         }
     }
+
+ */
 }
