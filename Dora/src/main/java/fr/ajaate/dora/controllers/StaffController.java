@@ -60,11 +60,6 @@ public class StaffController {
         return new ResponseEntity<Optional<Staff>>(staffService.findByEmail(email), HttpStatus.OK);
     }
 
-    @GetMapping("/struct/{id}")
-    public ResponseEntity<Set<Staff>> findAllByStructBelongId(@PathVariable("id") Long id){
-        return new ResponseEntity<Set<Staff>>(staffService.findAllByStructBelongId(id), HttpStatus.OK);
-    }
-
     @PostMapping("/speciality")
     public ResponseEntity<Set<Staff>> findAllByStaffSpeciality(@RequestBody Speciality speciality){
         return new ResponseEntity<Set<Staff>>(staffService.findAllByStaffSpeciality(speciality), HttpStatus.OK);

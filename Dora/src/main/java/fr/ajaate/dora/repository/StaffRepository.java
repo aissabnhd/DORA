@@ -26,4 +26,6 @@ public interface StaffRepository extends JpaRepository<Staff,Long> {
 
     public Set<Staff> findAllBySpecialitiesIsContaining(Speciality speciality);
 
+    public Optional<Staff> findByStructResponsible(Struct structResponsible);
+
 }

@@ -69,12 +69,17 @@ public class StaffServiceImplementation implements StaffService {
     }
 
     @Override
+    public Set<Staff> findAllByStaffSpeciality(Speciality speciality) {
+        return staffRepository.findAllBySpecialitiesIsContaining(speciality);
+    }
+
+    @Override
     public Set<Staff> findAllByStructBelongId(Long structBelongId) {
         return staffRepository.findAllByStructBelongId(structBelongId);
     }
 
     @Override
-    public Set<Staff> findAllByStaffSpeciality(Speciality speciality) {
-        return staffRepository.findAllBySpecialitiesIsContaining(speciality);
+    public Optional<Staff> findByStructResponsible(Struct structResponsible) {
+        return staffRepository.findByStructResponsible(structResponsible);
     }
 }

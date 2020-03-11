@@ -2,6 +2,7 @@ package fr.ajaate.dora.service;
 
 import fr.ajaate.dora.entities.Speciality;
 import fr.ajaate.dora.entities.Staff;
+import fr.ajaate.dora.entities.Struct;
 
 import java.time.Instant;
 import java.util.List;
@@ -27,9 +28,11 @@ public interface StaffService {
 
     public Optional<Staff> findByPhoneNumber(String phoneNumber);
 
+    public Set<Staff> findAllByStaffSpeciality(Speciality speciality);
+
     public Set<Staff> findAllByStructBelongId(Long structBelongId);
 
-    public Set<Staff> findAllByStaffSpeciality(Speciality speciality);
+    public Optional<Staff> findByStructResponsible(Struct structResponsible);
 
 
 
