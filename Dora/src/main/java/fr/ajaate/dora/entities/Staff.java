@@ -1,5 +1,7 @@
 package fr.ajaate.dora.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -47,7 +49,7 @@ public class Staff {
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "struct_belong_id", referencedColumnName = "id")
     private Struct structBelong;
 
@@ -254,9 +256,9 @@ public class Staff {
         this.structBelong = structBelong;
     }
 
-    public Struct getStructResponsible() {
+    /*public Struct getStructResponsible() {
         return structResponsible;
-    }
+    }*/
 
     public void setStructResponsible(Struct structResponsible) {
         this.structResponsible = structResponsible;
@@ -272,5 +274,9 @@ public class Staff {
 
     public String toString() {
         return this.lastName;
+    }
+
+    public Struct getStructResponsible() {
+        return this.structResponsible;
     }
 }

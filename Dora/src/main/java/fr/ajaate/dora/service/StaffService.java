@@ -22,6 +22,32 @@ public class StaffService {
         return staffRepository.save(s);
     }
 
+    public void updateStaffResponsible(Staff s, Struct struct) {
+        System.out.println("STAFF SERVICE updateStaffResponsible");
+
+        /*Optional <Staff> staff = staffRepository.findById(s.getId());
+        if(staff.isPresent()) {
+            System.out.println("STAFF IS PRESENT");
+            Staff newStaff = staff.get();
+            System.out.println(newStaff.getId());
+            System.out.println(struct.getId());
+            newStaff.setStructResponsible(struct);
+            System.out.println("setStructResponsible done");
+            staffRepository.save(newStaff);
+        }
+        System.out.println("STAFF IS NOT PRESENT");
+
+         */
+        System.out.println("STAFF IS PRESENT");
+        System.out.println(s.getId());
+        System.out.println(struct.getId());
+        System.out.println(s.getStructResponsible());
+        s.setStructResponsible(struct);
+        System.out.println(s.getStructResponsible());
+        System.out.println("setStructResponsible done");
+        staffRepository.save(s);
+    }
+
 
     public Optional<Staff> getOne(Long id) {
         if(staffRepository.existsById(id)) {
@@ -96,6 +122,12 @@ public class StaffService {
     public List<Staff> findByLastName(String lastname) {
         return staffRepository.findByLastName(lastname);
     }
+
+
+    public Optional<Staff> findByStructResponsible(Struct structResponsible) {
+        return staffRepository.findByStructResponsible(structResponsible);
+    }
+
 
 
     }

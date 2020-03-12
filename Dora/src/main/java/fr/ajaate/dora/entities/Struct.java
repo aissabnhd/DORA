@@ -1,5 +1,6 @@
 package fr.ajaate.dora.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import fr.ajaate.dora.entities.enumeration.Level;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,10 +36,12 @@ public class Struct implements Serializable {
     @JoinColumn(name = "speciality_id", referencedColumnName = "id")
     private Speciality speciality;
 
+    @JsonIgnoreProperties(value={"struct"}, allowSetters = true)
     @OneToOne
     @JoinColumn(name = "struct_id", referencedColumnName = "id")
     private Struct struct;
 
+    @JsonIgnoreProperties(value={"struct"}, allowSetters = true)
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "staff_id", referencedColumnName = "id")
     private Staff responsible;

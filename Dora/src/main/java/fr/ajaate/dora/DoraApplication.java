@@ -54,17 +54,14 @@ public class DoraApplication implements CommandLineRunner {
 
 
 		System.out.println("Create APHP\n");
-		Struct s1 = new Struct("APHP", Level.APHP, null);
-		structService.createStruct(s1);
+		Struct s1 = structService.createStruct(new Struct("APHP", Level.APHP, null));
 
-		Staff st1 = new Staff("Boss de Paris", s1, spe_set);
-		staffService.createStaff(st1);
+		Staff st1 = staffService.createStaff(new Staff("Boss de Paris", s1, spe_set));
 
-		System.out.println(staffService.deleteStaffToStruct(st1.getId(), s1.getId()));
+		System.out.println(structService.getStructResponsible(s1));
+
 		structService.updateResponsible(s1, st1);
 
-		System.out.println(staffService.deleteStaffToStruct(st1.getId(), s1.getId()));
-		System.out.println(structService.getStructResponsible(s1));
 
 		Staff st2 = new Staff("President", null, spe_set);
 		staffService.createStaff(st2);
@@ -72,16 +69,7 @@ public class DoraApplication implements CommandLineRunner {
 		Struct s2 = new Struct("HOPITAL PARIS", Level.HOSPITAL, 77410, "Paris", "20 rue des champs", "France", sp1, null, s1);
 		structService.createStruct(s2);
 
-		System.out.println(staffService.affectStaffToStruct(st2.getId(), s2.getId()));
-
-		System.out.println(staffService.getStructAffectation(st2));
-
 		structService.updateResponsible(s2, st2);
-		System.out.println(structService.getStructResponsible(s2));
-
-		System.out.println(staffService.deleteStaffToStruct(st2.getId(), s1.getId()));
-
-		System.out.println(staffService.getStructAffectation(st2));
 
 /*
 		structService.updateResponsible(s1, st2);

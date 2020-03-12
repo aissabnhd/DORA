@@ -59,10 +59,16 @@ public class StructService {
         structRepository.save(s);
     }
 
-    public void updateResponsible(Struct s, Staff staff) {
+    /*public void updateResponsible(Struct s, Staff staff) {
         Struct st = structRepository.findById(s.getId()).get();
         st.setResponsible(staff);
         structRepository.save(st);
+    }
+     */
+
+    public void updateResponsible(Struct struct, Staff staff) {
+        System.out.println("STRUCT SERVICE updateResponsible");
+        staffService.updateStaffResponsible(staff, struct);
     }
 
 
@@ -95,11 +101,21 @@ public class StructService {
         return false;
     }
 
-    public Staff getStructResponsible(Struct  struct) {
+    /*public Staff getStructResponsible(Struct  struct) {
         Optional<Struct> s = structRepository.findById(struct.getId());
         if(s.isPresent()) {
             Struct str = s.get();
             return str.getResponsible();
+        }
+        return null;
+    }
+
+     */
+
+    public Staff getStructResponsible(Struct struct) {
+        Optional<Staff> staff = staffService.findByStructResponsible(struct);
+        if(staff.isPresent()) {
+            return staff.get();
         }
         return null;
     }
