@@ -107,8 +107,8 @@
                                         minlength="4" maxlength="8" size="10" readonly="true" value="Pr. {{staff.lastName}}"></span>
         <span *ngIf="isSecretaire || isAdmin || isInfirmier" ><input type="text" id="name" name="name" required
                                         minlength="4" maxlength="8" size="10" readonly="true" value="{{staff.lastName}}"></span>
-        <span>  <a title="Déconnexion" class="icone" (click)="disconnect()" href="/"> <img class="iconUser" src="assets/img/deconnexion.png" /> </a> </span>
-        <span>  <a title="Consulter son agenda" class="icone" routerLink="/agenda"> <img class="iconUser" src="assets/img/agenda.png" /> </a> </span>
+        <span>  <a title="Déconnexion" class="icone" routerLink="deconnexion"> <img class="iconUser" src="assets/img/deconnexion.png" /> </a> </span>
+        <span>  <a title="Consulter son agenda" class="icone" routerLink="/agenda/{{staff.id}}"> <img class="iconUser" src="assets/img/agenda.png" /> </a> </span>
         <span *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp != null" ><input type="text" id="name2" name="name" required
                      minlength="4" maxlength="8" size="10" readonly="true" value="{{dmp.firstName}} {{dmp.lastName}}"></span>
         <span *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp == null" ><input type="text" id="name3" name="name" required

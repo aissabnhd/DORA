@@ -47,6 +47,7 @@ import { CreateHospitalizationComponent } from './staff/affecter-patient/create-
 import { CreerDemandeComponent } from './staff/demande-examen/creer-demande/creer-demande.component';
 import { EffectuerExamenComponent } from './staff/demande-examen/effectuer-examen/effectuer-examen.component';
 import { GestionProfilComponent } from './staff/gestion-profil/gestion-profil.component';
+import { DeconnexionComponent } from './deconnexion/deconnexion.component';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { GestionProfilComponent } from './staff/gestion-profil/gestion-profil.co
     CreerDemandeComponent,
     EffectuerExamenComponent,
     GestionProfilComponent,
+    DeconnexionComponent,
   ],
   imports: [
     BrowserModule,

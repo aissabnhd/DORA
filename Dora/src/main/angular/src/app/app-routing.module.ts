@@ -31,6 +31,7 @@ import {CreerDemandeComponent} from "./staff/demande-examen/creer-demande/creer-
 import {EffectuerExamenComponent} from "./staff/demande-examen/effectuer-examen/effectuer-examen.component";
 import {GestionProfilComponent} from "./staff/gestion-profil/gestion-profil.component";
 import {MailOublieComponent} from "./mail-oublie/mail-oublie.component";
+import {DeconnexionComponent} from "./deconnexion/deconnexion.component";
 
 
 
@@ -38,11 +39,12 @@ const routes: Routes = [
  //{ path: '', redirectTo: 'medecin',pathMatch: 'full' },
   {path : 'changeDMP/:id', component: StaffComponent},
   { path: 'staff', component: StaffComponent},
-  { path: 'agenda', component: AgendaComponent},
+  { path: 'agenda/:idStaff', component: AgendaComponent},
   { path: 'ajaate', component: AjaateComponent},
   { path: 'help', component: HelpComponent},
   { path: 'profil/:idStaff', component: GestionProfilComponent},
   { path: 'mail_oublie', component: MailOublieComponent},
+  { path: 'deconnexion', component: DeconnexionComponent},
   // medecin links
   { path: 'ordonnance/:idDMP/:idStaff', component: CreerOrdonnanceComponent},
   { path: 'diagnostique/:idDMP/:idStaff', component: CreerDiagnostiqueComponent},
