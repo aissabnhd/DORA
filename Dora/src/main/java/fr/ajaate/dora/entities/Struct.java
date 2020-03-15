@@ -36,15 +36,15 @@ public class Struct implements Serializable {
     @JoinColumn(name = "speciality_id", referencedColumnName = "id")
     private Speciality speciality;
 
-    @JsonIgnoreProperties(value={"struct"}, allowSetters = true)
     @OneToOne
     @JoinColumn(name = "struct_id", referencedColumnName = "id")
     private Struct struct;
 
-    @JsonIgnoreProperties(value={"struct"}, allowSetters = true)
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "staff_id", referencedColumnName = "id")
     private Staff responsible;
+
+
 
     public Struct(String nameStruct, Level level, int postCode, String city, String street, String country) {
         this.nameStruct = nameStruct;

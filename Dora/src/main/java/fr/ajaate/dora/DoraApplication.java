@@ -56,20 +56,20 @@ public class DoraApplication implements CommandLineRunner {
 		System.out.println("Create APHP\n");
 		Struct s1 = structService.createStruct(new Struct("APHP", Level.APHP, null));
 
-		Staff st1 = staffService.createStaff(new Staff("Boss de Paris", s1, spe_set));
+		Staff st1 = staffService.createStaff(new Staff("President", s1, spe_set, null));
 
 		System.out.println(structService.getStructResponsible(s1));
-
 		structService.updateResponsible(s1, st1);
+		System.out.println(structService.getStructResponsible(s1));
 
 
-		Staff st2 = new Staff("President", null, spe_set);
-		staffService.createStaff(st2);
+		/*Struct s2 = structService.createStruct(new Struct("HOPITAL PARIS", Level.HOSPITAL, 77410, "Paris", "20 rue des champs", "France", sp1, null, s1));
 
-		Struct s2 = new Struct("HOPITAL PARIS", Level.HOSPITAL, 77410, "Paris", "20 rue des champs", "France", sp1, null, s1);
-		structService.createStruct(s2);
+		Staff st2 = staffService.createStaff(new Staff("President", null, spe_set, null));
 
 		structService.updateResponsible(s2, st2);
+
+		 */
 
 /*
 		structService.updateResponsible(s1, st2);

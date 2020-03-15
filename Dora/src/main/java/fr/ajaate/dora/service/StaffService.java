@@ -1,5 +1,6 @@
 package fr.ajaate.dora.service;
 
+import fr.ajaate.dora.entities.Speciality;
 import fr.ajaate.dora.entities.Staff;
 import fr.ajaate.dora.entities.Struct;
 import fr.ajaate.dora.repository.StaffRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class StaffService {
@@ -128,9 +130,16 @@ public class StaffService {
         return staffRepository.findByStructResponsible(structResponsible);
     }
 
-
-
+    public List<Staff> getAll() {
+        return staffRepository.findAll();
     }
+
+    public Optional<Staff> findByPhoneNumber(String phoneNumber) {
+        return staffRepository.findByPhoneNumber(phoneNumber);
+    }
+
+
+}
 
 
 

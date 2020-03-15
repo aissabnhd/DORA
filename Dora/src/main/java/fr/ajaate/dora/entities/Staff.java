@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.Set;
@@ -16,7 +17,7 @@ import java.util.Set;
 @ToString
 @Entity
 @Table(name = "staff")
-public class Staff {
+public class Staff implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -49,14 +50,15 @@ public class Staff {
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    //@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "struct_belong_id", referencedColumnName = "id")
     private Struct structBelong;
 
-    @OneToOne(mappedBy = "responsible")
+    @OneToOne(mappedBy = "responsible", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "struct_id", referencedColumnName = "id")
     private Struct structResponsible;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "staff_speciality",
             joinColumns = @JoinColumn(name = "staff_id"),
@@ -64,10 +66,19 @@ public class Staff {
     )
     private Set<Speciality> specialities;
 
+
+
     public Staff(String lastName, Struct structBelong, Set<Speciality> spe) {
         this.structBelong = structBelong;
         this.lastName = lastName;
         this.specialities = spe;
+    }
+
+    public Staff(String lastName, Struct structBelong, Set<Speciality> spe, Struct structResponsible) {
+        this.structBelong = structBelong;
+        this.lastName = lastName;
+        this.specialities = spe;
+        this.structResponsible = structResponsible;
     }
     public Staff(String firsName, String lastName, Role role, Struct structBelong, Struct structResponsible, Set<Speciality> specialities) {
         this.firsName = firsName;
