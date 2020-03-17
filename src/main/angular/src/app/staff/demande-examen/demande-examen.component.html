@@ -1,0 +1,21 @@
+<div class="data">
+  <h1>Demander/Effectuer un nouvel examen</h1>
+
+  <div *ngIf="hospitalization">
+    <div *ngIf="affectation">
+      <button routerLink="/examen/demande/{{idDMP}}/{{idStaff}}">Demander un acte</button>
+      <button routerLink="/examen/effectuer/{{idDMP}}/{{idStaff}}">Effectuer un acte</button>
+    </div>
+    <div *ngIf="!affectation">
+      Le patient n'est affecté à aucun service. Impossible de lui pratiquer un acte.
+
+
+    </div>
+
+  </div>
+  <div *ngIf="!hospitalization">
+    Le patient n'est pas hospitalisé. Impossible de lui pratiquer un acte.
+
+
+  </div>
+</div>

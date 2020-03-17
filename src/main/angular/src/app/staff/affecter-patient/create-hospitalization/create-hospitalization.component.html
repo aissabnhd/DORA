@@ -1,0 +1,24 @@
+<div class="data">
+  <h1>Créer une hospitalisation</h1>
+  <form [formGroup]="hospitalizationForm" *ngIf="hospitalizationForm">
+
+    <label>
+      <br>
+      Numéro de chambre :
+      <br>
+      <input type="number" formControlName="roomNumber">
+      <br><br>
+    </label>
+    <br>
+    <label>
+      Structure :
+      <select formControlName="struct">
+        <option *ngFor="let struct of structs; let i = index" [value]="i" >{{afficheLevel(struct.level)}} {{struct.nameStruct}}</option>
+      </select>
+    </label>
+
+    <br>
+    <button (click)="creationHospitalization()">Valider</button>
+    <br>
+  </form>
+</div>

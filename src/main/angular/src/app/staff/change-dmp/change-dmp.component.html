@@ -1,0 +1,54 @@
+<div class="data">
+  <h1>Changer de DMP</h1>
+
+  <form [formGroup]="DMPForm">
+
+    <div class="item">
+      <label>
+        Nom :
+        <input type="text" formControlName="nom">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Prénom :
+        <input type="text" formControlName="prenom">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Numéro sécurité sociale :
+        <input type="number" formControlName="socialSecurityNumber">
+      </label>
+    </div>
+
+
+
+      <button  (click)="onSubmit()" type="submit" class="button">Rechercher</button>
+  </form>
+
+
+
+
+
+
+  <ul>
+    <li *ngFor="let dmp of allDMP">
+      <div *ngIf="dmp.lastName && dmp.firstName && dmp.socialSecurityNumber">
+      <div class="nom"> Nom : {{dmp.lastName}} </div>
+      <br>
+      <div class="esperance"> Prénom : {{dmp.firstName}} </div>
+      <br>
+      <div class="regime"> Numéro sécurité sociale : {{dmp.socialSecurityNumber}} </div>
+
+      <div class="links">
+        <button mat-fab (click)="Choose(dmp.id)"> Choose</button>
+      </div>
+      </div>
+    </li>
+
+  </ul>
+
+</div>

@@ -1,0 +1,139 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="menu" mode="side" opened>
+    <a title="Redirection vers le site officiel de l'AP-HP" class="iconeLateral" href="https://www.aphp.fr/">
+      <div class="iconLateral" style="background-image: url(assets/img/aphp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+    </a>
+    <br>
+    <a title="Consulter les documents du DMP" *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp != null" class="iconeLateral" routerLink="/documents">
+      <div class="iconLateral" style="background-image: url(assets/img/consulter_dmp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Créer un diagnostique" *ngIf="(isMedecin || isSecretaire) && dmp != null" class="iconeLateral" routerLink="/diagnostique/{{dmp.id}}/{{staff.id}}">
+      <div class="iconLateral" style="background-image: url(assets/img/diagnostic.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+   <br>
+    </a>
+    <a title="Créer un compte rendu" *ngIf="(isMedecin || isLaborantin || isSecretaire) && dmp != null" class="iconeLateral" routerLink="/cr/{{dmp.id}}/{{staff.id}}">
+      <div class="iconLateral" style="background-image: url(assets/img/compte_rendu.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Créer une ordonnance" *ngIf="(isMedecin || isSecretaire) && dmp != null" class="iconeLateral"routerLink="/ordonnance/{{dmp.id}}/{{staff.id}}">
+      <div class="iconLateral" style="background-image: url(assets/img/ordonnance.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Demander/effectuer un nouvel examen" *ngIf="(isMedecin) && dmp != null" class="iconeLateral" routerLink="/examen/{{dmp.id}}/{{staff.id}}">
+      <div class="iconLateral" style="background-image: url(assets/img/demande_examen.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Créer un nouveau DMP" *ngIf="isSecretaire" class="iconeLateral" routerLink="/creer_dmp">
+      <div class="iconLateral" style="background-image: url(assets/img/creer_dmp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Gérer le matériel" *ngIf="isSecretaire" class="iconeLateral" routerLink="/gestion_materiel">
+      <div class="iconLateral" style="background-image: url(assets/img/gestion_materiel.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Gérer les agendas des médecins" *ngIf="isSecretaire" class="iconeLateral" routerLink="/gestion_agenda_medecin">
+      <div class="iconLateral" style="background-image: url(assets/img/gestion_agenda_medecin.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+
+      <br>
+    </a>
+    <a title="Affecter un DMP à un autre service" *ngIf="(isSecretaire) && dmp != null" class="iconeLateral" routerLink="/affectation_patient_service/{{dmp.id}}">
+      <div class="iconLateral" style="background-image: url(assets/img/affectation_patient_service.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+
+    <a title="Ajouter un nouveau personnel" *ngIf="isAdmin" class="iconeLateral" routerLink="/ajout_membre">
+      <div class="iconLateral" style="background-image: url(assets/img/ajout_membre.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Gestion de la structure de l'AP-HP" *ngIf="isAdmin" class="iconeLateral" routerLink="/gestion_aphp">
+      <div class="iconLateral" style="background-image: url(assets/img/gerer_aphp.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Affectation du personnel" *ngIf="isAdmin" class="iconeLateral" routerLink="/affectation_personnel">
+      <div class="iconLateral" style="background-image: url(assets/img/affecter_personnel.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Changer la spécialité d'un personnel" *ngIf="isAdmin" class="iconeLateral" routerLink="/modification_specialite">
+      <div class="iconLateral" style="background-image: url(assets/img/modifier_specialite.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Voir les anciens examens" *ngIf="(isLaborantin) && dmp != null" class="iconeLateral" routerLink="/voir_anciens_examens">
+      <div class="iconLateral" style="background-image: url(assets/img/voir_anciens_examens.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Voir les demandes d'examens" *ngIf="(isLaborantin) && dmp != null" class="iconeLateral" routerLink="/voir_demande_examen/{{dmp.id}}/{{staff.id}}">
+      <div class="iconLateral" style="background-image: url(assets/img/voir_demande_examen.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Délivrer une posologie" *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/posologie/{{dmp.id}}/{{staff.id}}">
+      <div class="iconLateral" style="background-image: url(assets/img/posologie.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Noter les constantes" *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/constantes">
+      <div class="iconLateral" style="background-image: url(assets/img/constantes.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Transmettre des remarques" *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/remarques/{{dmp.id}}/{{staff.id}}">
+      <div class="iconLateral" style="background-image: url(assets/img/remarques.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+    <a title="Consulter les prescriptions" *ngIf="(isInfirmier) && dmp != null" class="iconeLateral" routerLink="/prescription">
+      <div class="iconLateral" style="background-image: url(assets/img/prescription.png); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+      <br>
+    </a>
+
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span *ngIf="isMedecin" title="Modifier le profil" > <a routerLink="profil/{{staff.id}}"><img class="iconUser" src="assets/logo/medecin.png" /> </a> </span>
+        <span *ngIf="isSecretaire" title="Modifier le profil" > <a routerLink="profil/{{staff.id}}"><img class="iconUser" src="assets/logo/secretaire.png" />  </a></span>
+        <span *ngIf="isAdmin" title="Modifier le profil" >  <a routerLink="profil/{{staff.id}}"><img class="iconUser" src="assets/logo/admin.png" />  </a> </span>
+        <span *ngIf="isLaborantin" title="Modifier le profil" >  <a routerLink="profil/{{staff.id}}"><img class="iconUser" src="assets/logo/laborantin.png" />  </a></span>
+        <span *ngIf="isInfirmier" title="Modifier le profil">  <a routerLink="profil/{{staff.id}}"><img class="iconUser" src="assets/logo/infirmier.png" /> </a> </span>
+
+        <span *ngIf="isMedecin" ><input type="text" id="name" name="name" required
+                                                                             minlength="4" maxlength="8" size="10" readonly="true" value="Dr. {{staff.lastName}}"></span>
+        <span *ngIf="isLaborantin" ><input type="text" id="name" name="name" required
+                                        minlength="4" maxlength="8" size="10" readonly="true" value="Pr. {{staff.lastName}}"></span>
+        <span *ngIf="isSecretaire || isAdmin || isInfirmier" ><input type="text" id="name" name="name" required
+                                        minlength="4" maxlength="8" size="10" readonly="true" value="{{staff.lastName}}"></span>
+        <span>  <a title="Déconnexion" class="icone" routerLink="deconnexion"> <img class="iconUser" src="assets/img/deconnexion.png" /> </a> </span>
+        <span>  <a title="Consulter son agenda" class="icone" routerLink="/agenda/{{staff.id}}"> <img class="iconUser" src="assets/img/agenda.png" /> </a> </span>
+        <span *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp != null" ><input type="text" id="name2" name="name" required
+                     minlength="4" maxlength="8" size="10" readonly="true" value="{{dmp.firstName}} {{dmp.lastName}}"></span>
+        <span *ngIf="(isMedecin || isSecretaire || isLaborantin || isInfirmier) && dmp == null" ><input type="text" id="name3" name="name" required
+                     minlength="4" maxlength="8" size="10" readonly="true" value="Aucun DMP"></span>
+
+
+        <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" >
+
+          <a title="Changer de DMP" class="icone" routerLink="/change_dmp">
+          <img class="iconUser" src="assets/img/switch_dmp.png" />
+          </a>
+        </span>
+
+
+
+        <span *ngIf="isMedecin || isSecretaire || isLaborantin || isInfirmier" >
+          <input *ngIf="currentHospitalization" type="text" id="name3" name="name" required
+                     minlength="4" maxlength="8" size="10" readonly="true" value="Chambre {{currentHospitalization.roomNumber}}">
+           <input *ngIf="!currentHospitalization" type="text" id="name3" name="name" required
+                  minlength="4" maxlength="16" size="16" readonly="true" value="Aucune hospitalisation">
+        </span>
+        <span>  <a title="Consulter la page d'aide" class="icone" routerLink="/help"> <img class="iconUser" src="assets/img/help.png" /> </a> </span>
+        <span>  <a title="En savoir plus sur Ajaate..." class="icone" routerLink="/ajaate"> <img class="iconUser" src="assets/img/ajaate.png" /> </a> </span>
+
+      </mat-toolbar-row>
+
+    </mat-toolbar>
+
+
+    <router-outlet></router-outlet>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

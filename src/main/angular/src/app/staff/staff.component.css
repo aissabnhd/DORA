@@ -1,0 +1,69 @@
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar.mat-primary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: cornflowerblue;
+  color: black;
+  border: solid 1px black;
+  height: 10%;
+
+
+}
+
+div.container-fluid h-100{
+  background: cornflowerblue;
+
+}
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f3f3f3ff;
+}
+
+mat-sidenav.menu{
+  background: cornflowerblue;
+  border: solid 1px black;
+  width: 7%;
+
+}
+
+a.iconeLateral{
+  height: 9%;
+  width: 7%;
+}
+
+div.iconLateral{
+  height: 9%;
+
+
+}
+
+a.icone{
+  width: 120px;
+  height: 150px;
+}
+
+div.icon{
+
+  width: 150px;
+}
+
+
+
+img.iconUser{
+  height: 50px;
+  width: auto;
+}

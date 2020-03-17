@@ -1,0 +1,30 @@
+<div class="data">
+  <h1>Affecter un DMP à un autre service</h1>
+  <div *ngIf="affectation && hospitalisation" >
+  <div>Hospitalisation : {{affectation.hospitalization.struct.nameStruct}}</div>
+  <div>Service : {{affectation.struct.nameStruct}}</div>
+  <div>Date début : {{affectation.dateAffectation | date}}</div>
+
+  <div>Date fin : (Encore affecté actuellement) </div>
+
+  <div>Liste des staffs : {{toStringStaff()}}</div>
+  <button (click)="changeService()"> Changer de service </button>
+  <button (click)="endAffectation()"> Terminer l'affectation (et l'hospitalisation)</button>
+  </div>
+
+  <div *ngIf="!affectation && hospitalisation">
+    Aucune affectation en cours. <button routerLink="/creer_affectation/{{idDMP}}">Créer une affectation</button>
+    <button (click)="endHospitalization()"> Terminer l'hospitalisation</button>
+
+  </div>
+
+  <div *ngIf="affectation && !hospitalisation">
+    Le patient n'est pas hospitalisé. Avant de l'affecter à un service <button routerLink="/creer_hospitalization/{{idDMP}}">Créer une hospitalisation </button>
+
+  </div>
+
+  <div *ngIf="!affectation && !hospitalisation">
+    Le patient n'est pas hospitalisé. Avant de l'affecter à un service <button routerLink="/creer_hospitalization/{{idDMP}}">Créer une hospitalisation </button>
+
+  </div>
+</div>

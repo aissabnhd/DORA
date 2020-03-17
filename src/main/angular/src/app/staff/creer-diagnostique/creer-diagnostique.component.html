@@ -1,0 +1,38 @@
+<div class="data" *ngIf="act">
+  <h1>Créer un diagnostique</h1>
+  <form [formGroup]="fileForm">
+    <p>Rédaction d'un diagnostic : </p>
+    <textarea rows="20" cols="90" formControlName="text"></textarea>
+    <br>
+  </form>
+  <button (click)="onCancel()">Cancel</button>
+  <button *ngIf="!isPublish" (click)="onSave()">Save</button>
+  <button *ngIf="isMedecin() && !isPublish" (click)="onPublish()">Publish</button>
+
+</div>
+<div class="data" *ngIf="!act">
+  <h1>Créer un diagnostique</h1>
+  <div *ngIf="!listAct">
+    Aucun acte auquel associer ce diagnostic.
+    <button *ngIf="isMedecin()" routerLink="/examen/{{idDMP}}/{{idStaff}}">Demander/Effectuer un acte</button>
+
+  </div>
+  <div *ngIf="listAct">
+    Voici les actes de l'affectation en cours :
+    <ul>
+      <li *ngFor="let act of listAct">
+        <div class="nom"> Type : {{act.type}} </div>
+        <br>
+        <div class="nom"> Réalisé par : {{act.staff.lastName}} {{act.staff.firstName}}</div>
+        <br>
+        <div>
+          <button mat-fab (click)="Choose(act)"> Choose</button>
+        </div>
+
+      </li>
+
+    </ul>
+  </div>
+
+
+</div>

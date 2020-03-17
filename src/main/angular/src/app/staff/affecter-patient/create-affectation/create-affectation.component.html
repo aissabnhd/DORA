@@ -1,0 +1,33 @@
+<div class="data">
+  <h1>Créer une affectation</h1>
+
+  <form [formGroup]="affectationForm" *ngIf="affectationForm && staffs && structs">
+
+    <label>
+      Structure :
+      <select formControlName="struct">
+        <option *ngFor="let struct of structs; let i = index" [value]="i" >{{afficheLevel(struct.level)}} {{struct.nameStruct}}</option>
+      </select>
+    </label>
+<br>
+    <div class="item" formArrayName="staff">
+      <label  *ngFor="let number of affectationForm.controls.staff.controls let i = index">
+        Staff :
+        <select formControlName="{{i}}">
+          <option *ngFor="let staff of staffs; let i = index" [value]="staff.id" >{{staff.lastName}} {{staff.firstName}}</option>
+        </select>
+      </label>
+    </div>
+    <br>
+    <div class="item">
+      Ajouter/Supprimer des staffs
+      <button (click)="addStaff()">+</button>
+      <button (click)="removeStaff()">-</button>
+
+    </div>
+
+<br>
+    <button (click)="creationAffectation()">Valider</button>
+    <br>
+  </form>
+</div>
