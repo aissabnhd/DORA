@@ -1,3 +1,4 @@
+/*
 div.all {
   background-color: #f3f3f3ff;
   position: absolute;
@@ -5,10 +6,6 @@ div.all {
   bottom: 0;
   right: 0;
   left: 0;
-}
-
-label{
-  width : 100%
 }
 div.logo {
   text-align: center;
@@ -20,7 +17,7 @@ form {
 }
 
 a.oubli{
-  font-style: italic;
+font-style: italic;
 }
 
 a.mask{
@@ -44,7 +41,7 @@ button.connexion{
   text-align: center;
   background-image:linear-gradient(#fcfba9, #f9d531);
   border-radius: 20px;
-}
+ }
 
 button.back{
   text-align: center;
@@ -53,12 +50,12 @@ button.back{
 
 }
 
-div.logo_2{
-  position: absolute;
-  right: 0;
-  bottom: 0;
+ div.logo_2{
+   position: absolute;
+   right: 0;
+   bottom: 0;
 
-}
+ }
 
 img.logo_ajaate {
 
@@ -66,14 +63,19 @@ img.logo_ajaate {
   height : 100px;
 
 }
+*/
 
-/*
+/**/
+
 body {
   font-family: "Karla", sans-serif;
   background-color: #fff;
   min-height: 100vh; }
-
-
+/*
+.brand-wrapper {
+  padding-top: 7px;
+  padding-bottom: 8px; }
+  */
   .brand-wrapper .logo {
     height: 50px; }
 
