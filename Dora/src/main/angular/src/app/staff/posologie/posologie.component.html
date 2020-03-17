@@ -1,9 +1,9 @@
 <div class="data" *ngIf="!effectuer && affectation">
 
-      Voulez-vous effectuer une posologie à {{dmp.lastName}} {{dmp.firstName}} ?
-      <div class="links">
-        <button mat-fab (click)="creationPosologie()">Effectuer</button>
-      </div>
+  Voulez-vous effectuer une posologie à {{dmp.lastName}} {{dmp.firstName}} ?
+  <div class="links">
+    <button mat-fab (click)="creationPosologie()">Effectuer</button>
+  </div>
 
 </div>
 <div class="data" *ngIf="effectuer && affectation">

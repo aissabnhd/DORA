@@ -1,14 +1,15 @@
 <div class="data">
+  <h1>Affecter un DMP à un autre service</h1>
   <div *ngIf="affectation && hospitalisation" >
-  <div>Hospitalisation : {{affectation.hospitalization.struct.nameStruct}}</div>
-  <div>Service : {{affectation.struct.nameStruct}}</div>
-  <div>Date début : {{affectation.dateAffectation | date}}</div>
+    <div>Hospitalisation : {{affectation.hospitalization.struct.nameStruct}}</div>
+    <div>Service : {{affectation.struct.nameStruct}}</div>
+    <div>Date début : {{affectation.dateAffectation | date}}</div>
 
-  <div>Date fin : (Encore affecté actuellement) </div>
+    <div>Date fin : (Encore affecté actuellement) </div>
 
-  <div>Liste des staffs : {{toStringStaff()}}</div>
-  <button (click)="changeService()"> Changer de service </button>
-  <button (click)="endAffectation()"> Terminer l'affectation (et l'hospitalisation)</button>
+    <div>Liste des staffs : {{toStringStaff()}}</div>
+    <button (click)="changeService()"> Changer de service </button>
+    <button (click)="endAffectation()"> Terminer l'affectation (et l'hospitalisation)</button>
   </div>
 
   <div *ngIf="!affectation && hospitalisation">

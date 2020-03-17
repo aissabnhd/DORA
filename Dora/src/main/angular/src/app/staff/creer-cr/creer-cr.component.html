@@ -1,4 +1,5 @@
 <div class="data" *ngIf="act">
+  <h1>Créer un compte-rendu</h1>
   <form [formGroup]="fileForm">
     <p>Rédaction d'un compte rendu : </p>
     <textarea rows="20" cols="90" formControlName="text"></textarea>
@@ -7,9 +8,9 @@
   <button (click)="onCancel()">Cancel</button>
   <button *ngIf="!isPublish" (click)="onSave()">Save</button>
   <button *ngIf="isMedecin() && !isPublish" (click)="onPublish()">Publish</button>
-
 </div>
 <div class="data" *ngIf="!act">
+  <h1>Créer un compte-rendu</h1>
   <div *ngIf="!listAct">
     Aucun acte auquel associer ce compte rendu.
     <button *ngIf="isMedecin()" routerLink="/examen/{{idDMP}}/{{idStaff}}">Demander/Effectuer un acte</button>

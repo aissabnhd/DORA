@@ -1,78 +1,79 @@
 <div class="data">
-<form [formGroup]="staffForm" *ngIf="staffForm">
+  <h1>Gestion du profil</h1>
+  <form [formGroup]="staffForm" *ngIf="staffForm">
 
-  <div class="item">
-    <label>
-      firstName :
-      <input type="text" formControlName="firstName">
-    </label>
-  </div>
+    <div class="item">
+      <label>
+        firstName :
+        <input type="text" formControlName="firstName">
+      </label>
+    </div>
 
-  <div class="item">
-    <label>
-      lastName :
-      <input type="text" formControlName="lastName">
-    </label>
-  </div>
+    <div class="item">
+      <label>
+        lastName :
+        <input type="text" formControlName="lastName">
+      </label>
+    </div>
 
-  <div class="item">
-    <label>
-      birthday :
-      <input type="date" formControlName="birthday">
-    </label>
-  </div>
+    <div class="item">
+      <label>
+        birthday :
+        <input type="date" formControlName="birthday">
+      </label>
+    </div>
 
-  <div class="item">
-    <label>
-      nationality :
-      <input type="text" formControlName="nationality">
-    </label>
-  </div>
+    <div class="item">
+      <label>
+        nationality :
+        <input type="text" formControlName="nationality">
+      </label>
+    </div>
 
-  <div class="item">
-    <label>
-      phoneNumber :
-      <input type="text" formControlName="phoneNumber">
-    </label>
-  </div>
+    <div class="item">
+      <label>
+        phoneNumber :
+        <input type="text" formControlName="phoneNumber">
+      </label>
+    </div>
 
-  <div class="item">
-    <label>
-      rib :
-      <input type="text" formControlName="rib">
-    </label>
-  </div>
+    <div class="item">
+      <label>
+        rib :
+        <input type="text" formControlName="rib">
+      </label>
+    </div>
 
-  <div class="item">
-    <label>
-      postcode :
-      <input type="number" formControlName="postcode">
-    </label>
-  </div>
+    <div class="item">
+      <label>
+        postcode :
+        <input type="number" formControlName="postcode">
+      </label>
+    </div>
 
-  <div class="item">
-    <label>
-      city :
-      <input type="text" formControlName="city">
-    </label>
-  </div>
+    <div class="item">
+      <label>
+        city :
+        <input type="text" formControlName="city">
+      </label>
+    </div>
 
-  <div class="item">
-    <label>
-      street :
-      <input type="text" formControlName="street">
-    </label>
-  </div>
+    <div class="item">
+      <label>
+        street :
+        <input type="text" formControlName="street">
+      </label>
+    </div>
 
-  <div class="item">
-    <label>
-      country :
-      <input type="text" formControlName="country">
-    </label>
-  </div>
+    <div class="item">
+      <label>
+        country :
+        <input type="text" formControlName="country">
+      </label>
+    </div>
 
-  <div class="button">
-    <button (click)="onSubmit()" type="submit" class="button"[disabled]="!staffForm.valid || isEmpty()" >Changer</button>
-  </div>
-</form>
+    <div class="button">
+      <button (click)="onSubmit()" type="submit" class="button"[disabled]="!staffForm.valid || isEmpty()" >Changer</button>
+    </div>
+  </form>
 </div>

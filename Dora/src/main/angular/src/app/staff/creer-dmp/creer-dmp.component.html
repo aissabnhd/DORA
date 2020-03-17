@@ -1,6 +1,7 @@
 <div class="data">
-  <form [formGroup]="DMPForm">
+  <h1>Créer un nouveau DMP</h1>
 
+  <form [formGroup]="DMPForm">
     <label>
       <br>
       Numéro de sécurité sociale :
@@ -8,7 +9,7 @@
       <input type="text" formControlName="socialSecurityNumber">
       <br><br>
     </label>
-
+    <br>
     <label>
       Prénom :
       <br>
@@ -39,6 +40,7 @@
       <br>
       <br><br>
     </label>
+    <br>
     <label>
       Numéro de téléphone :
       <br>
@@ -67,6 +69,7 @@
       <br>
       <br><br>
     </label>
+    <br>
     <label>
       Rue :
       <br>
@@ -88,7 +91,7 @@
       <br>
       <br><br>
     </label>
-
+    <br>
     <button (click)="creationDMP()">Valider</button>
     <br>
   </form>

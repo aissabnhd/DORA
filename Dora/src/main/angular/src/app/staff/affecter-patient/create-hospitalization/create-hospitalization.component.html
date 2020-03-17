@@ -1,4 +1,5 @@
 <div class="data">
+  <h1>Créer une hospitalisation</h1>
   <form [formGroup]="hospitalizationForm" *ngIf="hospitalizationForm">
 
     <label>
@@ -8,7 +9,7 @@
       <input type="number" formControlName="roomNumber">
       <br><br>
     </label>
-
+    <br>
     <label>
       Structure :
       <select formControlName="struct">
@@ -16,7 +17,7 @@
       </select>
     </label>
 
-
+    <br>
     <button (click)="creationHospitalization()">Valider</button>
     <br>
   </form>

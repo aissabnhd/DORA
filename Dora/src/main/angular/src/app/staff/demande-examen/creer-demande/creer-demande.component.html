@@ -1,7 +1,6 @@
 <div class="data">
-
+  <h1>Demander un examen</h1>
   <form [formGroup]="actForm" *ngIf="actForm">
-
     <label>
       <br>
       Type d'examen :
@@ -9,6 +8,7 @@
       <input type="text" formControlName="type">
       <br><br>
     </label>
+    <br>
     <button (click)="creationAct()" routerLink="/examen/{{idDMP}}/{{idStaff}}" [disabled]="!actForm.valid || isEmpty()">Valider</button>
 
     <br>
