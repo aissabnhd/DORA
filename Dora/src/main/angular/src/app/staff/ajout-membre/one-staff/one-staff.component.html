@@ -1,0 +1,28 @@
+<div class="block">
+  <div class="nom_{{staff.roles[0].name}}"> Nom : {{staff.lastName}} {{staff.firstName}} </div>
+  <br>
+
+  <div> Anniversaire : {{dateToString(staff.birthday)}}</div>
+  <br>
+
+  <div> Adresse : {{staff.street}}, ({{staff.postcode}}) {{staff.city}} à {{staff.country}} </div>
+  <br>
+
+  <div> Téléphone : {{staff.phoneNumber}} </div>
+  <br>
+
+  <div> Mail : {{staff.email}} </div>
+  <br>
+
+  <div> Nationalité : {{staff.nationality}} </div>
+  <br>
+
+  <div> RIB : {{staff.rib}}</div>
+  <br>
+
+  <div> Rôle : {{staff.roles[0].name}} </div>
+  <br>
+  <div class="links">
+    <a title="update" mat-fab routerLink="/update_staff/{{staff.id}}">Update</a>
+  </div>
+</div>

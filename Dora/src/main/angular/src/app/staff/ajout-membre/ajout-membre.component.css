@@ -2,3 +2,11 @@ div.data{
   position: absolute;
   top: 10%;
 }
+
+li {
+  list-style: none;
+  display:block; float:left;;
+  width:20%;
+  margin-left: 20px;
+
+}

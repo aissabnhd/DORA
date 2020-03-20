@@ -1,3 +1,14 @@
+
 <div class="data">
-  <p>ajout-membre works!</p>
+  <button routerLink="/create_staff">Create</button>
+
+  <ul class="especes">
+    <li *ngFor="let staff of staffs">
+      <app-one-staff [staff]="staff" >
+
+      </app-one-staff>
+      <p><br /></p>
+    </li>
+  </ul>
+
 </div>

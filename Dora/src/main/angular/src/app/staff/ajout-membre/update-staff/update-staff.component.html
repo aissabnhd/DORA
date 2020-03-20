@@ -1,0 +1,85 @@
+<div class="data">
+  <form [formGroup]="staffForm" *ngIf="staffForm">
+    <div class="item">
+      <label>
+        Id :
+        <input type="text" formControlName="id" disabled>
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Nom :
+        <input type="text" formControlName="lastName">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Prénom :
+        <input type="text" formControlName="firstName">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Date de naissance :
+        <input type="date" formControlName="birthday">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Nationalité :
+        <input type="text" formControlName="nationality">
+      </label>
+    </div>
+
+
+    <div class="item">
+      <label>
+        Numéro de téléphone :
+        <input type="text" formControlName="phoneNumber">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        RIB :
+        <input type="text" formControlName="rib">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Code postal :
+        <input type="number" formControlName="postcode">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Ville :
+        <input type="text" formControlName="city">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Rue :
+        <input type="text" formControlName="street">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Pays :
+        <input type="text" formControlName="country">
+      </label>
+    </div>
+
+  </form>
+  <button routerLink="/ajout_membre"> Retour</button>
+  <button (click)="updateStaff()"> Update</button>
+
+</div>

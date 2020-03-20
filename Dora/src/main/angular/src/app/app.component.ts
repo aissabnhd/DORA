@@ -56,6 +56,7 @@ export class AppComponent {
       phoneNumber: string;
       postcode: number;
       rib: string;
+      password: string;
       roles: Set<Role>;
       specialities: Set<Speciality>;
       street: string;

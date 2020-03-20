@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,6 +34,19 @@ public class StaffServiceImpl implements StaffService {
     public Optional<Staff> findByEmail(String email) {
         return staffRepository.findByemail(email);
     }
+
+
+    @Override
+    public List<Staff> findByLastName(String lastname) {
+        return staffRepository.findByLastName(lastname);
+    }
+
+
+
+    public Staff findByPhoneNumber(String phoneNumber) {
+        return staffRepository.findByPhoneNumber(phoneNumber);
+    }
+
 
     @Override
     public Staff findByID(Long staffID) {

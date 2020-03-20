@@ -48,6 +48,9 @@ import { CreerDemandeComponent } from './staff/demande-examen/creer-demande/cree
 import { EffectuerExamenComponent } from './staff/demande-examen/effectuer-examen/effectuer-examen.component';
 import { GestionProfilComponent } from './staff/gestion-profil/gestion-profil.component';
 import { DeconnexionComponent } from './deconnexion/deconnexion.component';
+import { OneStaffComponent } from './staff/ajout-membre/one-staff/one-staff.component';
+import { UpdateStaffComponent } from './staff/ajout-membre/update-staff/update-staff.component';
+import { CreateStaffComponent } from './staff/ajout-membre/create-staff/create-staff.component';
 
 
 @NgModule({
@@ -91,6 +94,9 @@ import { DeconnexionComponent } from './deconnexion/deconnexion.component';
     EffectuerExamenComponent,
     GestionProfilComponent,
     DeconnexionComponent,
+    OneStaffComponent,
+    UpdateStaffComponent,
+    CreateStaffComponent,
   ],
   imports: [
     BrowserModule,

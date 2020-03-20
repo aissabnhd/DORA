@@ -7,7 +7,7 @@ export interface Staff {
   id: number;
   firstName: string;
   lastName: string;
-  birthday: any;
+  birthday: Date;
   nationality: string;
   phoneNumber: string;
   email: string;
@@ -16,6 +16,7 @@ export interface Staff {
   city: string;
   street: string;
   country: string;
+  password: string;
   linkCalendar: string;
   roles: Set<Role>;
   structBelong: Struct;

@@ -1,0 +1,38 @@
+.nom_DOCTOR{
+  background-color: cyan;
+  text-align: center;
+
+}
+
+.nom_NURSE{
+  background-color: pink;
+  text-align: center;
+
+}
+
+.nom_ADMINISTRATOR{
+  background-color: red;
+  text-align: center;
+
+}
+
+.nom_SECRETARY{
+  background-color: yellow;
+  text-align: center;
+
+}
+
+.nom_LABORATORY{
+  background-color: grey;
+  text-align: center;
+
+}
+
+div.links{
+  text-align : right;
+}
+
+div.block{
+  border:1px solid;
+
+}

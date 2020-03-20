@@ -8,5 +8,5 @@ export enum RoleName {
 
 export interface Role {
   id: number;
-  roleName: RoleName;
+  name: RoleName;
 }

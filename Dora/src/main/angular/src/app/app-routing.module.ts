@@ -32,6 +32,8 @@ import {EffectuerExamenComponent} from "./staff/demande-examen/effectuer-examen/
 import {GestionProfilComponent} from "./staff/gestion-profil/gestion-profil.component";
 import {MailOublieComponent} from "./mail-oublie/mail-oublie.component";
 import {DeconnexionComponent} from "./deconnexion/deconnexion.component";
+import {UpdateStaffComponent} from "./staff/ajout-membre/update-staff/update-staff.component";
+import {CreateStaffComponent} from "./staff/ajout-membre/create-staff/create-staff.component";
 
 
 
@@ -68,6 +70,9 @@ const routes: Routes = [
   { path: 'gestion_aphp', component: GestionAphpComponent},
   { path: 'affectation_personnel', component: AffectationPersonnelComponent },
   { path: 'modification_specialite', component: ModificationSpecialiteComponent},
+  { path: 'update_staff/:id', component: UpdateStaffComponent},
+  { path: 'create_staff', component: CreateStaffComponent},
+
   // laborantin links
   { path: 'voir_anciens_examens', component: VoirAnciensExamensComponent },
   { path: 'voir_demande_examen/:idDMP/:idStaff', component: EffectuerExamenComponent},

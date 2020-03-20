@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Staff} from "../interfaces/Staff";
 import {Struct} from "../interfaces/Struct";
 import {DMP} from "../interfaces/DMP";
+import {Role} from "../interfaces/Role";
 
 
 @Injectable({
@@ -31,6 +32,14 @@ export class StaffService {
 
   save(staff : Staff) : Observable<Staff>{
     return this.httpClient.post<Staff>('/api/staff', staff);
+  }
+
+  create(staff : Staff) : Observable<Staff>{
+    return this.httpClient.post<Staff>('/api/staff/create', staff);
+  }
+
+  setRole(idStaff : number, role : Role) : Observable<Role>{
+    return this.httpClient.post<Role>('/api/staff/setRole/' + idStaff, role);
   }
 
 
