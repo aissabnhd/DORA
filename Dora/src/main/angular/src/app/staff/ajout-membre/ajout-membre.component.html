@@ -2,13 +2,23 @@
 <div class="data">
   <button routerLink="/create_staff">Create</button>
 
-  <ul class="especes">
-    <li *ngFor="let staff of staffs">
-      <app-one-staff [staff]="staff" >
+  <table class="table-hover">
+    <tr >
+      <th >Nom</th>
+      <th >Naissance</th>
+      <th >Adresse</th>
+      <th >Téléphone</th>
+      <th >Mail</th>
+      <th >Nationalité</th>
+      <th >RIB</th>
+      <th >Rôle</th>
+    </tr>
+    <tbody>
+      <tr [staff]="staff" *ngFor="let staff of staffs" (click)="update(staff.id)">
 
-      </app-one-staff>
+      </tr>
+    </tbody>
       <p><br /></p>
-    </li>
-  </ul>
+  </table>
 
 </div>

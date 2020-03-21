@@ -3,7 +3,7 @@ import {Staff} from "../../../interfaces/Staff";
 import {StaffService} from "../../../services/Staff.service";
 
 @Component({
-  selector: 'app-one-staff',
+  selector: 'tr [staff]',
   templateUrl: './one-staff.component.html',
   styleUrls: ['./one-staff.component.css']
 })
