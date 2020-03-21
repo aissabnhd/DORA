@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Struct} from "../../../interfaces/Struct";
+import {Level, Struct} from "../../../interfaces/Struct";
 
 @Component({
   selector: ' tr [struct]',
@@ -10,6 +10,8 @@ export class OneStructComponent implements OnInit {
 
   @Input()
   struct : Struct;
+
+  level = [Level.APHP, Level.SERVICE, Level.POLE, Level.HOSPITAL, Level.FONCTIONAL_UNIT, Level.CARE_UNIT];
   constructor() { }
 
   ngOnInit() {
