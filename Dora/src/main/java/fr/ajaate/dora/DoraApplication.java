@@ -1,21 +1,18 @@
 package fr.ajaate.dora;
 
-import fr.ajaate.dora.dao.DMPRepository;
-import fr.ajaate.dora.dao.StructRepository;
+import fr.ajaate.dora.dao.*;
 import fr.ajaate.dora.entities.DMP;
 import fr.ajaate.dora.entities.Hospitalization;
 import fr.ajaate.dora.entities.Struct;
 import fr.ajaate.dora.enumeration.Level;
 import fr.ajaate.dora.services.DMPServices;
 import fr.ajaate.dora.services.HospitalizationServices;
-import fr.ajaate.dora.dao.StaffRepository;
 import fr.ajaate.dora.dao.StructRepository;
 import fr.ajaate.dora.entities.*;
 import fr.ajaate.dora.enumeration.DocumentNature;
 import fr.ajaate.dora.enumeration.DocumentType;
 import fr.ajaate.dora.enumeration.RoleName;
 import fr.ajaate.dora.services.*;
-import fr.ajaate.dora.dao.RoleRepository;
 import fr.ajaate.dora.entities.DMP;
 import fr.ajaate.dora.entities.Role;
 import fr.ajaate.dora.entities.Staff;
@@ -62,6 +59,9 @@ public class DoraApplication implements CommandLineRunner {
     @Autowired
     private DocumentService documentService;
 
+    @Autowired
+	private SpecialityRepository specialityRepository;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(DoraApplication.class, args);
@@ -87,11 +87,19 @@ public class DoraApplication implements CommandLineRunner {
 
         /***************************************** Struct ********************************************/
 
-        Struct struct = structRepository.save(new Struct("Val De grace", Level.HOSPITAL, 1,
+        /*Struct struct = structRepository.save(new Struct("Val De grace", Level.HOSPITAL, 1,
                 "Genève", "10 rue de La passerelle", "Suisse"));
         Struct struct2 = structRepository.save(new Struct("Salpêtrière", Level.HOSPITAL, 1,
                 "Paris", "10 rue de La passerelle", "France"));
+*/
 
+
+
+        Speciality spe1 = new Speciality("Chirurgie");
+		specialityRepository.save(spe1);
+
+		Struct struct = structRepository.save(new Struct("APHP", Level.APHP, 75001, "Paris", "15 Rue de la Bienfaisance", "France", null, null, null));
+		Struct struct2 = structRepository.save(new Struct("Salpêtrière", Level.HOSPITAL, 75005, "Paris", "30 avenue de la grandea armée", "France", spe1, struct, null));
 
         /***************************************** Hospitalization ********************************************/
 
@@ -119,7 +127,6 @@ public class DoraApplication implements CommandLineRunner {
 
         /***************************************** Roles and Staff ********************************************/
 
-
 		Role role=new Role(RoleName.DOCTOR);
 		Set<Role> roles=new HashSet<>();
 		roles.add(role);
@@ -131,6 +138,8 @@ public class DoraApplication implements CommandLineRunner {
 		Role role2=new Role(RoleName.ADMINISTRATOR);
 		Set<Role> roles2=new HashSet<>();
 		roles2.add(role2);
+
+
 
 		Staff staff2=new Staff("admin","Aïssa",new Date("1993/11/01"),"franco-algerien","0000",
 				"IBAN-BIC",77,roles2,"saint-denis","je sais pas ",

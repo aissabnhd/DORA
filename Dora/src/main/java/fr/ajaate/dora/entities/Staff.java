@@ -98,6 +98,10 @@ public class Staff {
 
     }
 
+    public Staff(String lastName) {
+        this.lastName = lastName;
+    }
+
     public long getExpire() {
         return expire;
     }

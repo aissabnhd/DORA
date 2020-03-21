@@ -19,8 +19,8 @@ public class Speciality {
     @Column(name = "name_role")
     private String nameRole;
 
-    public Speciality(Long id, String nameRole) {
-        this.id = id;
+    public Speciality(String nameRole) {
+
         this.nameRole = nameRole;
     }
 

@@ -122,6 +122,7 @@ public class Struct implements Serializable {
         this.responsible = responsible;
     }
 
+    /*
     public Struct(String nameStruct, Level level, int postCode, String city, String street, String country) {
         this.nameStruct = nameStruct;
         this.level = level;
@@ -129,6 +130,18 @@ public class Struct implements Serializable {
         this.city = city;
         this.street = street;
         this.country = country;
+    }*/
+
+    public Struct(String nameStruct, Level level, int postCode, String city, String street, String country, Speciality speciality, Struct struct, Staff responsible) {
+        this.nameStruct = nameStruct;
+        this.level = level;
+        this.postCode = postCode;
+        this.city = city;
+        this.street = street;
+        this.country = country;
+        this.speciality = speciality;
+        this.struct = struct;
+        this.responsible = responsible;
     }
 
     @Override

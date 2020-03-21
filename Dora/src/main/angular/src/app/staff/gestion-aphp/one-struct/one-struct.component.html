@@ -11,5 +11,12 @@
 
 <td *ngIf="struct.responsible"> {{struct.responsible.lastName}} {{struct.responsible.firstName}}</td>
 
-<td *ngIf="!struct.responsible"> Aucun responsable</td>
+<td *ngIf="!struct.responsible && struct.level == Level.APHP"> Hamid Macron </td>
+<td *ngIf="!struct.responsible && struct.level == Level.HOSPITAL"> Jaïd Benni </td>
+<td *ngIf="!struct.responsible && struct.level == Level.POLE"> Eseid Benmammar </td>
+<td *ngIf="!struct.responsible && struct.level == Level.SERVICE"> Thinhinane Bouhaci</td>
+<td *ngIf="!struct.responsible && struct.level == Level.FONCTIONAL_UNIT"> Jaid Benni </td>
+<td *ngIf="!struct.responsible && struct.level == Level.CARE_UNIT"> Eseid Benmammar </td>
+
+
 
