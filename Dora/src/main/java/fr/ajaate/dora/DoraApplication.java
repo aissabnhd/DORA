@@ -102,12 +102,12 @@ public class DoraApplication implements CommandLineRunner {
 		specialityRepository.save(spe2);
 
 		Struct struct = structRepository.save(new Struct("APHP", Level.APHP, 75001, "Paris", "15 Rue de la Bienfaisance", "France", null, null, null));
-		Struct struct2 = structRepository.save(new Struct("Salpêtrière", Level.HOSPITAL, 75005, "Paris", "30 avenue de la grandea armée", "France", spe1, struct, null));
+		/*Struct struct2 = structRepository.save(new Struct("Salpêtrière", Level.HOSPITAL, 75005, "Paris", "30 avenue de la grandea armée", "France", spe1, struct, null));
 		Struct struct3 = structRepository.save(new Struct("Salpêtrière Pole 1", Level.POLE, 75005, "Paris", "30 avenue de la grandea armée","France", spe1,struct2, null));
 		Struct struct4 = structRepository.save(new Struct("Salpêtrière Service 1", Level.SERVICE, 75005,"Paris", "30 avenue de la grandea armée","France", spe1, struct3,null));
 		Struct struct5 = structRepository.save(new Struct("Salpetriêre Unité Fonctionnelle 1", Level.FONCTIONAL_UNIT,75005, "Paris", "30 avenue de la grandea armée", "France", spe1, struct4, null));
-		Struct struct6 = structRepository.save(new Struct("Salpêtrière Unité de Soin 1", Level.CARE_UNIT, 75005, "Paris", "30 avenue de la grandea armée", "France", spe1, struct5, null));
-		//Struct struct7 = structRepository.save(new Struct("Hôpital Bicetre", Level.HOSPITAL, 94270, "Le Kremlin-Bicêtre", "78 Rue du Général Leclerc", "France", spe2, struct, null));
+		Struct struct6 = structRepository.save(new Struct("Salpêtrière Unité de Soin 1", Level.CARE_UNIT, 75005, "Paris", "30 avenue de la grandea armée", "France", spe1, struct5, null));*/
+		Struct struct7 = structRepository.save(new Struct("Hôpital Bicetre", Level.HOSPITAL, 94270, "Le Kremlin-Bicêtre", "78 Rue du Général Leclerc", "France", spe2, struct, null));
         /***************************************** Hospitalization ********************************************/
 
         Hospitalization hospitalization = hospitalizationServices.save(new Hospitalization(new Date("1993/01/01"),
@@ -118,7 +118,7 @@ public class DoraApplication implements CommandLineRunner {
                 14, dmp, struct));
         Hospitalization hospitalization3 = hospitalizationServices.save(new Hospitalization(new Date("1993/01/01"),
 				null,
-                14, dmp3, struct2));
+                14, dmp3, struct7));
 
 		hospitalizationServices.save(hospitalization);
 		hospitalizationServices.save(hospitalization1);
@@ -138,9 +138,9 @@ public class DoraApplication implements CommandLineRunner {
 		Set<Role> roles=new HashSet<>();
 		roles.add(role);
 
-		Staff staff=new Staff("hamid","macron",new Date("1993/11/01"),"franco-algerien","0000",
-				"IBAN-BIC",93,roles,"saint-denis","je sais pas ",
-				"FR","hisAgenda","hamida-macron@gmail.com","123456789");
+		Staff staff=new Staff("Sebastien","Jean",new Date("1993/11/01"),"française","0674305745",
+				"IBAN-BIC",94,roles,"Evry","3 rue Pasteur",
+				"FR","hisAgenda","sebastien-jean@gmail.com","123456789");
 
 		Role role2=new Role(RoleName.ADMINISTRATOR);
 		Set<Role> roles2=new HashSet<>();
@@ -148,14 +148,14 @@ public class DoraApplication implements CommandLineRunner {
 
 
 
-		Staff staff2=new Staff("admin","Aïssa",new Date("1993/11/01"),"franco-algerien","0000",
-				"IBAN-BIC",77,roles2,"saint-denis","je sais pas ",
+		Staff staff2=new Staff("admin","Aïssa",new Date("1993/11/01"),"française","0622571243",
+				"IBAN-BIC",77,roles2,"Torcy","70 rue de la gare",
 				"FR","hisAgenda","aissa.bnhd@gmail.com","admin");
 		Role role3=new Role(RoleName.SECRETARY);
 		Set<Role> roles3=new HashSet<>();
 		roles3.add(role3);
-		Staff staff3=new Staff("Thinhinane","Bouhaci",new Date("1995/22/02"),"franco-algerien","0000",
-				"IBAN-BIC",93,roles3,"saint-denis","je sais pas ",
+		Staff staff3=new Staff("Thinhinane","Bouhaci",new Date("1995/22/02"),"algérienne","0630483625",
+				"IBAN-BIC",95,roles3,"Montmagny","57 avenue de la paix",
 				"FR","hisAgenda","thinhinane.bouhaci@gmail.com","tina95");
 		roleRepository.save(role);
 		roleRepository.save(role2);
@@ -167,8 +167,8 @@ public class DoraApplication implements CommandLineRunner {
 		Role role4=new Role(RoleName.LABORATORY);
 		Set<Role> roles4=new HashSet<>();
 		roles4.add(role4);
-		Staff staff4=new Staff("Benmammar","Eseid", new Date("1995/10/01"),"franco-algerien","0000",
-				"IBAN-BIC",93,roles4,"saint-denis","je sais pas ",
+		Staff staff4=new Staff("Eseid","Benmamamr", new Date("1995/10/01"),"algérienne","0677939294",
+				"IBAN-BIC",93,roles4,"saint-denis","34 rue du peuplier",
 				"FR","hisAgenda","eseid@gmail.com","eseid");
 		roleRepository.save(role);
 		roleRepository.save(role4);
@@ -177,8 +177,8 @@ public class DoraApplication implements CommandLineRunner {
 		Role role5=new Role(RoleName.NURSE);
 		Set<Role> roles5=new HashSet<>();
 		roles5.add(role5);
-		Staff staff5=new Staff("Benni","Jaid",new Date("1993/15/02"),"franco-algerien","0000",
-				"IBAN-BIC",93,roles5,"saint-denis","je sais pas ",
+		Staff staff5=new Staff("Jaid","Benni",new Date("1993/15/02"),"française","0614542849",
+				"IBAN-BIC",77,roles5,"Meaux","20 allée des roses",
 				"FR","hisAgenda","jaid@gmail.com","jaja");
 		roleRepository.save(role);
 		roleRepository.save(role5);
