@@ -2,6 +2,7 @@ package fr.ajaate.dora.dao;
 
 
 import fr.ajaate.dora.entities.Staff;
+import fr.ajaate.dora.entities.Struct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,12 @@ public interface StaffRepository extends JpaRepository<Staff, Long> {
     List<Staff> findByLastName(String lastname);
 
     Staff findByPhoneNumber(String phoneNumber);
+
+    public List<Staff> findAllByStructBelong(Struct struct);
+
+
+    public Optional<Staff> findByStructResponsible(Struct structResponsible);
+
 
 
 }

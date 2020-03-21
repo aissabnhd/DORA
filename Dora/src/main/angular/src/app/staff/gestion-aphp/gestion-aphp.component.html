@@ -1,3 +1,19 @@
 <div class="data">
-  <p>gestion-aphp works!</p>
+  <button routerLink="/create_struct">Create</button>
+  <table class="table-hover">
+    <tr >
+      <th >Nom</th>
+      <th >Niveau</th>
+      <th >Adresse</th>
+      <th >Spécialité</th>
+      <th >Parent</th>
+      <th >Responsable</th>
+    </tr>
+    <tbody>
+    <tr [struct]="struct" *ngFor="let struct of structs" (click)="update(struct.id)">
+
+    </tr>
+    </tbody>
+    <p><br /></p>
+  </table>
 </div>

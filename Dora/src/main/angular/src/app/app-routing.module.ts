@@ -34,6 +34,8 @@ import {MailOublieComponent} from "./mail-oublie/mail-oublie.component";
 import {DeconnexionComponent} from "./deconnexion/deconnexion.component";
 import {UpdateStaffComponent} from "./staff/ajout-membre/update-staff/update-staff.component";
 import {CreateStaffComponent} from "./staff/ajout-membre/create-staff/create-staff.component";
+import {CreateStructComponent} from "./staff/gestion-aphp/create-struct/create-struct.component";
+import {UpdateStructComponent} from "./staff/gestion-aphp/update-struct/update-struct.component";
 
 
 
@@ -72,6 +74,9 @@ const routes: Routes = [
   { path: 'modification_specialite', component: ModificationSpecialiteComponent},
   { path: 'update_staff/:id', component: UpdateStaffComponent},
   { path: 'create_staff', component: CreateStaffComponent},
+  { path: 'create_struct', component: CreateStructComponent},
+  { path: 'update_struct/:id', component: UpdateStructComponent},
+
 
   // laborantin links
   { path: 'voir_anciens_examens', component: VoirAnciensExamensComponent },

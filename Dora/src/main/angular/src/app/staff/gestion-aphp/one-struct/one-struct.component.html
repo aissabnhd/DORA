@@ -1,0 +1,15 @@
+<td> {{struct.nameStruct}} </td>
+<td> {{struct.level}}</td>
+
+<td> {{struct.street}}, ({{struct.postCode}}) {{struct.city}} à {{struct.country}} </td>
+
+<td *ngIf="struct.speciality"> {{struct.speciality.nameRole}} </td>
+<td *ngIf="!struct.speciality"> Aucune spécialité </td>
+
+<td *ngIf="struct.struct"> {{struct.struct.nameStruct}}</td>
+<td *ngIf="!struct.struct"> Aucun parent </td>
+
+<td *ngIf="struct.responsible"> {{struct.responsible.lastName}} {{struct.responsible.firstName}}</td>
+
+<td *ngIf="!struct.responsible"> Aucun responsable</td>
+

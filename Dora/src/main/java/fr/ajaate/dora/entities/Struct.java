@@ -42,6 +42,86 @@ public class Struct implements Serializable {
     @JoinColumn(name = "staff_id", referencedColumnName = "id")
     private Staff responsible;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNameStruct() {
+        return nameStruct;
+    }
+
+    public void setNameStruct(String nameStruct) {
+        this.nameStruct = nameStruct;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    public int getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(int postCode) {
+        this.postCode = postCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Speciality getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
+    }
+
+    public Struct getStruct() {
+        return struct;
+    }
+
+    public void setStruct(Struct struct) {
+        this.struct = struct;
+    }
+
+    public Staff getResponsible() {
+        return responsible;
+    }
+
+    public void setResponsible(Staff responsible) {
+        this.responsible = responsible;
+    }
+
     public Struct(String nameStruct, Level level, int postCode, String city, String street, String country) {
         this.nameStruct = nameStruct;
         this.level = level;

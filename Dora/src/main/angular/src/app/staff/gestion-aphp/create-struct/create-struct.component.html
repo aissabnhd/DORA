@@ -1,0 +1,52 @@
+<div class="data">
+  <form [formGroup]="structForm" *ngIf="structForm">
+
+    <div class="item">
+      <label>
+        Nom :
+        <input type="text" formControlName="nameStruct">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Niveau :
+        <select formControlName="level">
+          <option *ngFor="let level of levels" [value]="level" >{{level.toString()}}</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Code postal :
+        <input type="number" formControlName="postCode">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Ville :
+        <input type="text" formControlName="city">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Rue :
+        <input type="text" formControlName="street">
+      </label>
+    </div>
+
+    <div class="item">
+      <label>
+        Pays :
+        <input type="text" formControlName="country">
+      </label>
+    </div>
+
+  </form>
+  <button routerLink="/gestion_aphp"> Retour</button>
+  <button (click)="createStruct()"> Create</button>
+
+</div>

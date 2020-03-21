@@ -20,10 +20,30 @@ public class StructController {
     @Autowired
     private StructRepository structRepository;
 
+    @Autowired
+    private StructService structService;
+
+
+    @PostMapping
+    public ResponseEntity<Struct> save(@RequestBody Struct s) {
+        Struct newStruct = structService.createStruct(s);
+        return new ResponseEntity<>(newStruct, HttpStatus.CREATED);
+    }
+
     @GetMapping
-    @PreAuthorize("hasAuthority('SECRETARY') or hasAuthority('NURSE') or hasAuthority('DOCTOR') or hasAuthority('LABORATORY')")
     public ResponseEntity<List<Struct>> findAll() {
-        return new ResponseEntity<List<Struct>>(structRepository.findAll(), HttpStatus.CREATED);
+        return new ResponseEntity<List<Struct>>(structService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Struct> findById(@PathVariable("id") Long id){
+        return new ResponseEntity<Struct>(structService.getOne(id).get(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id){
+        structService.deleteStruct(id);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
 }

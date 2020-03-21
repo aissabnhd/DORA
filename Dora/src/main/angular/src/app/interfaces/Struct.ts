@@ -3,7 +3,7 @@ import { Speciality } from './Speciality';
 import { Staff } from './Staff';
 
 export enum Level {
-  APHP="AP-HP",
+  APHP="APHP",
   HOSPITAL="HOSPITAL",
   POLE="POLE",
   SERVICE="SERVICE",

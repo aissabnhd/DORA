@@ -51,6 +51,9 @@ import { DeconnexionComponent } from './deconnexion/deconnexion.component';
 import { OneStaffComponent } from './staff/ajout-membre/one-staff/one-staff.component';
 import { UpdateStaffComponent } from './staff/ajout-membre/update-staff/update-staff.component';
 import { CreateStaffComponent } from './staff/ajout-membre/create-staff/create-staff.component';
+import { CreateStructComponent } from './staff/gestion-aphp/create-struct/create-struct.component';
+import { OneStructComponent } from './staff/gestion-aphp/one-struct/one-struct.component';
+import { UpdateStructComponent } from './staff/gestion-aphp/update-struct/update-struct.component';
 
 
 @NgModule({
@@ -97,6 +100,9 @@ import { CreateStaffComponent } from './staff/ajout-membre/create-staff/create-s
     OneStaffComponent,
     UpdateStaffComponent,
     CreateStaffComponent,
+    CreateStructComponent,
+    OneStructComponent,
+    UpdateStructComponent,
   ],
   imports: [
     BrowserModule,

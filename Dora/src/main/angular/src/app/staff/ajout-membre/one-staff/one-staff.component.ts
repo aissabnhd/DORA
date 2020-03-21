@@ -14,7 +14,6 @@ export class OneStaffComponent implements OnInit {
   constructor(private staffService : StaffService) { }
 
   ngOnInit() {
-    console.log(this.staff.roles[0].name)
   }
 
   formatDate(nombre : number, chiffre : number) {

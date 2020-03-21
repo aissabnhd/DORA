@@ -20,4 +20,12 @@ export class StructService {
     return this.httpClient.get<Array<Struct>>('/api/struct');
   }
 
+  create(s : Struct) : Observable<Struct> {
+    return this.httpClient.post<Struct>('/api/struct', s);
+  }
+
+  findOne(id : number) : Observable<Struct> {
+    return this.httpClient.get<Struct>('/api/struct/' + id);
+  }
+
 }
