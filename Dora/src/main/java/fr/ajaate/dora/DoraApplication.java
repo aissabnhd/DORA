@@ -98,9 +98,16 @@ public class DoraApplication implements CommandLineRunner {
         Speciality spe1 = new Speciality("Chirurgie");
 		specialityRepository.save(spe1);
 
+		Speciality spe2 = new Speciality("Réanimation");
+		specialityRepository.save(spe2);
+
 		Struct struct = structRepository.save(new Struct("APHP", Level.APHP, 75001, "Paris", "15 Rue de la Bienfaisance", "France", null, null, null));
 		Struct struct2 = structRepository.save(new Struct("Salpêtrière", Level.HOSPITAL, 75005, "Paris", "30 avenue de la grandea armée", "France", spe1, struct, null));
-
+		Struct struct3 = structRepository.save(new Struct("Salpêtrière Pole 1", Level.POLE, 75005, "Paris", "30 avenue de la grandea armée","France", spe1,struct2, null));
+		Struct struct4 = structRepository.save(new Struct("Salpêtrière Service 1", Level.SERVICE, 75005,"Paris", "30 avenue de la grandea armée","France", spe1, struct3,null));
+		Struct struct5 = structRepository.save(new Struct("Salpetriêre Unité Fonctionnelle 1", Level.FONCTIONAL_UNIT,75005, "Paris", "30 avenue de la grandea armée", "France", spe1, struct4, null));
+		Struct struct6 = structRepository.save(new Struct("Salpêtrière Unité de Soin 1", Level.CARE_UNIT, 75005, "Paris", "30 avenue de la grandea armée", "France", spe1, struct5, null));
+		//Struct struct7 = structRepository.save(new Struct("Hôpital Bicetre", Level.HOSPITAL, 94270, "Le Kremlin-Bicêtre", "78 Rue du Général Leclerc", "France", spe2, struct, null));
         /***************************************** Hospitalization ********************************************/
 
         Hospitalization hospitalization = hospitalizationServices.save(new Hospitalization(new Date("1993/01/01"),
